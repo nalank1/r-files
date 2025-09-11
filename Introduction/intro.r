@@ -33,9 +33,10 @@ mean_temp
 #data structures
 #simplest data structure - vector (can contain nums, chars, factors, logicals)
 # vectors that have length 1 - scalars
-# **elements inside vector should be in same class** you can include NA to denote missing data in vectors with other data types
+# **elements inside vector should be in same class
+#** you can include NA to denote missing data in vectors with other data types
 
-## matrices & arrays
+# matrices arrays
 #matrix is a vector that has additional attributes called dimensions
 # arrays are multidimensional matrices
 my_mat <- matrix(1:16, nrow = 4, byrow = TRUE)
@@ -53,14 +54,16 @@ rownames(my_mat) <- c("A", "B", "C", "D")
 colnames(my_mat) <- c("a", "b", "c", "d")
 
 # to transpose use t()
-# to extract the diagonal elements of a matrix and store them as a vector, use diag()
+# to extract the diagonal elements of a matrix and
+# store them as a vector, use diag()
 
 # normal matrix addition and multiplication (%*%) can be performed
 # element by element products could be done by *
 
-## Lists 
+# Lists
 # can contain mixture of data types.
-# can store other data structures like vectors and arrays within a list or list of a list
+# can store other data structures like vectors and arrays within 
+# a list or list of a list
 
 #data frames - 2D obj made up rows x cols
 # can contain mixture of data types
@@ -74,4 +77,22 @@ dataf <- data.frame(height = p.height, weight = p.weight, names = p.names)
 dataf
 
 dim(dataf) #it will print out the dimensions (row x col)
-str(dataf) # will return a compact summary of the structure of the data frame object 
+str(dataf)  # will return a compact summary of the structure of the data frame
+
+#if the data we had, was like this (after printing)
+# 'data.frame':   5 obs. of  3 variables:
+#  $ height: num  180 155 160 167 181
+#  $ weight: num  65 50 52 58 70
+#  $ names : chr  "Joanna" "Charlotte" "Helen" "Karen" ...
+
+#if we don't want chr, we can change it like this, stringsAsFactors = TRUE
+#now everything is in factor with 5 levels
+# p.height <- c(180, 155, 160, 167, 181) # nolint
+# p.weight <- c(65, 50, 52, 58, 70) # nolint: commented_code_linter.
+# p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy") # nolint
+
+# dataf <- data.frame(
+#   height = p.height, weight = p.weight, names = p.names,
+#   stringsAsFactors = TRUE # nolint
+# )
+# str(dataf) # nolint
