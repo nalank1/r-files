@@ -1,0 +1,292 @@
+---
+title: Bio4158/Bio5158 - Report 2
+subtitle: Exercise
+author: "Group XX - Name_1, Name_2, Name_3"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    number-sections: true
+    embed-resources: true
+    code-fold: show
+    code-tools: true
+---
+
+## The problem 
+
+Black fly larvae (Diptera: Simuliidae) were sampled in February at the
+outlet of two lakes of the Eastern Townships (Lakes Orford and
+Lovering). The body length of each larva was measured. The data are in
+the file `simulies.csv` The relationship between body length (L, in mm)
+and dry mass (M, in $\mu$g) for the dominant species (*P.
+mixtum/fuscum*) is:
+
+$$
+M = 1.36 L^{3.05}
+$$
+
+Analyze the data and answer the questions. *Total = 20 points*
+
+The effect size `d` is estimate as:
+
+$$
+d = \frac{\left|\mu_2 - \mu_1\right|}{\sqrt{\frac{sd_1^2 + sd_2^2}{2}}}
+$$
+
+## The task
+
+### Site specific summary statistics
+
+::: {.callout}
+# To do
+Calculate the mean mass and its standard deviation at each site. *(4 points)*
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+
+### Power 
+
+::: {.callout}
+# To do
+Using the standard deviations observed at each site, calculate the power of a two-tailed t test for independent means *(4 points)*
+:::
+
+####
+::: {.callout}
+# To do
+if the mass difference was 5 $\mu$g, $\alpha$=0.05, and that 100 larvae were sampled at each site
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+####
+
+::: {.callout}
+# To do
+if the mass difference was 20 $\mu$g, $\alpha$=0.05, and that 100 larvae were sampled at each site
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+####
+
+::: {.callout}
+# To do
+if the mass difference was 50 $\mu$g, $\alpha$=0.05, and that 100 larvae were sampled at each site
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+
+####
+
+::: {.callout}
+# To do
+Comment on how changing the mass difference affects power.
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+
+### Required sample size 
+::: {.callout}
+# To do
+Calculate the required sample size to detect, with a two-tailed t-test for independent means, a difference of 50 $\mu$g between the means *(4 points)*
+:::
+
+####
+
+::: {.callout}
+# To do
+with a power of 80% and $\alpha$=0.05
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+####
+
+::: {.callout}
+# To do
+with a power of 80% and $\alpha$=0.001
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+####
+::: {.callout}
+# To do
+with a power of 95% and $\alpha$=0.
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+
+####
+
+::: {.callout}
+# To do
+Comment on how changing power and $\alpha$ affects the required sample size.
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+
+### Detectable effect size
+
+::: {.callout}
+# To do
+Calculate the detectable effect size (`d`) with a two-tailed t-test on independent means, given the observed standard deviations *(4 points)*
+:::
+
+####
+::: {.callout}
+# To do
+With a power of 80%, $\alpha$=0.05, and measurements on 10 larvae at each site
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+####
+::: {.callout}
+# To do
+With a power of 80%, $\alpha$=0.05, and measurements on 200 larvae at each site
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+####
+::: {.callout}
+# To do
+With a power of 80%, $\alpha$=0.05, and measurements on 20 larvae at one site and 380 larvae at the second site
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+####
+::: {.callout}
+# To do
+Comment on how changing sample sizes affect `d`.
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+### Differences in average mass
+
+::: {.callout}
+# To do
+Calculate the difference in average mass, in $\mu$g, that can be detected given your estimate of the minimum detectable effect size (`d`) at 2.4.1-2.4.3 *(4 points)*
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+

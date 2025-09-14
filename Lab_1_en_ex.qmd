@@ -1,0 +1,107 @@
+---
+title: Bio4158/Bio5158 - Report 1
+subtitle: Exercise
+author: "Group XX - Name_1, Name_2, Name_3"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+
+# Task
+
+For each of the following cases, list:
+
+1. The ‘biological’ (i.e. ‘scientific’) hypothesis/hypotheses that might be tested with the data. Remember, a biological hypothesis is a proposed cause for a given observation/pattern (i.e. the pattern described in the case study). Focus on the information provided in the case description. 
+2. The prediction for each biological hypothesis you propose. This is the pattern you expect to see in the results, given the study that was performed, IF THIS BIOLOGICAL HYPOTHESIS IS TRUE.
+2. The statistical null hypothesis associated with each of your biological hypotheses (this is all others patterns in the results except that predicted by your biological hypothesis).
+2. If present, any descriptive elements (i.e. variables for which you are interested in describing their effects) and the statistical null hypothesis associated with each (this is normally the absence of any pattern – i.e. no association between the variable of interest and your response variable). If there are no descriptive elements, then state so.
+2. The dependent variable
+2. The independent variables 
+2. the statistical model in verbal form  
+
+Overall grading on 42 (14 points per case, 2 points per question).
+
+## Example
+
+In studies of bottom dwelling (benthic) invertebrates, sieves are generally used to eliminate unwanted fine particles and to facilitate sorting of organisms. Different sieves have been observed to vary in the efficiency with which they retain individuals of different species (possibly due to variation in organism size/shape). In a study completed in Dr. Morin’s laboratory, they processed a similar number of individuals of each of 30 species and recorded the total number of individuals of each species that were retained by the sieve. They also recorded the average size and leg length of individuals of each species. Three different students repeated this experiment as they were also interested in knowing whether these students differed in their overall efficiency.
+
+1. **Possible ‘biological’ hypotheses**: H1: The efficiency of the sieve varies among species because those species with larger average size are more easily retained by the sieve. H2: The efficiency of the sieve varies among species because species with longer average legs are more likely to get caught in the sieve. 
+1. **Predictions**: H1: The number retained will increase with increasing average size; H2: The number of retained individuals will increase with increasing leg length.
+1. **Statistical null hypotheses**: H1: The number of retained individuals will decrease or not change with increasing average size; H2: The number of retained individuals decreases or not change with increasing leg length.
+1. **Descriptive elements**: Student is a descriptive variable as there is no associated biological hypothesis; they simply want to know if these three differ in how efficiently they sort. The statistical null hypothesis is that the number of retained individuals does not differ among these three students. 
+1. **Dependent variable**: the number of individuals retained for each of the 30 species.
+1. **Independent variables**: average size of each of the 30 species, average leg length of each of the 30 species, and student identity.
+1. **Statistical model**: number retained = average size + average leg length + student identity + error
+
+
+
+## Case 1.
+
+Amphibians are declining worldwide. Endocrine disruptors have been suggested as one of the possible causes as there is reason to think that they may slow development. Valerie Langlois (Trudeau lab) has studied the effect of atrazine (the most commonly used herbicide in corn and soy fields) on the development of the common frog, Rana pipiens. Fertilized frog eggs were randomly assigned to different exposure treatments (control and several concentrations of atrazine) and the age at which each individual went through metamorphosis was recorded along with the sex of the individual.
+
+### Answers
+
+1. **Possible 'biological' hypothesis**: H1: The effect of Atrazine varies among species because those species with male sex are more likely to affected by the use of Atrazine. H2: The effect of Atrazine varies among species with different age because the species with young age are more likely to get affected.
+
+2. **Predictions**: H1: The number affected will increase with the males; H2: The number affected will increase with the species that are younger.
+
+3. **Statistical null hypothesis**: H1: Atrazine concentration has no effect on the age at which Rana pipiens reaches metamorphosis. H2: Atrazine concentration has no effect on the proportion of males and females in Rana pipiens.
+
+4. **Descriptive elements**: Atrazine concentration and sex are descriptive variables because the study aims to describe the affects on age at metamorphosis. The statistical null hypothesis states that the age at metamorphosis doesn't differ among atrazine treatments or between sexes.
+
+5. **Dependent Variable**: The age at metamorphosis is the dependent variable.
+
+6. **Independent Variable**: The atrazine concentration and sex are the independent variable.
+
+7. **Statistical Model**: 
+
+
+
+## Case 2
+
+The majority of water loss in insects occurs across the cuticle and cuticular permeability to water can therefore have important implications on the ability to tolerate desiccation stress. Insect cuticles are covered in a waxy layer of hydrocarbons, the amount of which may affect cuticular permeability. Water loss also occurs when insects ‘breathe’, which they do through valved openings (spiracles) in their cuticle. Spiracles opening increases in frequency and/or duration with increasing locomotor activity to facilitate gas exchange, thereby increasing water loss as well. In Drosophila serrata, rates of water loss have been observed to vary substantially among individuals even when measured under the same (and constant) environmental conditions. In a recent study, a student measured water loss of individual D. serrata under constant environmental conditions. They also recorded the locomotor activity of each individual during the measurement (total distance moved), then immediately following this they extracted and quantified the amount of 2-MeC~26~, the most abundant cuticular hydrocarbon in this species.
+
+### Answers
+
+1. blablabla
+
+2. blablabla
+
+3. blablabla
+
+4. blablabla
+
+5. blablabla
+
+6. blablabla
+
+7. blablabla
+
+
+
+## Case 3
+
+A graduate student in the Rundle lab observed substantial variation in mating success among a group of males from a population of Drosophila melanogaster, with multiple females appearing to accept or reject particular males repeatedly during courtship. In a recent study they recorded the mating success of males that were randomly assigned to one of two different perfuming treatments (perfumed with a pheromone extract obtained from separate males known to have either unusually high or unusually low mating success). They also recorded the weight of each male and the amount of blue colouring on their wings because they were curious as to whether these traits might be associated with mating success. 
+
+
+### Answers
+
+1. blablabla
+
+2. blablabla
+
+3. blablabla
+
+4. blablabla
+
+5. blablabla
+
+6. blablabla
+
+7. blablabla
+
