@@ -58,17 +58,17 @@ Amphibians are declining worldwide. Endocrine disruptors have been suggested as 
 
 6. **Independent Variable**: The atrazine concentration and sex are the independent variable.
 
-7. **Statistical Model**: 
+7. **Statistical Model**: ANOVA
 
 
 
 ## Case 2
 
-The majority of water loss in insects occurs across the cuticle and cuticular permeability to water can therefore have important implications on the ability to tolerate desiccation stress. Insect cuticles are covered in a waxy layer of hydrocarbons, the amount of which may affect cuticular permeability. Water loss also occurs when insects ‘breathe’, which they do through valved openings (spiracles) in their cuticle. Spiracles opening increases in frequency and/or duration with increasing locomotor activity to facilitate gas exchange, thereby increasing water loss as well. In Drosophila serrata, rates of water loss have been observed to vary substantially among individuals even when measured under the same (and constant) environmental conditions. In a recent study, a student measured water loss of individual D. serrata under constant environmental conditions. They also recorded the locomotor activity of each individual during the measurement (total distance moved), then immediately following this they extracted and quantified the amount of 2-MeC~26~, the most abundant cuticular hydrocarbon in this species.
+The majority of water loss in insects occurs across the **cuticle and cuticular permeability to water** can therefore have important implications on the ability to **tolerate desiccation stress**. Insect cuticles are covered in a **waxy layer of hydrocarbons**, the amount of which may affect cuticular permeability. Water loss also occurs when insects ‘breathe’, which they do through **valved openings (spiracles)** in their cuticle. Spiracles opening increases in frequency and/or duration with increasing locomotor activity to facilitate gas exchange, thereby increasing water loss as well. In Drosophila serrata, rates of water loss have been observed to vary substantially among individuals even when measured under the same (and constant) environmental conditions. In a recent study, a student measured water loss of individual D. serrata under constant environmental conditions. They also recorded the locomotor activity of each individual during the measurement (total distance moved), then immediately following this they extracted and quantified the amount of 2-MeC~26~, the most abundant cuticular hydrocarbon in this species.
 
 ### Answers
 
-1. blablabla
+1. **Possible 'biological' Hypothesis**: 
 
 2. blablabla
 
