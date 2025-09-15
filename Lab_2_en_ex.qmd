@@ -38,6 +38,16 @@ $$
 
 ### Site specific summary statistics
 
+#### Data Preprocessing
+```{r}
+#write the code here - loading the data, reading it, data wrangling
+simulies_data <- read.csv("data-bioxx58/simulies.csv", header=TRUE, sep=",", stringsAsFactors=TRUE)
+print(simulies_data)
+str(simulies_data)
+```
+<!--#################################################################-->
+
+
 ::: {.callout}
 # To do
 Calculate the mean mass and its standard deviation at each site. *(4 points)*
@@ -46,9 +56,16 @@ Calculate the mean mass and its standard deviation at each site. *(4 points)*
 <!--#################################################################-->
 ```{r}
 #write your code here
+library(dplyr)
+
+simulies_data %>%
+group_by(Site) %>%
+summarize(mean_length = mean(Length), standard_deviation = sd(Length))
+
+
 ```
 
-Write your explanation
+The mean of Lovering and Orford are 1.73 and 2.60, respectively. The standard deviation for Lovering and Orford are 0.795 and 1.22, respectively.
 
 <!--#################################################################-->
 
@@ -70,6 +87,9 @@ if the mass difference was 5 $\mu$g, $\alpha$=0.05, and that 100 larvae were sam
 <!--#################################################################-->
 ```{r}
 #write your code here
+## calculating the power of a two-tailed t test
+
+
 ```
 
 Write your explanation
