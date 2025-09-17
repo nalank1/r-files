@@ -20,6 +20,9 @@
 
 # post-hoc - 
 
+# descriptive elements: a variable you measure/include in the model
+# without linking it to biological hypothesis
+
 # practical
 ## power analysis for t-test
 ## for two independent means

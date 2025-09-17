@@ -46,62 +46,63 @@ Amphibians are declining worldwide. Endocrine disruptors have been suggested as 
 
 ### Answers
 
-1. **Possible 'biological' hypothesis**: H1: The effect of Atrazine varies among species because those species with male sex are more likely to affected by the use of Atrazine. H2: The effect of Atrazine varies among species with different age because the species with young age are more likely to get affected.
+1. **Possible 'biological' hypothesis**: H1: The effect of being exposed to atrazine changes developmental timing in Rana pipiens, such that individuals exposed to higher concentrations take longer to reach metamorphosis. H2: The exposure to atrazine changes sexual differentiation in Rana pipiens, causing changes in the proportion of males and females.
 
-2. **Predictions**: H1: The number affected will increase with the males; H2: The number affected will increase with the species that are younger.
+2. **Predictions**: H1: The age at metamorphosis will increase with higher atrazine concentration.; H2: The sex ratio will shift more with higher atrazine concentration.
 
 3. **Statistical null hypothesis**: H1: Atrazine concentration has no effect on the age at which Rana pipiens reaches metamorphosis. H2: Atrazine concentration has no effect on the proportion of males and females in Rana pipiens.
 
-4. **Descriptive elements**: Atrazine concentration and sex are descriptive variables because the study aims to describe the affects on age at metamorphosis. The statistical null hypothesis states that the age at metamorphosis doesn't differ among atrazine treatments or between sexes.
+4. **Descriptive elements**: There are no descriptive elements in this study since all measured variables are tied to biological hypothesis.
 
-5. **Dependent Variable**: The age at metamorphosis is the dependent variable.
+5. **Dependent Variable**: Depending on the hypothesis, either age at metamorphosis or sex ratio could be dependent variable.
 
 6. **Independent Variable**: The atrazine concentration and sex are the independent variable.
 
-7. **Statistical Model**: ANOVA
+7. **Statistical Model**: // TODO
 
 
 
 ## Case 2
 
-The majority of water loss in insects occurs across the **cuticle and cuticular permeability to water** can therefore have important implications on the ability to **tolerate desiccation stress**. Insect cuticles are covered in a **waxy layer of hydrocarbons**, the amount of which may affect cuticular permeability. Water loss also occurs when insects ‘breathe’, which they do through **valved openings (spiracles)** in their cuticle. Spiracles opening increases in frequency and/or duration with increasing locomotor activity to facilitate gas exchange, thereby increasing water loss as well. In Drosophila serrata, rates of water loss have been observed to vary substantially among individuals even when measured under the same (and constant) environmental conditions. In a recent study, a student measured water loss of individual D. serrata under constant environmental conditions. They also recorded the locomotor activity of each individual during the measurement (total distance moved), then immediately following this they extracted and quantified the amount of 2-MeC~26~, the most abundant cuticular hydrocarbon in this species.
+The majority of water loss in insects occurs across the **cuticle and cuticular permeability to water** can therefore have important implications on the ability to **tolerate desiccation stress**. Insect cuticles are covered in a **waxy layer of hydrocarbons**, the amount of which may affect cuticular permeability. Water loss also occurs when insects ‘breathe’, which they do through **valved openings (spiracles)** in their cuticle. Spiracles opening **increases in frequency and/or duration with increasing locomotor activity** to facilitate gas exchange, thereby increasing water loss as well. In Drosophila serrata, **rates of water loss** have been observed to vary substantially among individuals even when measured under the same (and constant) environmental conditions. In a recent study, a student **measured water loss of individual** D. serrata under constant environmental conditions. They also **recorded the locomotor activity of each individual during the measurement (total distance moved)**, then immediately following this they **extracted and quantified the amount of 2-MeC~26~**, the most abundant cuticular hydrocarbon in this species.
 
 ### Answers
 
-1. **Possible 'biological' Hypothesis**: 
+1. **Possible 'biological' Hypothesis**: H1: Rates of water loss vary among individuals because those with greater amounts of 2-MeC26 are more resistant to cuticular water loss. H2: Rates of water loss vary among individuals because those with higher locomotor activity experience more respiratory water loss.   
 
-2. blablabla
+2. **Predictions**: H1: Water loss will decrease with increasing 2-MeC26. H2: Water loss will increase with increasing locomotor activity,
 
-3. blablabla
+3. **Statistical Null Hypothesis**: //TODO
 
-4. blablabla
+4. **Descriptive elements**: // TODO
 
-5. blablabla
+5. **Dependent variable**: Rate of water loss
 
-6. blablabla
+6. **Independent variable**: Amount of 2-MeC26 and locomotor activity
 
-7. blablabla
+7. **Statistical Model**: Water Loss = 2-MeC26 amount + locomotor activity + error
 
 
 
 ## Case 3
 
-A graduate student in the Rundle lab observed substantial variation in mating success among a group of males from a population of Drosophila melanogaster, with multiple females appearing to accept or reject particular males repeatedly during courtship. In a recent study they recorded the mating success of males that were randomly assigned to one of two different perfuming treatments (perfumed with a pheromone extract obtained from separate males known to have either unusually high or unusually low mating success). They also recorded the weight of each male and the amount of blue colouring on their wings because they were curious as to whether these traits might be associated with mating success. 
+A graduate student in the Rundle lab **observed substantial variation in mating success among a group of males from a population of Drosophila melanogaster**, with multiple females appearing to accept or reject particular males repeatedly during courtship. In a recent study they recorded the **mating success of males** that were **randomly** assigned to **one of two different perfuming treatments** (perfumed with a pheromone extract obtained from separate males known to have **either unusually high or unusually low mating success**). They also recorded the **weight of each male and the amount of blue colouring on their wings** because they were curious as to whether these traits might be associated with mating success. 
 
+## effect of perfuming on mating success of males
 
 ### Answers
 
-1. blablabla
+1. **Possible 'biological' Hypothesis**: 
 
-2. blablabla
+2. **Predictions**: 
 
-3. blablabla
+3. **Statistical Null Hypothesis**: 
 
-4. blablabla
+4. **Descriptive elements**: 
 
-5. blablabla
+5. **Dependent variable**: 
 
-6. blablabla
+6. **Independent variable**:
 
-7. blablabla
+7. **Statistical Model**: 
 
