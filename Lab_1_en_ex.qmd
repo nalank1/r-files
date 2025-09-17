@@ -58,7 +58,7 @@ Amphibians are declining worldwide. Endocrine disruptors have been suggested as 
 
 6. **Independent Variable**: The atrazine concentration and sex are the independent variable.
 
-7. **Statistical Model**: // TODO
+7. **Statistical Model**: Effect of Atrazine = Atrazine Concentrations + Age at Metamorphosis + Sex + Error (independent + dependent) - however, it differs on the sex ratio
 
 
 
@@ -72,9 +72,9 @@ The majority of water loss in insects occurs across the **cuticle and cuticular 
 
 2. **Predictions**: H1: Water loss will decrease with increasing 2-MeC26. H2: Water loss will increase with increasing locomotor activity,
 
-3. **Statistical Null Hypothesis**: //TODO
+3. **Statistical Null Hypothesis**: H1: Having 2-MeC26 will have no change or affect on the rates of water loss. H2: Locomotor activity will have no affect or change in the rates of water loss.
 
-4. **Descriptive elements**: // TODO
+4. **Descriptive elements**: There is no descriptive element 
 
 5. **Dependent variable**: Rate of water loss
 
@@ -88,21 +88,22 @@ The majority of water loss in insects occurs across the **cuticle and cuticular 
 
 A graduate student in the Rundle lab **observed substantial variation in mating success among a group of males from a population of Drosophila melanogaster**, with multiple females appearing to accept or reject particular males repeatedly during courtship. In a recent study they recorded the **mating success of males** that were **randomly** assigned to **one of two different perfuming treatments** (perfumed with a pheromone extract obtained from separate males known to have **either unusually high or unusually low mating success**). They also recorded the **weight of each male and the amount of blue colouring on their wings** because they were curious as to whether these traits might be associated with mating success. 
 
-## effect of perfuming on mating success of males
+
+/* effect of perfuming on mating success of males one of two different perfuming treatmentsm, pheromone extract - either high or unusually low mating success */
 
 ### Answers
 
-1. **Possible 'biological' Hypothesis**: 
+1. **Possible 'biological' Hypothesis**: H1: The mating success of males varies among perfuming treatments that species are exposed of. H2: The mating success of males varies among different characteristics of males.
 
-2. **Predictions**: 
+2. **Predictions**: H1: The males exposed to perfuming from males of high mating successes will have better chance of having higher mating successes. H2: The males that have different physical characteristics will have better chance of having higher mating successes. 
 
-3. **Statistical Null Hypothesis**: 
+3. **Statistical Null Hypothesis**: H1: Having perfumed does not change or affect the mating success. H2: Having different physical characteristics doesn't change or affect the mating success.
 
-4. **Descriptive elements**: 
+4. **Descriptive elements**: There is no descriptive elements as there is no variable outside of hypothesis. 
 
-5. **Dependent variable**: 
+5. **Dependent variable**: Mating success is dependent variable. 
 
-6. **Independent variable**:
+6. **Independent variable**: Perfuming Treatments and physical characteristics (wing colour, weight) are independent variable
 
-7. **Statistical Model**: 
+7. **Statistical Model**: Mating Success = perfumed treatment + physical characteristics + error
 
