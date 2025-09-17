@@ -14,6 +14,8 @@ format:
 
 # Task
 
+##### CHECK THE WORDING BEFORE SUBMISSION
+
 For each of the following cases, list:
 
 1. The ‘biological’ (i.e. ‘scientific’) hypothesis/hypotheses that might be tested with the data. Remember, a biological hypothesis is a proposed cause for a given observation/pattern (i.e. the pattern described in the case study). Focus on the information provided in the case description. 
@@ -93,7 +95,7 @@ A graduate student in the Rundle lab **observed substantial variation in mating 
 
 ### Answers
 
-1. **Possible 'biological' Hypothesis**: H1: The mating success of males varies among perfuming treatments that species are exposed of. H2: The mating success of males varies among different characteristics of males.
+1. **Possible 'biological' Hypothesis**: H1: The mating success of males varies among perfuming treatments that species are exposed of. H2: The mating success of males varies among different characteristics of males. !-- Needs better wording --!
 
 2. **Predictions**: H1: The males exposed to perfuming from males of high mating successes will have better chance of having higher mating successes. H2: The males that have different physical characteristics will have better chance of having higher mating successes. 
 
