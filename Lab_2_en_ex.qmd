@@ -1,7 +1,7 @@
 ---
 title: Bio4158/Bio5158 - Report 2
 subtitle: Exercise
-author: "Group XX - Name_1, Name_2, Name_3"
+author: "Group 22 - Nalan Kurnaz"
 date: today
 format:
   html:
@@ -40,10 +40,16 @@ $$
 
 #### Data Preprocessing
 ```{r}
-#loading the data, reading it, data wrangling
+#importing libraries, loading the data, reading it, data wrangling
+install.packages("pwr")
+library(dplyr)
+library(pwr)
+
 simulies_data <- read.csv("data-bioxx58/simulies.csv", header=TRUE, sep=",", stringsAsFactors=TRUE)
 print(simulies_data)
 str(simulies_data)
+sum(is.na(simulies_data))
+
 ```
 <!--#################################################################-->
 
@@ -55,13 +61,15 @@ Calculate the mean mass and its standard deviation at each site. *(4 points)*
 
 <!--#################################################################-->
 ```{r}
-#write your code here
-library(dplyr)
+for (i in 1:length(simulies_data$Length)){
+  simulies_data$Mass[i] <- 1.36* (simulies_data$Length[i]**(3.05))
 
-simulies_data %>%
+}
+summary <- simulies_data %>%
 group_by(Site) %>%
-summarize(mean_length = mean(Length), standard_deviation = sd(Length))
+summarize(mean_mass = mean(Mass), standard_deviation = sd(Mass))
 
+summary
 
 ```
 
@@ -89,10 +97,27 @@ if the mass difference was 5 $\mu$g, $\alpha$=0.05, and that 100 larvae were sam
 #write your code here
 ## calculating the power of a two-tailed t test
 
+orford_mean <- summary %>% 
+filter(Site == "Orford") %>% pull(mean_mass)
+orford_sd <- summary %>%
+filter(Site == "Orford") %>% pull(standard_deviation)
+
+lovering_mean <- summary %>%
+filter(Site == "Lovering") %>% pull(mean_mass)
+lovering_sd <- summary %>%
+filter(Site == "Lovering") %>% pull(standard_deviation)
+
+# d <- abs(orford_mean - lovering_mean) / sqrt(((orford_sd**2) + (lovering_sd**2))/2)
+
+mass_difference <- 5 / sqrt(((orford_sd**2) + (lovering_sd**2))/2)
+
+pwr <- pwr.t.test(n = 100, mass_difference, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
+print(pwr)
+
 
 ```
 
-Write your explanation
+Since Power is 1 and Power = 1-\beta\, we found \beta\ to be 0. \beta\ means the probability of making Type II error, in other words, the probability of failing to reject the null hypothesis when alternative hypothesis is true is zero. Therefore, it can be verified that we can reject null hypothesis. 
 
 <!--#################################################################-->
 
@@ -106,6 +131,10 @@ if the mass difference was 20 $\mu$g, $\alpha$=0.05, and that 100 larvae were sa
 <!--#################################################################-->
 ```{r}
 #write your code here
+
+mass_difference <- 20 / sqrt(((orford_sd**2) + (lovering_sd**2))/2)
+pwr2 <- pwr.t.test(n = 100, mass_difference, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
+pwr2
 ```
 
 Write your explanation
