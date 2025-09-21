@@ -40,7 +40,7 @@ $$
 
 #### Data Preprocessing
 ```{r}
-#write the code here - loading the data, reading it, data wrangling
+#loading the data, reading it, data wrangling
 simulies_data <- read.csv("data-bioxx58/simulies.csv", header=TRUE, sep=",", stringsAsFactors=TRUE)
 print(simulies_data)
 str(simulies_data)
