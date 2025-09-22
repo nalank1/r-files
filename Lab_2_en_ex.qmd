@@ -41,7 +41,7 @@ $$
 #### Data Preprocessing
 ```{r}
 #importing libraries, loading the data, reading it, data wrangling
-install.packages("pwr")
+#install.packages("pwr")
 library(dplyr)
 library(pwr)
 
@@ -70,6 +70,7 @@ group_by(Site) %>%
 summarize(mean_mass = mean(Mass), standard_deviation = sd(Mass))
 
 summary
+simulies_data$Mass
 
 ```
 
@@ -94,7 +95,7 @@ if the mass difference was 5 $\mu$g, $\alpha$=0.05, and that 100 larvae were sam
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+
 ## calculating the power of a two-tailed t test
 
 orford_mean <- summary %>% 
@@ -117,7 +118,7 @@ print(pwr)
 
 ```
 
-Since Power is 1 and Power = 1-\beta\, we found \beta\ to be 0. \beta\ means the probability of making Type II error, in other words, the probability of failing to reject the null hypothesis when alternative hypothesis is true is zero. Therefore, it can be verified that we can reject null hypothesis. 
+#### Write your Explanation
 
 <!--#################################################################-->
 
@@ -130,7 +131,6 @@ if the mass difference was 20 $\mu$g, $\alpha$=0.05, and that 100 larvae were sa
 
 <!--#################################################################-->
 ```{r}
-#write your code here
 
 mass_difference <- 20 / sqrt(((orford_sd**2) + (lovering_sd**2))/2)
 pwr2 <- pwr.t.test(n = 100, mass_difference, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
@@ -151,7 +151,11 @@ if the mass difference was 50 $\mu$g, $\alpha$=0.05, and that 100 larvae were sa
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+mass_difference <- 50 / sqrt(((orford_sd**2) + (lovering_sd**2))/2)
+
+pwr3 <- pwr.t.test(n = 100, mass_difference, sig.level=0.05, type = "two.sample", alternative = "two.sided")
+
+pwr3
 ```
 
 Write your explanation
