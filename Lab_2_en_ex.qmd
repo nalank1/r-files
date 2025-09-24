@@ -235,6 +235,9 @@ with a power of 80% and $\alpha$=0.05
 <!--#################################################################-->
 ```{r}
 #write your code here
+d_cohen <- 50 / sqrt(((orford_sd**2) + (lovering_sd**2))/2) 
+n1 <- pwr.t.test(d = d_cohen, sig.level = 0.05, power = 0.8, type = "two.sample", alternative = "two.sided")
+n1
 ```
 
 Write your explanation
@@ -252,6 +255,8 @@ with a power of 80% and $\alpha$=0.001
 <!--#################################################################-->
 ```{r}
 #write your code here
+n2 <- pwr.t.test(d = d_cohen, sig.level = 0.001, power = 0.8, type = "two.sample", alternative = "two.sided")
+n2
 ```
 
 Write your explanation
@@ -268,6 +273,9 @@ with a power of 95% and $\alpha$=0.
 <!--#################################################################-->
 ```{r}
 #write your code here
+
+n3 <- pwr.t.test(d = d_cohen, sig.level = 0, power = 0.95, type = "two.sample", alternative = "two.sided")
+n3
 ```
 
 Write your explanation
@@ -310,6 +318,7 @@ With a power of 80%, $\alpha$=0.05, and measurements on 10 larvae at each site
 <!--#################################################################-->
 ```{r}
 #write your code here
+
 ```
 
 Write your explanation
