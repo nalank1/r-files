@@ -73,7 +73,7 @@ summary
 
 ```
 
-The mean mass of Lovering and Orford is 13.1 and 43.0, respectively. Their standard deviation is 23.8 and 48.0 for Lovering and Orford, respectively. 'WRITE MORE EXPLANATION'
+The mean mass of Lovering and Orford is 13.1 and 43.0, respectively. Their standard deviation is 23.8 and 48.0 for Lovering and Orford, respectively.
 
 <!--#################################################################-->
 
@@ -213,7 +213,7 @@ plot_power(d2, title = "Mass Difference = 20")
 plot_power(d3, title = "Mass Difference = 50")
 ```
 
-Write your explanation
+Write your explanation 'NEED TO WRITE CLEAR EXPLANATION'
 
 <!--#################################################################-->
 
@@ -240,7 +240,7 @@ n1 <- pwr.t.test(d = d_cohen, sig.level = 0.05, power = 0.8, type = "two.sample"
 n1
 ```
 
-Write your explanation
+The sample size of two-tailed t-test for independent means is 10.06992.
 
 <!--#################################################################-->
 
@@ -259,27 +259,25 @@ n2 <- pwr.t.test(d = d_cohen, sig.level = 0.001, power = 0.8, type = "two.sample
 n2
 ```
 
-Write your explanation
-
+The sample size for two-tailed t-test for independent means is 22.36307.
 <!--#################################################################-->
 
 
 ####
 ::: {.callout}
 # To do
-with a power of 95% and $\alpha$=0.
+with a power of 95% and $\alpha$=0.05.
 :::
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#with making alpha = 0, we are making probability of having Type I to zero
 
-n3 <- pwr.t.test(d = d_cohen, sig.level = 0, power = 0.95, type = "two.sample", alternative = "two.sided")
-n3
+n3 <- pwr.t.test(d = d_cohen, sig.level = 0.05, power = 0.95, type = "two.sample", alternative = "two.sided")
+n3 
 ```
 
-Write your explanation
-
+The sample size for two-tailed t-test with 2 independent means, given the power of 95% and alpha = 0.05, is 15.95018.
 <!--#################################################################-->
 
 
@@ -293,10 +291,39 @@ Comment on how changing power and $\alpha$ affects the required sample size.
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#we have different sample sizes, d is constant in 
+
+plot_power <- function(n_value, alpha = alpha, power = power, title = "Sample Size Plot"){
+  df <- (2*(n_value) - 2)
+  x <- seq(-4, 8, length = 200)
+  y0 <- dt(x, df) #H0
+  y1 <- suppressWarnings(dt(x, df, ncp = d_cohen * sqrt((2*n_value))/2)) #H1
+  plot(x, y0, type = "l", col = "red", lwd = 2, ylim = c(0, max(y0, y1) * 1.1), main = title, ylab = "Density", xlab = "t-value")
+  axis(1, at = seq(min(x), max(x)), by = 0.5)
+  qc_1 <- qt(1-alpha/2, df)
+  abline(v = qc_1, col = "green")
+  abline(v = -qc_1, col = "green")
+
+  lines(x, y1, type = "l", col = "blue", lwd = 2, lty = 2)
+
+  polygon(
+    c(x[x <= -qc_1], -qc_1),
+    c(y1[x <= -qc_1], 0),
+    col = rgb(0, 0.2, 1, alpha=0.5)
+  )
+}
+#increase the ticks and check for the t-value
+#alphas are different, first one has 0.8 power 0.05 alpha, 80% power 0.001 alpha,0.95 power 0.05 alpha 
+
+## TODO: Make sure to put blue thing
+
+par(mfrow = c(3,1))
+plot_power(n1$n, alpha = 0.05, power = 0.8, title = "Sample Size with power of 80% and alpha =0.05")
+plot_power(n2$n, alpha = 0.001, power = 0.8, title = "Sample Size with power of 80% and alpha =0.001")
+plot_power(n3$n, alpha = 0.05, power = 0.95, title = "Sample size with power of 95% and alpha =0.05")
 ```
 
-Write your explanation
+Write your explanation ##TODO NEED TO WRITE IT UP
 
 <!--#################################################################-->
 
@@ -317,11 +344,11 @@ With a power of 80%, $\alpha$=0.05, and measurements on 10 larvae at each site
 
 <!--#################################################################-->
 ```{r}
-#write your code here
-
+d1_find <- pwr.t.test(n = 10, sig.level = 0.05, power = 0.8, type = "two.sample", alternative = "two.sided")
+d1_find
 ```
 
-Write your explanation
+The detectable effect size with a two-tailed t-test on independent means, given the power of 80%, alpha = 0.05 and sample size = 10, is 1.324947.
 
 <!--#################################################################-->
 
@@ -334,10 +361,11 @@ With a power of 80%, $\alpha$=0.05, and measurements on 200 larvae at each site
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+d2_find <- pwr.t.test(n = 200, sig.level = 0.05, power = 0.8, type = "two.sample", alternative = "two.sided")
+d2_find
 ```
 
-Write your explanation
+The detectable effect size for two-tailed t-test for independent means, given the power is 80%, alpha = 0.05 and sample size = 200, is 0.2808267.
 
 <!--#################################################################-->
 
@@ -350,10 +378,12 @@ With a power of 80%, $\alpha$=0.05, and measurements on 20 larvae at one site an
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+d3_find <- pwr.t2n.test(n1 = 20, n2 = 380, sig.level = 0.05, power = 0.8, alternative = "two.sided")
+d3_find
 ```
 
-Write your explanation
+The detectable effect size for two-tailed t-test for independent means, given the power is 80%, alpha = 0.05, n1 = 20 and n2 = 380, is 0.6442829.
+ 
 
 <!--#################################################################-->
 
@@ -365,10 +395,51 @@ Comment on how changing sample sizes affect `d`.
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#we are calculating - detectable effect size (d_cohen)
+# power of 80%, $\alpha$=0.05, and n =10 on each side
+# power of 80%, $\alpha$=0.05, and measurements on 200 larvae at each site
+# power of 80%, $\alpha$=0.05, and n1 = 20 larvae and n2 = 380 larvae
+
+###TODO: You need to clean up for third case - need to recheck for t-value
+plot_power <- function(n_value, d, alpha = alpha, power = power, title = "Sample Size Plot"){
+  if(d == d3_find$d){
+    df <- d3_find$n1+d3_find$n2 - 2
+    x <- seq(-4, 8, length = 200)
+    y0 <- dt(x, df) #H0
+    y1 <- suppressWarnings(dt(x, df, ncp = d * sqrt((d * sqrt((d3_find$n1 * d3_find$n2) / (d3_find$n1 + d3_find$n2))))))
+  }
+  else{
+    df <- (2*(n_value) - 2)
+    x <- seq(-4, 8, length = 200)
+    y0 <- dt(x, df) #H0
+    y1 <- suppressWarnings(dt(x, df, ncp = d * sqrt((2*n_value))/2)) #H1
+  }
+
+  
+  plot(x, y0, type = "l", col = "red", lwd = 2, ylim = c(0, max(y0, y1) * 1.1), main = title, ylab = "Density", xlab = "t-value")
+  axis(1, at = seq(min(x), max(x)), by = 0.5)
+  qc_1 <- qt(alpha/2, df)
+  abline(v = qc_1, col = "green")
+  abline(v = -qc_1, col = "green")
+
+  lines(x, y1, type = "l", col = "blue", lwd = 2, lty = 2)
+
+  polygon(
+    c(x[x <= -qc_1], -qc_1),
+    c(y1[x <= -qc_1], 0),
+    col = rgb(0, 0.2, 1, alpha=0.5)
+  )
+
+}
+#increase the ticks and check for the t-value
+
+par(mfrow = c(3,1))
+plot_power(d1_find$n, d1_find$d, alpha = 0.05, power = 0.8, title = "Sample Size with power of 80% and alpha=0.05")
+plot_power(d2_find$n, d2_find$d, alpha = 0.05, power = 0.8, title = "Sample Size with power of 80% and alpha = 0.001")
+plot_power((d3_find$n1+d3_find$n2), d3_find$d, alpha = 0.05, power = 0.8, title = "Sample size with power of 95% and alpha=0.05")
 ```
 
-Write your explanation
+Write your explanation ##TODO - NEED TO WRITE IT UP
 
 <!--#################################################################-->
 
@@ -383,6 +454,8 @@ Calculate the difference in average mass, in $\mu$g, that can be detected given 
 <!--#################################################################-->
 ```{r}
 #write your code here
+
+
 ```
 
 Write your explanation
