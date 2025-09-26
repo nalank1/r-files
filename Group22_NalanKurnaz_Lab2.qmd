@@ -38,7 +38,7 @@ $$
 
 ### Site specific summary statistics
 
-#### Importing Libraries & Data Preprocessing
+#### Data Preprocessing
 ```{r}
 #importing libraries, reading the data
 #install.packages("pwr")
@@ -230,7 +230,7 @@ n1 <- pwr.t.test(d = d_cohen, sig.level = 0.05, power = 0.8, type = "two.sample"
 n1
 ```
 
-The sample size of two-tailed t-test for independent means is 10.06992.
+The required sample size is 11 for each group.
 
 <!--#################################################################-->
 
@@ -250,7 +250,7 @@ n2 <- pwr.t.test(d = d_cohen, sig.level = 0.001, power = 0.8, type = "two.sample
 n2
 ```
 
-The sample size for two-tailed t-test for independent means is 22.36307.
+The required sample size is 23 for each group.
 <!--#################################################################-->
 
 
@@ -268,7 +268,7 @@ n3 <- pwr.t.test(d = d_cohen, sig.level = 0.05, power = 0.95, type = "two.sample
 n3 
 ```
 
-The sample size for two-tailed t-test with 2 independent means, given the power of 95% and alpha = 0.05, is 15.95018.
+The required sample size for two-tailed t-test with 2 independent means, given the power of 95% and alpha = 0.05, is 16 for each group.
 <!--#################################################################-->
 
 
@@ -307,9 +307,9 @@ plot_power <- function(n_value, alpha = alpha, power = power, title = "Sample Si
 
 
 par(mfrow = c(3,1))
-plot_power(n1$n, alpha = 0.05, power = 0.8, title = "Sample Size with power of 80% and alpha =0.05")
-plot_power(n2$n, alpha = 0.001, power = 0.8, title = "Sample Size with power of 80% and alpha =0.001")
-plot_power(n3$n, alpha = 0.05, power = 0.95, title = "Sample size with power of 95% and alpha =0.05")
+plot_power(n1$n, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 80% and alpha =0.05")
+plot_power(n2$n, alpha = 0.001, power = 0.8, title = "t-value vs Density with power of 80% and alpha =0.001")
+plot_power(n3$n, alpha = 0.05, power = 0.95, title = "t-value vs Density with power of 95% and alpha =0.05")
 ```
 
 Increasing the power (1-$\beta$) or decreasing the significance level ($\alpha$) both increase the required sample size. This is because higher power or lower significance level require more data to reliably detect an effect.
@@ -424,11 +424,11 @@ plot_power <- function(n_value, d, alpha = alpha, power = power, title = "Sample
 }
 
 par(mfrow = c(3,1))
-plot_power(d1_find$n, d1_find$d, alpha = 0.05, power = 0.8, title = "Sample Size with power of 80% and alpha=0.05")
+plot_power(d1_find$n, d1_find$d, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 80%, alpha=0.05 and n = 10")
 
-plot_power(d2_find$n, d2_find$d, alpha = 0.05, power = 0.8, title = "Sample Size with power of 80% and alpha = 0.001")
+plot_power(d2_find$n, d2_find$d, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 80%, alpha = 0.001 and n = 200")
 
-plot_power((d3_find$n1+d3_find$n2), d3_find$d, alpha = 0.05, power = 0.8, title = "Sample size with power of 95% and alpha=0.05")
+plot_power((d3_find$n1+d3_find$n2), d3_find$d, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 95%, alpha=0.05 and n1,n2 = 20, 380")
 ```
 
 Increasing sample size decreases the minimum detectable effect size (`d`), allowing detection of smaller differences. When sample sizes are unequal, a large imbalance increases the minimum detectable effect size.
@@ -452,13 +452,12 @@ d_findings <- c(d1_find$d, d2_find$d, d3_find$d)
 
 for (i in 1:length(d_findings)){
   calc <- d_findings[i] * sp
-  print(sprintf("The difference in average mass for the Experiment %d is %.4f", i, calc))
-  #print takes one object at a time
+  print(sprintf("The difference in average mass for the Experiment %d is %.2f", i, calc))
 }
 
 ```
 
-The minimum detectable difference in average mass is approximately 50.2 μg for Experiment 1 ( n = 10), 10.6 μg for Experiment 2 (n = 200), and 24.4 μg for Experiment 3 (n1 = 20, n2 = 380).
+The minimum detectable difference in average mass is approximately 50.20 μg for Experiment 1 ( n = 10), 10.64 μg for Experiment 2 (n = 200), and 24.41 μg for Experiment 3 (n1 = 20, n2 = 380).
 
 <!--#################################################################-->
 
