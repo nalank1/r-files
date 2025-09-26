@@ -175,12 +175,13 @@ Comment on how changing the mass difference affects power.
 
 plot_power <- function(d_value, title = "Power Plot"){
   df <- 198
-  x <- seq(-4, 8, length = 200)
+  x <- seq(-4, 8, length = 400)
   y0 <- dt(x, df) #H0
   y1 <- suppressWarnings(dt(x, df, ncp = d_value * sqrt(200)/2)) #H1
   
   plot(x, y0, type = "l", col = "red", lwd = 2, ylim = c(0, max(y0, y1) * 1.1), main = title, ylab = "Density", xlab = "t-value")
-  
+  axis(1, at = seq(min(x), max(x)))
+
   qc <- qt(0.025, df)
   
   abline(v = qc, col = "green")
@@ -195,7 +196,7 @@ plot_power <- function(d_value, title = "Power Plot"){
   )
 }
 
-par(mfrow = c(3,1))
+par(mfrow = c(3,1), mar = c(4,4,3,1))
 plot_power(d1, title = "t-value vs Density (Mass Difference = 5)")
 plot_power(d2, title = "t-value vs Density (Mass Difference = 20)")
 plot_power(d3, title = "t-value vs Density (Mass Difference = 50)")
@@ -285,12 +286,12 @@ Comment on how changing power and $\alpha$ affects the required sample size.
 
 plot_power <- function(n_value, alpha = alpha, power = power, title = "Sample Size Plot"){
   df <- (2*(n_value) - 2)
-  x <- seq(-4, 8, length = 200)
+  x <- seq(-4, 6, length = 400)
   y0 <- dt(x, df) #H0
   y1 <- suppressWarnings(dt(x, df, ncp = d_cohen * sqrt((2*n_value))/2)) #H1
   
   plot(x, y0, type = "l", col = "red", lwd = 2, ylim = c(0, max(y0, y1) * 1.1), main = title, ylab = "Density", xlab = "t-value")
-  axis(1, at = seq(min(x), max(x)), by = 0.5)
+  axis(1, at = seq(min(x), max(x)))
   
   qc_1 <- qt(alpha/2, df)
   abline(v = qc_1, col = "green")
@@ -306,7 +307,7 @@ plot_power <- function(n_value, alpha = alpha, power = power, title = "Sample Si
 }
 
 
-par(mfrow = c(3,1))
+par(mfrow = c(3,1), mar = c(4,4,3,1))
 plot_power(n1$n, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 80% and alpha =0.05")
 plot_power(n2$n, alpha = 0.001, power = 0.8, title = "t-value vs Density with power of 80% and alpha =0.001")
 plot_power(n3$n, alpha = 0.05, power = 0.95, title = "t-value vs Density with power of 95% and alpha =0.05")
@@ -393,13 +394,13 @@ Comment on how changing sample sizes affect `d`.
 plot_power <- function(n_value, d, alpha = alpha, power = power, title = "Sample Size Plot"){
   if(d == d3_find$d){
     df <- d3_find$n1 + d3_find$n2 - 2
-    x <- seq(-3, 6, length = 100)
+    x <- seq(-4, 6, length = 400)
     y0 <- dt(x, df) #H0
     y1 <- suppressWarnings(dt(x, df, ncp = d * sqrt((d3_find$n1 * d3_find$n2) / (d3_find$n1 + d3_find$n2))))
   }
   else{
     df <- (2*(n_value) - 2)
-    x <- seq(-3, 6, length = 100)
+    x <- seq(-4, 6, length = 400)
     y0 <- dt(x, df) #H0
     y1 <- suppressWarnings(dt(x, df, ncp = d * sqrt((2*n_value))/2)) #H1
   }
@@ -407,7 +408,7 @@ plot_power <- function(n_value, d, alpha = alpha, power = power, title = "Sample
   
   plot(x, y0, type = "l", col = "red", lwd = 2, ylim = c(0, max(y0, y1) * 1.1), main = title, ylab = "Density", xlab = "t-value")
 
-  axis(1, at = seq(min(x), max(x)), by = 0.5)
+  axis(1, at = seq(min(x), max(x)))
 
   qc_1 <- qt(alpha/2, df)
   abline(v = qc_1, col = "green")
@@ -423,7 +424,7 @@ plot_power <- function(n_value, d, alpha = alpha, power = power, title = "Sample
 
 }
 
-par(mfrow = c(3,1))
+par(mfrow = c(3,1), mar = c(4,4,3,1))
 plot_power(d1_find$n, d1_find$d, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 80%, alpha=0.05 and n = 10")
 
 plot_power(d2_find$n, d2_find$d, alpha = 0.05, power = 0.8, title = "t-value vs Density with power of 80%, alpha = 0.001 and n = 200")
