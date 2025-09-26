@@ -1,0 +1,241 @@
+---
+title: Bio4158/Bio5158 - Report 3
+subtitle: Exercise
+author: "Group XX - Name_1, Name_2, Name_3"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+
+# The problem
+Climate has generally been observed to be warming but the extent of to which this is observed is highly variable across different geographic locations. Mechanistic models of human-induced climate change (i.e. that propose that climate change is caused by human activities) provide a potential explanation for this pattern (i.e. heterogeneity in warming among locations) as they predict that warming should be more prevalent in northern compared to more southerly locations. Curious as to whether data support this hypothesis, a student in Bio4158 accessed some of the historical temperature records available online.
+
+# The data
+Environment Canada provides monthly weather data for numerous stations located across Canada and can be accessed from the following website: <http://climate.weather.gc.ca>.
+
+She randomly chose 3 cities from among the highest latitudes (Alert, NU; Mould Bay, NWT; and Sachs Harbour, NWT) and 3 from among the lowest latitudes (Windsor, ON; Yarmouth, NS; and Victoria, BC). Table 1 below summarizes the data sets that she downloaded from the Environment Canada website. 
+
+
+Station Name | Province	    | Latitude	 |Longitude|Year Start	| Year End|
+----------------------|-----|------------|---------|------------|----------|
+Victoria Gonzales HTS |	BC  |	48.41     |	-123.33 |	1898      |	2004    |
+Alert	                | NU  |	82.52     |	-62.28  |	1950      |	2006    |
+Yarmouth              |	NS  |	43.83     |	-66.09  |	1940      |	2011   |
+Windsor A             |	ON  |	42.28     |	-82.96  |	1940      |	2011  |
+Mould Bay CS          |	NWT |	76.24     |	-119.35 |	1948      |	2007   |
+Sachs Harbour A       |	NWT |	72        |	-125.27 |	1955      |	2007  |
+
+
+The data sets for each city ranged in dates, so she chose a period of time that was as complete as possible for all locations while still long enough to (hopefully) indicate climate trends. Based on the available data, 1950-2007 seemed to be the most appropriate time frame. 
+
+For the span of 1950-2007, she ended up with 4176 monthly observations. To simplify the analysis, she took averages of the mean temperature for each year and ended up with a total of 348 observations (174 in the North and 174 in the South). Taking the average over the whole year is justified because it normalizes the temperature for all seasons and for this reason most climate change analysis is done on mean annual temperatures rather than monthly values.  
+
+There were 36 NA values because not every year had a temperature value for every month. If some monthly data were missing from the year, she decided to exclude the year since taking the average temperature of only a few months could bias the average for that year.  
+
+Her final data set (`climate.csv`), which can be found on the course website, has the follwoing columns:
+
+* `reg` : 0 = South, 1= North
+* `Loc` : A=Alert, Y=Yarmouth, W=Windsor, M=Mould Bay, V=Victoria, S=Sachs Harbour
+* `year`: Min= 1950, Max= 2007
+* `ave` : Average monthly temperature in degrees Celsius
+
+
+
+
+
+# The task
+
+## 1.
+:::{.callout}
+What is the ‘biological’ (scientific) hypothesis? (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 2.
+:::{.callout}
+What does this hypothesis predict in the context of her study? (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 3.
+:::{.callout}
+What is the associated null hypothesis? (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 4.
+:::{.callout}
+To test this hypothesis, the student will need to quantify the extent of any climate change separately for each location. She’s interested not only in the point estimate of the rate of climate change for each location (which she needs for testing her biological hypothesis above), but also in its significance in each location (i.e. she wants to separately test whether there is evidence that climate has changed in any way at each site). Let’s start by conducting a regression analysis to test whether there is evidence of climate change in **Yarmouth**. 
+:::
+
+### a.
+
+:::{.callout}
+What is the statistical null hypothesis relevant to the analysis ofthe Yarmouth data? (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### b.
+
+:::{.callout}
+What is the statistical model in ‘verbal’ form (e.g. dependent =independent + error) (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### c.
+:::{.callout}
+Provide a relevant plot of the Yarmouth data (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### d.
+:::{.callout}
+fit the model and provide its R output (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### e.
+:::{.callout}
+State the statistical assumptions for the analysis of the Yarmouth data and provide some evidence (plot, test, or statement) that you examined them (4 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+
+### f.
+:::{.callout}
+What is the statistical conclusion (i.e. inference – do you accept or reject your null hypothesis) for Yarmouth? (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### g.
+:::{.callout}
+Provide a “biological” conclusion concerning climate change in Yarmouth (i.e. a qualified statement about climate change at this site including an estimate of raw effect size, its precision, and whether a trend of this magnitude matters) (3 points). To help you judge the latter, I suggest you consider that the Intergovernmental Panel on Climate Change (IPCC) concluded that dire consequences would result if temperature increased between 0.6 and 4 degrees over the next 100 years.
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### h.
+:::{.callout}
+Provide a statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues) (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 5.
+:::{.callout}
+Yarmouth is only one of the six locations for which she needs to quantify the extent of any climate change. Plot the temporal trend for temperature separately for each station (2 points), and estimate the rate of change for each station (2 points).
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 6.
+:::{.callout}
+Compute the mean warming rate in the North and in the South by averaging the rates calculated separately for each station (1 point). Calculate a 95% CI for each of these means based on the 3 replicates stations. (2 points). 
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->

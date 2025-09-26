@@ -202,7 +202,7 @@ plot_power(d2, title = "t-value vs Density (Mass Difference = 20)")
 plot_power(d3, title = "t-value vs Density (Mass Difference = 50)")
 ```
 
-As seen in the previous graphs, the increase in the mass difference resulted in an increase in the power of two-tailed t-test. In other words, the probability of having type II error, which is the probability of accepting false null hypothesis, decreases while mass difference increases. 
+As seen in the previous graphs, increasing the mass difference between groups leads to higher statistical power in the two-tailed t-test. In other words, as the mass difference increases, the probability of having a Type II error (failing to reject a false null hypothesis) decreases. 
 
 <!--#################################################################-->
 
