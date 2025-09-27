@@ -46,7 +46,7 @@ library(dplyr)
 library(pwr)
 library(ggplot2)
 
-simulies_data <- read.csv("data-bioxx58/simulies.csv", header=TRUE, sep=",", stringsAsFactors=TRUE)
+simulies_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/simulies.csv", header=TRUE, sep=",", stringsAsFactors=TRUE)
 str(simulies_data)
 sum(is.na(simulies_data))
 
