@@ -1,7 +1,7 @@
 ---
 title: Bio4158/Bio5158 - Report 3
 subtitle: Exercise
-author: "Group XX - Name_1, Name_2, Name_3"
+author: "Group 22 - Nalan Kurnaz"
 date: today
 format:
   html:
@@ -49,6 +49,16 @@ Her final data set (`climate.csv`), which can be found on the course website, ha
 
 
 # The task
+
+### Data Preprocessing
+```{r}
+# import necessary libraries
+
+
+climate_data = read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/climate.csv", header = TRUE, sep = ",", stringsAsFactors=TRUE)
+
+sum(is.na(climate_data))
+```
 
 ## 1.
 :::{.callout}
