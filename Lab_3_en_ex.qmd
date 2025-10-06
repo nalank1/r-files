@@ -35,7 +35,7 @@ The data sets for each city ranged in dates, so she chose a period of time that 
 
 For the span of 1950-2007, she ended up with 4176 monthly observations. To simplify the analysis, she took averages of the mean temperature for each year and ended up with a total of 348 observations (174 in the North and 174 in the South). Taking the average over the whole year is justified because it normalizes the temperature for all seasons and for this reason most climate change analysis is done on mean annual temperatures rather than monthly values.  
 
-There were 36 NA values because not every year had a temperature value for every month. If some monthly data were missing from the year, she decided to exclude the year since taking the average temperature of only a few months could bias the average for that year.  
+There were 36 NA values because not every year had a temperature value for every month. If some monthly data were missing from the year, **she decided to exclude the year** since taking the average temperature of only a few months could bias the average for that year.  
 
 Her final data set (`climate.csv`), which can be found on the course website, has the follwoing columns:
 
@@ -53,11 +53,17 @@ Her final data set (`climate.csv`), which can be found on the course website, ha
 ### Data Preprocessing
 ```{r}
 # import necessary libraries
-
+library(dplyr)
+library(ggplot2)
+library(pwr)
+library(ggpmisc)
 
 climate_data = read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/climate.csv", header = TRUE, sep = ",", stringsAsFactors=TRUE)
 
 sum(is.na(climate_data))
+
+newclimate_data <- climate_data[!is.na(climate_data$year), ]
+summary(newclimate_data)
 ```
 
 ## 1.
@@ -66,11 +72,7 @@ What is the ‘biological’ (scientific) hypothesis? (1 point)
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
-
-Write your explanation
+Human-induced climate change causes geographic variation in the rate of temperature change, with a higher rate of warming expected in northern Canada compared to southern Canada because melting snow and ice in the North cause the land and water to absorb more heat, which speeds up warming.
 
 <!--#################################################################-->
 
@@ -80,11 +82,8 @@ What does this hypothesis predict in the context of her study? (2 points)
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The northern stations (Alert, Mould Bay, Sachs Harbour) will have a greater increase in mean annual temperature over 1950-2007 compared to the southern stations (Victoria, Yarmouth, Windsor).
 
 <!--#################################################################-->
 
@@ -92,13 +91,9 @@ Write your explanation
 :::{.callout}
 What is the associated null hypothesis? (2 points)
 :::
-
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The rate of change in temperatures in northern Canada will decrease or stay the same as the rate of change in mean annual temperature in the southern Canada.
 
 <!--#################################################################-->
 
@@ -114,11 +109,8 @@ What is the statistical null hypothesis relevant to the analysis ofthe Yarmouth 
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The mean annual temperature in Yarmouth has not changed from 1950 to 2007. 
 
 <!--#################################################################-->
 
@@ -129,11 +121,9 @@ What is the statistical model in ‘verbal’ form (e.g. dependent =independent 
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
-
-Write your explanation
+Temperature = Year + Error
+Independent Variable = Year
+Dependent Variable = Temperature
 
 <!--#################################################################-->
 
@@ -144,7 +134,16 @@ Provide a relevant plot of the Yarmouth data (2 points)
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+yarmouth_data <- newclimate_data[newclimate_data$loc == "Y", ]
+
+ggplot(yarmouth_data, aes(x = year, y = ave)) +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
+  geom_smooth( color = "red", se = TRUE) +
+  geom_point() +
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x, parse = TRUE, label.x.npc = "left", label.y.npc = 0.95
+  )
 ```
 
 Write your explanation
@@ -158,7 +157,9 @@ fit the model and provide its R output (1 point)
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+RegModel.1 <- lm(ave ~ year, data = yarmouth_data)
+summary(RegModel.1)
+
 ```
 
 Write your explanation
@@ -172,7 +173,8 @@ State the statistical assumptions for the analysis of the Yarmouth data and prov
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+par(mfrow = c(2,2), las = 1)
+plot(RegModel.1)
 ```
 
 Write your explanation
@@ -187,7 +189,7 @@ What is the statistical conclusion (i.e. inference – do you accept or reject y
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#write your code here - NON CODE AREA
 ```
 
 Write your explanation
@@ -201,7 +203,7 @@ Provide a “biological” conclusion concerning climate change in Yarmouth (i.e
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#write your code here - NON CODE
 ```
 
 Write your explanation
@@ -215,7 +217,7 @@ Provide a statement about your confidence in the statistical conclusion (for exa
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#write your code here - NON CODE
 ```
 
 Write your explanation
@@ -229,7 +231,7 @@ Yarmouth is only one of the six locations for which she needs to quantify the ex
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#write your code here - DO IT EACH PART SEPARATELY - DON"T TRY TO be perfect
 ```
 
 Write your explanation
@@ -243,7 +245,7 @@ Compute the mean warming rate in the North and in the South by averaging the rat
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#write your code here - CODE PART
 ```
 
 Write your explanation
