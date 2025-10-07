@@ -121,8 +121,8 @@ What is the statistical model in ‘verbal’ form (e.g. dependent =independent 
 :::
 
 <!--#################################################################-->
-Temperature = Year + Error
-Independent Variable = Year
+Temperature = Year + Error <br>
+Independent Variable = Year <br>
 Dependent Variable = Temperature
 
 <!--#################################################################-->
@@ -141,8 +141,8 @@ ggplot(yarmouth_data, aes(x = year, y = ave)) +
   geom_smooth( color = "red", se = TRUE) +
   geom_point() +
   stat_poly_eq(
-    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
-    formula = y ~ x, parse = TRUE, label.x.npc = "left", label.y.npc = 0.95
+    aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+    formula = y ~ x, parse = TRUE
   )
 ```
 
@@ -175,6 +175,7 @@ State the statistical assumptions for the analysis of the Yarmouth data and prov
 ```{r}
 par(mfrow = c(2,2), las = 1)
 plot(RegModel.1)
+
 ```
 
 Write your explanation
@@ -232,6 +233,100 @@ Yarmouth is only one of the six locations for which she needs to quantify the ex
 <!--#################################################################-->
 ```{r}
 #write your code here - DO IT EACH PART SEPARATELY - DON"T TRY TO be perfect
+victoria_data <- newclimate_data[newclimate_data$loc == "V", ]
+
+ggplot(victoria_data, aes(x = year, y = ave)) +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
+  geom_smooth( color = "red", se = TRUE) +
+  geom_point() +
+  stat_poly_eq(
+    aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+    formula = y ~ x, parse = TRUE
+  ) +
+  labs(
+    title = "Graph of Victoria Data",
+    x = "Year",
+    y = "Mean Annual Temperature"
+  )
+
+RegModel.2 <- lm(ave ~ year, data = victoria_data)
+summary(RegModel.2)
+
+alert_data <- newclimate_data[newclimate_data$loc == "A", ]
+
+ggplot(alert_data, aes(x = year, y = ave)) +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
+  geom_smooth( color = "red", se = TRUE) +
+  geom_point() +
+  stat_poly_eq(
+    aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+    formula = y ~ x, parse = TRUE
+  ) +
+  labs(
+    title = "Graph of Alert Data",
+    x = "Year",
+    y = "Mean Annual Temperature"
+  )
+RegModel.3 <- lm(ave ~ year, data = alert_data)
+summary(RegModel.3)
+
+windsor_data <- newclimate_data[newclimate_data$loc == "W", ]
+
+ggplot(windsor_data, aes(x = year, y = ave)) +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
+  geom_smooth( color = "red", se = TRUE) +
+  geom_point() +
+  stat_poly_eq(
+    aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+    formula = y ~ x, parse = TRUE
+  ) +
+  labs(
+    title = "Graph of Windsor Data",
+    x = "Year",
+    y = "Mean Annual Temperature"
+  )
+RegModel.4 <- lm(ave ~ year, data = windsor_data)
+summary(RegModel.4)
+
+mould_data <- newclimate_data[newclimate_data$loc == "M", ]
+
+ggplot(mould_data, aes(x = year, y = ave)) +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
+  geom_smooth( color = "red", se = TRUE) +
+  geom_point() +
+  stat_poly_eq(
+    aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+    formula = y ~ x, parse = TRUE
+  ) +
+  labs(
+    title = "Graph of Mould Data",
+    x = "Year",
+    y = "Mean Annual Temperature"
+  )
+RegModel.5 <- lm(ave ~ year, data = mould_data)
+summary(RegModel.5)
+
+sachs_data <- newclimate_data[newclimate_data$loc == "S", ]
+
+ggplot(sachs_data, aes(x = year, y = ave)) +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
+  geom_smooth( color = "red", se = TRUE) +
+  geom_point() +
+  stat_poly_eq(
+    aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+    formula = y ~ x, parse = TRUE
+  ) +
+  labs(
+    title = "Graph of Sachs Data",
+    x = "Year",
+    y = "Mean Annual Temperature"
+  )
+RegModel.6 <- lm(ave ~ year, data = sachs_data)
+summary(RegModel.6)
+
+
+
+
 ```
 
 Write your explanation

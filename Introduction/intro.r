@@ -96,3 +96,8 @@ str(dataf)  # will return a compact summary of the structure of the data frame
 #   stringsAsFactors = TRUE # nolint
 # )
 # str(dataf) # nolint
+
+# homoscedasticity - the variance of the residuals (the errors) in a regression model is constant # nolint
+# of 
+# why does it matter if we have same error along the independent values or not?
+# what does it matter if we have stable model if we are wrong in context wise?
