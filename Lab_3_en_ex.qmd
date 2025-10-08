@@ -147,7 +147,7 @@ ggplot(yarmouth_data, aes(x = year, y = ave)) +
   )
 ```
 
-The regression equation for Yarmouth data is 1.73 + 0.00265X with R^2 < 0.01.
+The regression equation for Yarmouth data is Y = 1.73 + 0.00265X with R^2 < 0.01.
 
 <!--#################################################################-->
 
@@ -163,7 +163,8 @@ summary(RegModel.1)
 
 ```
 
-The residual standard error for Yarmouth Data is 0.61 with 56 degrees of freedom, and its multiple and adjusted R-squared values are 0.005445 and -0.01231, respectively. The f-statistic value is resulted to be 0.3066.
+The multiple R-squared value is 0.005445. <br> 
+The f-statistic value is resulted to be 0.3066. The residual standard error for Yarmouth Data is 0.61 with 56 degrees of freedom. The adjusted R-squared value is -0.01231.
 
 <!--#################################################################-->
 
@@ -214,7 +215,7 @@ Provide a “biological” conclusion concerning climate change in Yarmouth (i.e
 
 <!--#################################################################-->
 
-Based on the statistical analysis, the data from Yarmouth don't provide strong evidence for a warming trend over the period 1950-2007. The model estimates a very slight increase in mean annual temperature of 0.0026°C per year (the slope). However, the precision of this estimate is low, as shown by the large standard error, resulting in a 95% confidence interval that most likely includes zero. When projected over a 100-year period, this trend equates to an estimated increase of 0.26°C. This magnitude of change falls at the very lowest end of the IPCC's projected range of 0.6°C to 4.0°C. The estimated trend for Yarmouth is in the same direction as global climate change predictions; however, its projected magnitude over a 100-year period is less than half of the lower threshold the IPCC defines with impacts. This means that, based on the data we have, the observed warming trend will be minimal and its estimated impact would be small compared to global concerns
+Based on the statistical analysis, the data from Yarmouth don't provide strong evidence for a warming trend over the period 1950-2007. The model estimates a very slight increase in mean annual temperature of 0.0026°C per year (the slope). However, the precision of this estimate is low, as shown by the large standard error, resulting in a 95% confidence interval that most likely includes zero. When projected over a 100-year period, this trend equates to an estimated increase of 0.26°C. This magnitude of change falls at the very lowest end of the IPCC's projected range of 0.6°C to 4.0°C. The estimated trend for Yarmouth is in the same direction as global climate change predictions; however, its projected magnitude over a 100-year period is less than half of the lower threshold the IPCC defines with impacts. This means that, based on the data we have, the observed warming trend will be minimal and its estimated impact would be small compared to global concerns.
 
 <!--#################################################################-->
 
@@ -237,7 +238,7 @@ power_result <- pwr.t.test(n = n, d = d, sig.level = 0.05, type = "one.sample")
 power_result
 ```
 
-My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 17% power with effect size = 0.13 to detect a trend, meaning there was 83% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn't show statistical significance, the limitations in power and regression assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can't really determine whether temperatures changed or not.
+My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 17% power with effect size = 0.13 to detect a trend, meaning there was 83% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn't show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can't really determine whether temperatures changed or not.
 
 <!--#################################################################-->
 
@@ -347,6 +348,11 @@ cat("Sachs Harbour - Rate of change (slope):", coef(RegModel.6)[2], "\n")
 
 ```
 
+Victoria Gonzales- Rate of change (slope): 0.02186554 <br>
+Alert - Rate of change (slope): 0.008535877 <br>
+Windsor - Rate of change (slope): 0.02112902 <br>
+Mould Bay - Rate of change (slope): 0.02328361 <br>
+Sachs Harbour - Rate of change (slope): 0.0530048 <br>
 
 <!--#################################################################-->
 
@@ -380,7 +386,7 @@ mean_warming_south
 # ci_south2
 ```
 
-The 95% Confidence Interval for the North stations is (-0.02799273,  0.08454226) and the mean for North is 0.02827476.
+The 95% Confidence Interval for the North stations is (-0.02799273,  0.08454226) and the mean for North is 0.02827476. <br>
 The 95% Confidence Interval for the South stations is (-0.01183302,  0.04226223) and the mean for South is 0.01521461.
 
 <!--#################################################################-->
