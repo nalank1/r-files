@@ -1,0 +1,798 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+<div class="page-columns page-rows-contents page-layout-article">
+<div class="sidebar margin-sidebar">
+  <nav class="toc-active">
+    <h2>Table of contents</h2>
+   
+  <ul>
+  <li><a rel="noopener" href="#the-problem" class="nav-link active">The problem</a></li>
+  <li><a rel="noopener" href="#the-study" class="nav-link">The study</a></li>
+  <li><a rel="noopener" href="#the-data" class="nav-link">The data</a></li>
+  <li><a rel="noopener" href="#the-task" class="nav-link">The task</a>
+  <ul class="collapse">
+  <li><a rel="noopener" href="#student-data" class="nav-link">1. Student data</a>
+  <ul class="collapse">
+  <li><a rel="noopener" href="#a." class="nav-link">a.</a></li>
+  <li><a rel="noopener" href="#b." class="nav-link">b.</a></li>
+  <li><a rel="noopener" href="#c." class="nav-link">c.</a></li>
+  <li><a rel="noopener" href="#d." class="nav-link">d.</a></li>
+  <li><a rel="noopener" href="#e." class="nav-link">e.</a></li>
+  <li><a rel="noopener" href="#f." class="nav-link">f.</a></li>
+  </ul></li>
+  <li><a rel="noopener" href="#postdoc-data" class="nav-link">2. Postdoc data</a>
+  <ul class="collapse">
+  <li><a rel="noopener" href="#a.-1" class="nav-link">a.</a></li>
+  <li><a rel="noopener" href="#b.-1" class="nav-link">b.</a></li>
+  <li><a rel="noopener" href="#c.-1" class="nav-link">c.</a></li>
+  <li><a rel="noopener" href="#d.-1" class="nav-link">d.</a></li>
+  <li><a rel="noopener" href="#e.-1" class="nav-link">e.</a></li>
+  <li><a rel="noopener" href="#f.-1" class="nav-link">f.</a></li>
+  </ul></li>
+  <li><a rel="noopener" href="#power-issues" class="nav-link">3. Power issues</a>
+  <ul class="collapse">
+  <li><a rel="noopener" href="#a.-2" class="nav-link">a.</a></li>
+  <li><a rel="noopener" href="#b.-2" class="nav-link">b.</a></li>
+  <li><a rel="noopener" href="#c.-2" class="nav-link">c.</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content">
+
+<header class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Bio4158/Bio5158 - Report 4</h1><i class="bi"></i> Code<ul class="dropdown-menu dropdown-menu-end"><li><a rel="noopener" class="dropdown-item" href="javascript://">Show All Code</a></li><li><a rel="noopener" class="dropdown-item" href="javascript://">Hide All Code</a></li><li><hr class="dropdown-divider"/></li><li><a rel="noopener" class="dropdown-item" href="javascript://">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Exercise</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Group XX - Name_1, Name_2, Name_3 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 28, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section class="level1">
+<h1>The problem</h1>
+<p>The peppered moth (<em>Biston betularia</em> Lepidoptera&#160;: Geometridae) is a nocturnal insect common in Europe and North America. Adults fly at night and stay put during the day on birch trees. Adult coloration is variable, ranging from a clear form (typica) to a melanic form that is very dark (carbonaria), with many intermediate forms.</p>
+<p>The proportion of individuals of each form has varied considerably in natural populations over the last 150 years. The melanic form was rare before 1850 but represented over 90% of the population in industrial sectors of England by 1900. According to Majerus (1998), J.W. Tutt was the first to suggest in 1896 an hypothesis to explain the temporal change in the proportion of the dark form.</p>
+<p><strong>Biological hypothesis</strong>: Differences in the relative frequency of the two forms arise because survival from bird predation of each depends on habitat color. In particular, the pale form is less visible in non-polluted environments when birch trees are covered by pale greyish lichens. Inversely, the dark form is favored in industrial areas where soot darkens their resting places. Therefore, the increase of the dark form (carbonaria) in England resulted from bird predation and a change in habitat (soot pollution).</p>
+</section>
+<section class="level1">
+<h1>The study</h1>
+<p>In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. Two growth chamber were set up containing branches and leaves:</p>
+<ol type="1">
+<li>in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark);</li>
+<li>in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour.</li>
+</ol>
+<p>Each bird was introduced in turn into each chamber (half into the dark first and half into the light first), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, 50 pale moths (typica) and 50 dark moths (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.</p>
+</section>
+<section class="level1">
+<h1>The data</h1>
+<p>The file <code>Biston_student.csv</code> contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are incomplete and do not allow him to tell which value comes from which bird. In this file there are 30 lines (representing the 30 birds) and two columns (one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber). However, numbers on a given line do NOT necessarily come from the same bird (i.e.&#160;the order of observations in the two columns has been mixed up).</p>
+<p>The file <code>Biston_pd2.csv</code> is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as <code>Biston_student.csv</code>, and contains the same data, except that observations on the same line now come from the same bird (i.e.&#160;paired observations are known).</p>
+</section>
+<section class="level1">
+<h1>The task</h1>
+<section class="level2">
+<h2 class="anchored">1. Student data</h2>
+<p>Analyze the data and determine if the results in <code>Biston_student.csv</code> support or refute the biological hypothesis.</p>
+<section class="level3">
+<h3 class="anchored">a.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Give a statement of the biological hypothesis and its prediction (1 point)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb1-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">b.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>a statement of the null hypothesis (1 point)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb2-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">c.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>fit the adequate statistical model, and evaluate the statistical assumptions <em>(2 points)</em></p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb3-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">d.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The statistical conclusion (i.e.&#160;inference). Do you accept or reject the null hypothesis? (3 points)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb4-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">e.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The “biological” conclusion (i.e.&#160;a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb5-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">f.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb6-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+</section>
+<section class="level2">
+<h2 class="anchored">2. Postdoc data</h2>
+<p>Analyze the data and determine if the results in <code>Biston_pd2.csv</code>support or refute the biological hypothesis.</p>
+<section class="level3">
+<h3 class="anchored">a.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>a statement of the biological hypothesis and its prediction (1 point)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb7-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">b.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>a statement of the null hypothesis (1 point)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb8-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">c.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>fit the adequate statistical model, and evaluate the statistical assumptions <em>(3 points)</em></p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb9-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">d.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The statistical conclusion (i.e.&#160;inference). Do you accept or reject the null hypothesis? Include your test results. (3 points)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb10-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">e.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The “biological” conclusion (i.e.&#160;a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb11-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">f.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb12-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+</section>
+<section class="level2">
+<h2 class="anchored">3. Power issues</h2>
+<p>Assuming that a difference of 5% (or 2.5 moths) of predation rate between treatments is biologically meaningful, what would be the power to detect this with alpha=0.05 and the data collected by:</p>
+<section class="level3">
+<h3 class="anchored">a.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>the student? <em>(1 point)</em></p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb13-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">b.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>the postdoc? <em>(1 point)</em></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>d</code> for a paired t-test is estimated as <span class="math inline">\(d = \text{mean differences} / \text{sd differences}\)</span></p>
+<p>using the <code>d()</code> function you can specify it as <code>d(0, mean differences, sd differences, sd differences)</code></p>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb14-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+</section>
+<section class="level3">
+<h3 class="anchored">c.</h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Comment the difference between the power using the student and postdoc data. <em>(1 point)</em></p>
+</div>
+</div>
+</div>
+
+<div class="cell">
+<details open="open" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span><a rel="noopener" href="#cb15-1"></a><span class="co">#write your code here</span></span></code><i class="bi"></i></pre></div>
+</details>
+</div>
+<p>Write your explanation</p>
+
+
+
+</section>
+</section>
+</section>
+
+</main>
+
+<div class="modal fade"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Source Code</h5></div><div class="modal-body"><div>
+<div class="sourceCode"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span><a rel="noopener" href="#cb16-1"></a><span class="co">---</span></span>
+<span><a rel="noopener" href="#cb16-2"></a><span class="an">title:</span><span class="co"> Bio4158/Bio5158 - Report 4</span></span>
+<span><a rel="noopener" href="#cb16-3"></a><span class="an">subtitle:</span><span class="co"> Exercise</span></span>
+<span><a rel="noopener" href="#cb16-4"></a><span class="an">author:</span><span class="co"> &quot;Group XX - Name_1, Name_2, Name_3&quot;</span></span>
+<span><a rel="noopener" href="#cb16-5"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span><a rel="noopener" href="#cb16-6"></a><span class="an">format:</span></span>
+<span><a rel="noopener" href="#cb16-7"></a><span class="co">  html:</span></span>
+<span><a rel="noopener" href="#cb16-8"></a><span class="co">    embed-resources: true</span></span>
+<span><a rel="noopener" href="#cb16-9"></a><span class="co">    toc: true</span></span>
+<span><a rel="noopener" href="#cb16-10"></a><span class="co">    code-fold: show</span></span>
+<span><a rel="noopener" href="#cb16-11"></a><span class="co">    code-tools: true</span></span>
+<span><a rel="noopener" href="#cb16-12"></a><span class="co">---</span></span>
+<span><a rel="noopener" href="#cb16-13"></a></span>
+<span><a rel="noopener" href="#cb16-14"></a></span>
+<span><a rel="noopener" href="#cb16-15"></a><span class="fu"># The problem</span></span>
+<span><a rel="noopener" href="#cb16-16"></a></span>
+<span><a rel="noopener" href="#cb16-17"></a>The peppered moth (_Biston betularia_ Lepidoptera&#160;: Geometridae) is a nocturnal insect common in Europe and North America. Adults fly at night and stay put during the day on birch trees. Adult coloration is variable, ranging from a clear form (typica) to a melanic form that is very dark (carbonaria), with many intermediate forms.</span>
+<span><a rel="noopener" href="#cb16-18"></a></span>
+<span><a rel="noopener" href="#cb16-19"></a>The proportion of individuals of each form has varied considerably in natural populations over the last 150 years. The melanic form was rare before 1850 but represented over 90% of the population in industrial sectors of England by 1900. According to Majerus (1998), J.W. Tutt was the first to suggest in 1896 an hypothesis to explain the temporal change in the proportion of the dark form. </span>
+<span><a rel="noopener" href="#cb16-20"></a></span>
+<span><a rel="noopener" href="#cb16-21"></a>__Biological hypothesis__: Differences in the relative frequency of the two forms arise because survival from bird predation of each depends on habitat color. In particular, the pale form is less visible in non-polluted environments when birch trees are covered by pale greyish lichens. Inversely, the dark form is favored in industrial areas where soot darkens their resting places. Therefore, the increase of the dark form (carbonaria) in England resulted from bird predation and a change in habitat (soot pollution). </span>
+<span><a rel="noopener" href="#cb16-22"></a></span>
+<span><a rel="noopener" href="#cb16-23"></a><span class="fu"># The study</span></span>
+<span><a rel="noopener" href="#cb16-24"></a></span>
+<span><a rel="noopener" href="#cb16-25"></a>In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. Two growth chamber were set up containing branches and leaves:</span>
+<span><a rel="noopener" href="#cb16-26"></a></span>
+<span><a rel="noopener" href="#cb16-27"></a><span class="ss">1. </span>in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark);</span>
+<span><a rel="noopener" href="#cb16-28"></a><span class="ss">2. </span>in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour.</span>
+<span><a rel="noopener" href="#cb16-29"></a></span>
+<span><a rel="noopener" href="#cb16-30"></a>Each bird was introduced in turn into each chamber (half into the dark first and half into the light first), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, 50 pale moths (typica) and 50 dark moths (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.</span>
+<span><a rel="noopener" href="#cb16-31"></a></span>
+<span><a rel="noopener" href="#cb16-32"></a></span>
+<span><a rel="noopener" href="#cb16-33"></a><span class="fu"># The data</span></span>
+<span><a rel="noopener" href="#cb16-34"></a></span>
+<span><a rel="noopener" href="#cb16-35"></a>The file <span class="in">`Biston_student.csv`</span> contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are incomplete and do not allow him to tell which value comes from which bird. In this file there are 30 lines (representing the 30 birds) and two columns (one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber). However, numbers on a given line do NOT necessarily come from the same bird (i.e. the order of observations in the two columns has been mixed up).</span>
+<span><a rel="noopener" href="#cb16-36"></a></span>
+<span><a rel="noopener" href="#cb16-37"></a>The file <span class="in">`Biston_pd2.csv`</span> is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as <span class="in">`Biston_student.csv`</span>, and contains the same data, except that observations on the same line now come from the same bird (i.e. paired observations are known). </span>
+<span><a rel="noopener" href="#cb16-38"></a></span>
+<span><a rel="noopener" href="#cb16-39"></a></span>
+<span><a rel="noopener" href="#cb16-40"></a><span class="fu"># The task</span></span>
+<span><a rel="noopener" href="#cb16-41"></a><span class="fu">## 1. Student data</span></span>
+<span><a rel="noopener" href="#cb16-42"></a></span>
+<span><a rel="noopener" href="#cb16-43"></a>Analyze the data and determine if the results in <span class="in">`Biston_student.csv`</span> support or refute the biological hypothesis. </span>
+<span><a rel="noopener" href="#cb16-44"></a></span>
+<span><a rel="noopener" href="#cb16-45"></a></span>
+<span><a rel="noopener" href="#cb16-46"></a><span class="fu">### a.</span></span>
+<span><a rel="noopener" href="#cb16-47"></a></span>
+<span><a rel="noopener" href="#cb16-48"></a>::: {.callout}</span>
+<span><a rel="noopener" href="#cb16-49"></a>Give a statement of the biological hypothesis and its prediction (1 point)</span>
+<span><a rel="noopener" href="#cb16-50"></a>:::</span>
+<span><a rel="noopener" href="#cb16-51"></a></span>
+<span><a rel="noopener" href="#cb16-52"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-55"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-56"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-57"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-58"></a></span>
+<span><a rel="noopener" href="#cb16-59"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-60"></a></span>
+<span><a rel="noopener" href="#cb16-61"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-62"></a></span>
+<span><a rel="noopener" href="#cb16-63"></a><span class="fu">### b.</span></span>
+<span><a rel="noopener" href="#cb16-64"></a></span>
+<span><a rel="noopener" href="#cb16-65"></a>::: {.callout}</span>
+<span><a rel="noopener" href="#cb16-66"></a>a statement of the null hypothesis (1 point)</span>
+<span><a rel="noopener" href="#cb16-67"></a>:::</span>
+<span><a rel="noopener" href="#cb16-68"></a></span>
+<span><a rel="noopener" href="#cb16-69"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-72"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-73"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-74"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-75"></a></span>
+<span><a rel="noopener" href="#cb16-76"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-77"></a></span>
+<span><a rel="noopener" href="#cb16-78"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-79"></a></span>
+<span><a rel="noopener" href="#cb16-80"></a><span class="fu">### c.</span></span>
+<span><a rel="noopener" href="#cb16-81"></a></span>
+<span><a rel="noopener" href="#cb16-82"></a>::: {.callout}</span>
+<span><a rel="noopener" href="#cb16-83"></a>fit the adequate statistical model, and evaluate the statistical assumptions _(2 points)_</span>
+<span><a rel="noopener" href="#cb16-84"></a>:::</span>
+<span><a rel="noopener" href="#cb16-85"></a></span>
+<span><a rel="noopener" href="#cb16-86"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-89"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-90"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-91"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-92"></a></span>
+<span><a rel="noopener" href="#cb16-93"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-94"></a></span>
+<span><a rel="noopener" href="#cb16-95"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-96"></a></span>
+<span><a rel="noopener" href="#cb16-97"></a><span class="fu">### d.</span></span>
+<span><a rel="noopener" href="#cb16-98"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-99"></a>The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? (3 points)</span>
+<span><a rel="noopener" href="#cb16-100"></a>:::</span>
+<span><a rel="noopener" href="#cb16-101"></a></span>
+<span><a rel="noopener" href="#cb16-102"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-105"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-106"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-107"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-108"></a></span>
+<span><a rel="noopener" href="#cb16-109"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-110"></a></span>
+<span><a rel="noopener" href="#cb16-111"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-112"></a></span>
+<span><a rel="noopener" href="#cb16-113"></a><span class="fu">### e.</span></span>
+<span><a rel="noopener" href="#cb16-114"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-115"></a>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</span>
+<span><a rel="noopener" href="#cb16-116"></a>:::</span>
+<span><a rel="noopener" href="#cb16-117"></a></span>
+<span><a rel="noopener" href="#cb16-118"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-121"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-122"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-123"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-124"></a></span>
+<span><a rel="noopener" href="#cb16-125"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-126"></a></span>
+<span><a rel="noopener" href="#cb16-127"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-128"></a></span>
+<span><a rel="noopener" href="#cb16-129"></a><span class="fu">### f.</span></span>
+<span><a rel="noopener" href="#cb16-130"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-131"></a>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</span>
+<span><a rel="noopener" href="#cb16-132"></a>:::</span>
+<span><a rel="noopener" href="#cb16-133"></a></span>
+<span><a rel="noopener" href="#cb16-134"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-137"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-138"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-139"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-140"></a></span>
+<span><a rel="noopener" href="#cb16-141"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-142"></a></span>
+<span><a rel="noopener" href="#cb16-143"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-144"></a></span>
+<span><a rel="noopener" href="#cb16-145"></a><span class="fu">## 2. Postdoc data</span></span>
+<span><a rel="noopener" href="#cb16-146"></a></span>
+<span><a rel="noopener" href="#cb16-147"></a>Analyze the data and determine if the results in <span class="in">`Biston_pd2.csv `</span>support or refute the biological hypothesis.</span>
+<span><a rel="noopener" href="#cb16-148"></a></span>
+<span><a rel="noopener" href="#cb16-149"></a><span class="fu">### a.</span></span>
+<span><a rel="noopener" href="#cb16-150"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-151"></a>a statement of the biological hypothesis and its prediction (1 point)</span>
+<span><a rel="noopener" href="#cb16-152"></a>:::</span>
+<span><a rel="noopener" href="#cb16-153"></a></span>
+<span><a rel="noopener" href="#cb16-154"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-157"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-158"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-159"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-160"></a></span>
+<span><a rel="noopener" href="#cb16-161"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-162"></a></span>
+<span><a rel="noopener" href="#cb16-163"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-164"></a></span>
+<span><a rel="noopener" href="#cb16-165"></a><span class="fu">### b.</span></span>
+<span><a rel="noopener" href="#cb16-166"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-167"></a>a statement of the null hypothesis (1 point)</span>
+<span><a rel="noopener" href="#cb16-168"></a>:::</span>
+<span><a rel="noopener" href="#cb16-169"></a></span>
+<span><a rel="noopener" href="#cb16-170"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-173"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-174"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-175"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-176"></a></span>
+<span><a rel="noopener" href="#cb16-177"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-178"></a></span>
+<span><a rel="noopener" href="#cb16-179"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-180"></a></span>
+<span><a rel="noopener" href="#cb16-181"></a><span class="fu">### c.</span></span>
+<span><a rel="noopener" href="#cb16-182"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-183"></a>fit the adequate statistical model, and evaluate the statistical assumptions _(3 points)_</span>
+<span><a rel="noopener" href="#cb16-184"></a>:::</span>
+<span><a rel="noopener" href="#cb16-185"></a></span>
+<span><a rel="noopener" href="#cb16-186"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-189"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-190"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-191"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-192"></a></span>
+<span><a rel="noopener" href="#cb16-193"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-194"></a></span>
+<span><a rel="noopener" href="#cb16-195"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-196"></a></span>
+<span><a rel="noopener" href="#cb16-197"></a><span class="fu">### d.</span></span>
+<span><a rel="noopener" href="#cb16-198"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-199"></a>The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? Include your test results. (3 points)</span>
+<span><a rel="noopener" href="#cb16-200"></a>:::</span>
+<span><a rel="noopener" href="#cb16-201"></a></span>
+<span><a rel="noopener" href="#cb16-202"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-205"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-206"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-207"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-208"></a></span>
+<span><a rel="noopener" href="#cb16-209"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-210"></a></span>
+<span><a rel="noopener" href="#cb16-211"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-212"></a></span>
+<span><a rel="noopener" href="#cb16-213"></a><span class="fu">### e.</span></span>
+<span><a rel="noopener" href="#cb16-214"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-215"></a>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</span>
+<span><a rel="noopener" href="#cb16-216"></a>:::</span>
+<span><a rel="noopener" href="#cb16-217"></a></span>
+<span><a rel="noopener" href="#cb16-218"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-221"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-222"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-223"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-224"></a></span>
+<span><a rel="noopener" href="#cb16-225"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-226"></a></span>
+<span><a rel="noopener" href="#cb16-227"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-228"></a></span>
+<span><a rel="noopener" href="#cb16-229"></a><span class="fu">### f.</span></span>
+<span><a rel="noopener" href="#cb16-230"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-231"></a>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</span>
+<span><a rel="noopener" href="#cb16-232"></a>:::</span>
+<span><a rel="noopener" href="#cb16-233"></a></span>
+<span><a rel="noopener" href="#cb16-234"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-237"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-238"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-239"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-240"></a></span>
+<span><a rel="noopener" href="#cb16-241"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-242"></a></span>
+<span><a rel="noopener" href="#cb16-243"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-244"></a></span>
+<span><a rel="noopener" href="#cb16-245"></a><span class="fu">## 3. Power issues</span></span>
+<span><a rel="noopener" href="#cb16-246"></a></span>
+<span><a rel="noopener" href="#cb16-247"></a>Assuming that a difference of 5% (or 2.5 moths) of predation rate between treatments is biologically meaningful, what would be the power to detect this with alpha=0.05 and the data collected by:</span>
+<span><a rel="noopener" href="#cb16-248"></a></span>
+<span><a rel="noopener" href="#cb16-249"></a><span class="fu">### a.</span></span>
+<span><a rel="noopener" href="#cb16-250"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-251"></a>the student? _(1 point)_</span>
+<span><a rel="noopener" href="#cb16-252"></a>:::</span>
+<span><a rel="noopener" href="#cb16-253"></a></span>
+<span><a rel="noopener" href="#cb16-254"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-257"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-258"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-259"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-260"></a></span>
+<span><a rel="noopener" href="#cb16-261"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-262"></a></span>
+<span><a rel="noopener" href="#cb16-263"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-264"></a></span>
+<span><a rel="noopener" href="#cb16-265"></a><span class="fu">### b.</span></span>
+<span><a rel="noopener" href="#cb16-266"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-267"></a>the postdoc? _(1 point)_</span>
+<span><a rel="noopener" href="#cb16-268"></a>:::</span>
+<span><a rel="noopener" href="#cb16-269"></a></span>
+<span><a rel="noopener" href="#cb16-270"></a>::: callout-warning</span>
+<span><a rel="noopener" href="#cb16-271"></a><span class="in">`d`</span> for a paired t-test is estimated as $d = \text{mean differences} / \text{sd differences}$</span>
+<span><a rel="noopener" href="#cb16-272"></a></span>
+<span><a rel="noopener" href="#cb16-273"></a>using the <span class="in">`d()`</span> function you can specify it as <span class="in">`d(0, mean differences, sd differences, sd differences)`</span></span>
+<span><a rel="noopener" href="#cb16-274"></a>:::</span>
+<span><a rel="noopener" href="#cb16-275"></a></span>
+<span><a rel="noopener" href="#cb16-276"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-279"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-280"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-281"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-282"></a></span>
+<span><a rel="noopener" href="#cb16-283"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-284"></a></span>
+<span><a rel="noopener" href="#cb16-285"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-286"></a></span>
+<span><a rel="noopener" href="#cb16-287"></a><span class="fu">### c.</span></span>
+<span><a rel="noopener" href="#cb16-288"></a>::: {.callout} </span>
+<span><a rel="noopener" href="#cb16-289"></a>Comment the difference between the power using the student and postdoc data. _(1 point)_</span>
+<span><a rel="noopener" href="#cb16-290"></a>:::</span>
+<span><a rel="noopener" href="#cb16-291"></a></span>
+<span><a rel="noopener" href="#cb16-292"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span><a rel="noopener" href="#cb16-295"></a><span class="in">```{r}</span></span>
+<span><a rel="noopener" href="#cb16-296"></a><span class="co">#write your code here</span></span>
+<span><a rel="noopener" href="#cb16-297"></a><span class="in">```</span></span>
+<span><a rel="noopener" href="#cb16-298"></a></span>
+<span><a rel="noopener" href="#cb16-299"></a>Write your explanation</span>
+<span><a rel="noopener" href="#cb16-300"></a></span>
+<span><a rel="noopener" href="#cb16-301"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+</code><i class="bi"></i></pre></div>
+</div></div></div></div></div>
+</div> 
+
+
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/2025.9.207/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+						if (document.querySelector('math, .d2l-element, .d2l-cplus-layout') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+							document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+								elm.setAttribute('style', 'display: block; height: 0.5rem;');
+							});
+
+							document.querySelectorAll('math mmultiscripts > none').forEach(elm => {
+								const mrow = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
+								elm.replaceWith(mrow);
+							});
+
+							window.D2L.MathJax.loadMathJax({
+								outputScale: 1.5,
+								renderLatex: false,
+								enableMML3Support: false
+							});
+						}
+					});</script><script type="module" src="https://s.brightspace.com/lib/bsi/2025.9.207/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/2025.9.207/unbundled/embeds.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					window.D2L.EmbedRenderer.renderEmbeds(document.body);
+				});</script></body></html>

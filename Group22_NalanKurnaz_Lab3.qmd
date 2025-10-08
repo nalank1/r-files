@@ -232,13 +232,13 @@ std_error_slope <- coef(summary(RegModel.1))["year", "Std. Error"]
 n <- nrow(yarmouth_data)
 k <- 1 # for linear regression
 
-d <- std_error_slope / (std_error_slope * sqrt(n - k - 1))
+d <- b / (std_error_slope * sqrt(n - k - 1))
 
 power_result <- pwr.t.test(n = n, d = d, sig.level = 0.05, type = "one.sample")
 power_result
 ```
 
-My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 17% power with effect size = 0.13 to detect a trend, meaning there was 83% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn't show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can't really determine whether temperatures changed or not.
+My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 8% power with effect size = 0.07 to detect a trend, meaning there was 92% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn't show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can't really determine whether temperatures changed or not.
 
 <!--#################################################################-->
 

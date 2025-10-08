@@ -2723,7 +2723,7 @@ W = 0.97111, p-value = 0.1807</code></pre>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(yarmouth_data)</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># for linear regression</span></span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> std_error_slope <span class="sc">/</span> (std_error_slope <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> b <span class="sc">/</span> (std_error_slope <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>))</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>power_result <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">n =</span> n, <span class="at">d =</span> d, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>power_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2733,13 +2733,13 @@ W = 0.97111, p-value = 0.1807</code></pre>
      One-sample t test power calculation 
 
               n = 58
-              d = 0.1336306
+              d = 0.07399208
       sig.level = 0.05
-          power = 0.1702278
+          power = 0.08584542
     alternative = two.sided</code></pre>
 </div>
 </div>
-<p>My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 17% power with effect size = 0.13 to detect a trend, meaning there was 83% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn’t show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can’t really determine whether temperatures changed or not.</p>
+<p>My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 8% power with effect size = 0.07 to detect a trend, meaning there was 92% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn’t show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can’t really determine whether temperatures changed or not.</p>
 <!--#################################################################-->
 </section>
 </section>
@@ -3898,13 +3898,13 @@ attr(,&quot;conf.level&quot;)
 <span id="cb92-244"><a href="#cb92-244" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(yarmouth_data)</span>
 <span id="cb92-245"><a href="#cb92-245" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># for linear regression</span></span>
 <span id="cb92-246"><a href="#cb92-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-247"><a href="#cb92-247" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> std_error_slope <span class="sc">/</span> (std_error_slope <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb92-247"><a href="#cb92-247" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> b <span class="sc">/</span> (std_error_slope <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>))</span>
 <span id="cb92-248"><a href="#cb92-248" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb92-249"><a href="#cb92-249" aria-hidden="true" tabindex="-1"></a>power_result <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">n =</span> n, <span class="at">d =</span> d, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span>
 <span id="cb92-250"><a href="#cb92-250" aria-hidden="true" tabindex="-1"></a>power_result</span>
 <span id="cb92-251"><a href="#cb92-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb92-252"><a href="#cb92-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-253"><a href="#cb92-253" aria-hidden="true" tabindex="-1"></a>My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 17% power with effect size = 0.13 to detect a trend, meaning there was 83% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn&#39;t show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can&#39;t really determine whether temperatures changed or not.</span>
+<span id="cb92-253"><a href="#cb92-253" aria-hidden="true" tabindex="-1"></a>My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 8% power with effect size = 0.07 to detect a trend, meaning there was 92% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn&#39;t show statistical significance, the limitations in power and model assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can&#39;t really determine whether temperatures changed or not.</span>
 <span id="cb92-254"><a href="#cb92-254" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb92-255"><a href="#cb92-255" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
 <span id="cb92-256"><a href="#cb92-256" aria-hidden="true" tabindex="-1"></a></span>

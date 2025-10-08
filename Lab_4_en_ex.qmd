@@ -1,0 +1,271 @@
+---
+title: Bio4158/Bio5158 - Report 4
+subtitle: Exercise
+author: "Group XX - Name_1, Name_2, Name_3"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+
+# The problem
+
+The peppered moth (_Biston betularia_ Lepidoptera : Geometridae) is a nocturnal insect common in Europe and North America. Adults fly at night and stay put during the day on birch trees. Adult coloration is variable, ranging from a clear form (typica) to a melanic form that is very dark (carbonaria), with many intermediate forms.
+
+The proportion of individuals of each form has varied considerably in natural populations over the last 150 years. The melanic form was rare before 1850 but represented over 90% of the population in industrial sectors of England by 1900. According to Majerus (1998), J.W. Tutt was the first to suggest in 1896 an hypothesis to explain the temporal change in the proportion of the dark form. 
+
+__Biological hypothesis__: Differences in the relative frequency of the two forms arise because survival from bird predation of each depends on habitat color. In particular, the pale form is less visible in non-polluted environments when birch trees are covered by pale greyish lichens. Inversely, the dark form is favored in industrial areas where soot darkens their resting places. Therefore, the increase of the dark form (carbonaria) in England resulted from bird predation and a change in habitat (soot pollution). 
+
+# The study
+
+In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. Two growth chamber were set up containing branches and leaves:
+
+1. in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark);
+2. in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour.
+
+Each bird was introduced in turn into each chamber (half into the dark first and half into the light first), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, 50 pale moths (typica) and 50 dark moths (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.
+
+
+# The data
+
+The file `Biston_student.csv` contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are incomplete and do not allow him to tell which value comes from which bird. In this file there are 30 lines (representing the 30 birds) and two columns (one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber). However, numbers on a given line do NOT necessarily come from the same bird (i.e. the order of observations in the two columns has been mixed up).
+
+The file `Biston_pd2.csv` is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as `Biston_student.csv`, and contains the same data, except that observations on the same line now come from the same bird (i.e. paired observations are known). 
+
+
+# The task
+## 1. Student data
+
+Analyze the data and determine if the results in `Biston_student.csv` support or refute the biological hypothesis. 
+
+
+### a.
+
+::: {.callout}
+Give a statement of the biological hypothesis and its prediction (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### b.
+
+::: {.callout}
+a statement of the null hypothesis (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### c.
+
+::: {.callout}
+fit the adequate statistical model, and evaluate the statistical assumptions _(2 points)_
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### d.
+::: {.callout} 
+The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? (3 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### e.
+::: {.callout} 
+The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### f.
+::: {.callout} 
+A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 2. Postdoc data
+
+Analyze the data and determine if the results in `Biston_pd2.csv `support or refute the biological hypothesis.
+
+### a.
+::: {.callout} 
+a statement of the biological hypothesis and its prediction (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### b.
+::: {.callout} 
+a statement of the null hypothesis (1 point)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### c.
+::: {.callout} 
+fit the adequate statistical model, and evaluate the statistical assumptions _(3 points)_
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### d.
+::: {.callout} 
+The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? Include your test results. (3 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### e.
+::: {.callout} 
+The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### f.
+::: {.callout} 
+A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+## 3. Power issues
+
+Assuming that a difference of 5% (or 2.5 moths) of predation rate between treatments is biologically meaningful, what would be the power to detect this with alpha=0.05 and the data collected by:
+
+### a.
+::: {.callout} 
+the student? _(1 point)_
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### b.
+::: {.callout} 
+the postdoc? _(1 point)_
+:::
+
+::: callout-warning
+`d` for a paired t-test is estimated as $d = \text{mean differences} / \text{sd differences}$
+
+using the `d()` function you can specify it as `d(0, mean differences, sd differences, sd differences)`
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
+
+### c.
+::: {.callout} 
+Comment the difference between the power using the student and postdoc data. _(1 point)_
+:::
+
+<!--#################################################################-->
+```{r}
+#write your code here
+```
+
+Write your explanation
+
+<!--#################################################################-->
