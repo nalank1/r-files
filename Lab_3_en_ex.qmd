@@ -57,6 +57,7 @@ library(dplyr)
 library(ggplot2)
 library(pwr)
 library(ggpmisc)
+library(lmtest)
 
 climate_data = read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/climate.csv", header = TRUE, sep = ",", stringsAsFactors=TRUE)
 
@@ -177,8 +178,21 @@ par(mfrow = c(2,2), las = 1)
 plot(RegModel.1)
 
 ```
+```{r}
+bptest(RegModel.1)
 
-Write your explanation
+dwtest(RegModel.1)
+
+resettest(RegModel.1)
+
+shapiro.test(residuals(RegModel.1))
+
+```
+
+To have linear regression analysis, I conducted a series of diagnostic checks. The quadruple residual plot (plot(RegModel.1)) was used for an initial visual assessment. <br> 
+Breusch-Pagan Test (BP = 0.23686, p-value = 0.6265) confirmed homoscedasticity (constant variance of errors) by failing to reject the null hypothesis of constant variance <br> 
+The Shapiro-Wilk test (W = 0.97111, p-value = 0.1807) indicated that the residuals do not significantly deviate from normality.<br>
+However, the Durbin-Watson test (DW = 1.4933, p-value = 0.01735) showed significant positive autocorrelation in the residuals, violating the independence assumption. The RESET Test (RESET = 7.689, p-value = 0.001153) displayed potential model misspecification, meaning the linear model may not be capable of capturing the relationship between year and temperature. Homoscedasticity and normality are met; however, the independence and linearity are not met.
 
 <!--#################################################################-->
 
@@ -189,12 +203,8 @@ What is the statistical conclusion (i.e. inference – do you accept or reject y
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here - NON CODE AREA
-```
 
-Write your explanation
-
+Based on the linear regression analysis, we fail to reject the null hypothesis that the mean annual temperature in Yarmouth has changed from 1950 to 2007. The regression model shows a non-significant relationship between year and temperature with coefficient p-value of 0.582. This is substantially greater than the standard alpha level 0.05, meaning that the observed slight positive trend (slope = 0.002649) is not statistically different from zero. The model's overall lack of fit is also supported by an R-squared value of 0.005, meaning the year variable explains only 0.5% of the variation in temperature. Therefore, we fail to reject null hypothesis.
 <!--#################################################################-->
 
 ### g.
@@ -203,11 +213,8 @@ Provide a “biological” conclusion concerning climate change in Yarmouth (i.e
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here - NON CODE
-```
 
-Write your explanation
+Based on the statistical analysis, the data from Yarmouth don't provide strong evidence for a warming trend over the period 1950-2007. The model estimates a very slight increase in mean annual temperature of 0.0026°C per year (the slope). However, the precision of this estimate is low, as shown by the large standard error, resulting in a 95% confidence interval that most likely includes zero. When projected over a 100-year period, this trend equates to an estimated increase of 0.26°C. This magnitude of change falls at the very lowest end of the IPCC's projected range of 0.6°C to 4.0°C. The estimated trend for Yarmouth is in the same direction as global climate change predictions; however, its projected magnitude over a 100-year period is less than half of the lower threshold the IPCC defines with impacts. This means that, based on the data we have, the observed warming trend will be minimal and its estimated impact would be small compared to global concerns
 
 <!--#################################################################-->
 
@@ -218,10 +225,19 @@ Provide a statement about your confidence in the statistical conclusion (for exa
 
 <!--#################################################################-->
 ```{r}
-#write your code here - NON CODE
+b <- coef(RegModel.1)[2]
+std_error_slope <- coef(summary(RegModel.1))["year", "Std. Error"]
+
+n <- nrow(yarmouth_data)
+k <- 1 # for linear regression
+
+d <- std_error_slope / (std_error_slope * sqrt(n - k - 1))
+
+power_result <- pwr.t.test(n = n, d = d, sig.level = 0.05, type = "one.sample")
+power_result
 ```
 
-Write your explanation
+My confidence in the statistical conclusion is low, due to critically low statistical power and violations of model assumptions. A post-hoc power analysis shows that the data had 17% power with effect size = 0.13 to detect a trend, meaning there was 83% chance of failing to detect a true effect. This low power makes the non-significant result (p-value = 0.582) uninformative. Also, Durbin-Watson test (p-value = 0.017) and RESET Test (p = 0.001) violate model assumptions. While the data doesn't show statistical significance, the limitations in power and regression assumptions prevent any confident conclusion about temperature stability in Yarmouth. Therefore, we can't really determine whether temperatures changed or not.
 
 <!--#################################################################-->
 
@@ -232,7 +248,7 @@ Yarmouth is only one of the six locations for which she needs to quantify the ex
 
 <!--#################################################################-->
 ```{r}
-#write your code here - DO IT EACH PART SEPARATELY - DON"T TRY TO be perfect
+
 victoria_data <- newclimate_data[newclimate_data$loc == "V", ]
 
 ggplot(victoria_data, aes(x = year, y = ave)) +
@@ -251,7 +267,7 @@ ggplot(victoria_data, aes(x = year, y = ave)) +
 
 RegModel.2 <- lm(ave ~ year, data = victoria_data)
 summary(RegModel.2)
-cat("Victoria - Rate of change (slope):", coef(RegModel.2)[2], "/n")
+cat("Victoria Gonzales- Rate of change (slope):", coef(RegModel.2)[2], "\n")
 
 alert_data <- newclimate_data[newclimate_data$loc == "A", ]
 
@@ -270,7 +286,7 @@ ggplot(alert_data, aes(x = year, y = ave)) +
   )
 RegModel.3 <- lm(ave ~ year, data = alert_data)
 summary(RegModel.3)
-cat("Victoria - Rate of change (slope):", coef(RegModel.3)[2], "/n")
+cat("Alert - Rate of change (slope):", coef(RegModel.3)[2], "\n")
 
 windsor_data <- newclimate_data[newclimate_data$loc == "W", ]
 
@@ -289,7 +305,7 @@ ggplot(windsor_data, aes(x = year, y = ave)) +
   )
 RegModel.4 <- lm(ave ~ year, data = windsor_data)
 summary(RegModel.4)
-cat("Victoria - Rate of change (slope):", coef(RegModel.4)[2], "/n")
+cat("Windsor - Rate of change (slope):", coef(RegModel.4)[2], "\n")
 
 mould_data <- newclimate_data[newclimate_data$loc == "M", ]
 
@@ -308,7 +324,7 @@ ggplot(mould_data, aes(x = year, y = ave)) +
   )
 RegModel.5 <- lm(ave ~ year, data = mould_data)
 summary(RegModel.5)
-cat("Victoria - Rate of change (slope):", coef(RegModel.5)[2], "/n")
+cat("Mould Bay - Rate of change (slope):", coef(RegModel.5)[2], "\n")
 
 sachs_data <- newclimate_data[newclimate_data$loc == "S", ]
 
@@ -327,11 +343,10 @@ ggplot(sachs_data, aes(x = year, y = ave)) +
   )
 RegModel.6 <- lm(ave ~ year, data = sachs_data)
 summary(RegModel.6)
-cat("Victoria - Rate of change (slope):", coef(RegModel.6)[2], "/n")
+cat("Sachs Harbour - Rate of change (slope):", coef(RegModel.6)[2], "\n")
 
 ```
 
-Write your explanation
 
 <!--#################################################################-->
 
@@ -346,23 +361,26 @@ Compute the mean warming rate in the North and in the South by averaging the rat
 north_slopes <- c(coef(RegModel.3)[2], coef(RegModel.5)[2], coef(RegModel.6)[2])
 mean_warming_north <- mean(north_slopes)
 ci_north <- t.test(north_slopes)$conf.int
-cat("The 95% confidence interval of North Stations is ", ci_north, "and the mean warming rate of North stations is ", mean_warming_north, "/n")
+ci_north
+mean_warming_north
 
 
 south_slopes <- c(coef(RegModel.4)[2], coef(RegModel.1)[2], coef(RegModel.2)[2])
 mean_warming_south <- mean(south_slopes)
 ci_south <- t.test(south_slopes)$conf.int
-cat("The 95% confidence interval of South Stations is ", ci_south, "and the mean warming rate of South stations is ", mean_warming_south, "/n")
+ci_south
+mean_warming_south
 
-#or 
-sd_south <- sd(south_slopes)
-n_south <- 3
-t_crit_south <- qt(0.975, df = n_south - 1)
-moe_south <- t_crit_south * (sd_south / sqrt(n_south))
-ci_south2 <- c(mean_warming_south - moe_south, mean_warming_south + moe_south)
-ci_south2
+#Please feel free to uncomment after this line to see both above and below implementations are the same.
+# sd_south <- sd(south_slopes)
+# n_south <- 3
+# t_crit_south <- qt(0.975, df = n_south - 1)
+# moe_south <- t_crit_south * (sd_south / sqrt(n_south))
+# ci_south2 <- c(mean_warming_south - moe_south, mean_warming_south + moe_south)
+# ci_south2
 ```
 
-Write your explanation
+The 95% Confidence Interval for the North stations is (-0.02799273,  0.08454226) and the mean for North is 0.02827476.
+The 95% Confidence Interval for the South stations is (-0.01183302,  0.04226223) and the mean for South is 0.01521461.
 
 <!--#################################################################-->
