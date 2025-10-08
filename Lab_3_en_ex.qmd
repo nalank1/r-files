@@ -146,7 +146,7 @@ ggplot(yarmouth_data, aes(x = year, y = ave)) +
   )
 ```
 
-Write your explanation
+The regression equation for Yarmouth data is 1.73 + 0.00265X with R^2 < 0.01.
 
 <!--#################################################################-->
 
@@ -162,7 +162,7 @@ summary(RegModel.1)
 
 ```
 
-Write your explanation
+The residual standard error for Yarmouth Data is 0.61 with 56 degrees of freedom, and its multiple and adjusted R-squared values are 0.005445 and -0.01231, respectively. The f-statistic value is resulted to be 0.3066.
 
 <!--#################################################################-->
 
@@ -251,6 +251,7 @@ ggplot(victoria_data, aes(x = year, y = ave)) +
 
 RegModel.2 <- lm(ave ~ year, data = victoria_data)
 summary(RegModel.2)
+cat("Victoria - Rate of change (slope):", coef(RegModel.2)[2], "/n")
 
 alert_data <- newclimate_data[newclimate_data$loc == "A", ]
 
@@ -269,6 +270,7 @@ ggplot(alert_data, aes(x = year, y = ave)) +
   )
 RegModel.3 <- lm(ave ~ year, data = alert_data)
 summary(RegModel.3)
+cat("Victoria - Rate of change (slope):", coef(RegModel.3)[2], "/n")
 
 windsor_data <- newclimate_data[newclimate_data$loc == "W", ]
 
@@ -287,6 +289,7 @@ ggplot(windsor_data, aes(x = year, y = ave)) +
   )
 RegModel.4 <- lm(ave ~ year, data = windsor_data)
 summary(RegModel.4)
+cat("Victoria - Rate of change (slope):", coef(RegModel.4)[2], "/n")
 
 mould_data <- newclimate_data[newclimate_data$loc == "M", ]
 
@@ -305,6 +308,7 @@ ggplot(mould_data, aes(x = year, y = ave)) +
   )
 RegModel.5 <- lm(ave ~ year, data = mould_data)
 summary(RegModel.5)
+cat("Victoria - Rate of change (slope):", coef(RegModel.5)[2], "/n")
 
 sachs_data <- newclimate_data[newclimate_data$loc == "S", ]
 
@@ -323,9 +327,7 @@ ggplot(sachs_data, aes(x = year, y = ave)) +
   )
 RegModel.6 <- lm(ave ~ year, data = sachs_data)
 summary(RegModel.6)
-
-
-
+cat("Victoria - Rate of change (slope):", coef(RegModel.6)[2], "/n")
 
 ```
 
@@ -340,7 +342,25 @@ Compute the mean warming rate in the North and in the South by averaging the rat
 
 <!--#################################################################-->
 ```{r}
-#write your code here - CODE PART
+
+north_slopes <- c(coef(RegModel.3)[2], coef(RegModel.5)[2], coef(RegModel.6)[2])
+mean_warming_north <- mean(north_slopes)
+ci_north <- t.test(north_slopes)$conf.int
+cat("The 95% confidence interval of North Stations is ", ci_north, "and the mean warming rate of North stations is ", mean_warming_north, "/n")
+
+
+south_slopes <- c(coef(RegModel.4)[2], coef(RegModel.1)[2], coef(RegModel.2)[2])
+mean_warming_south <- mean(south_slopes)
+ci_south <- t.test(south_slopes)$conf.int
+cat("The 95% confidence interval of South Stations is ", ci_south, "and the mean warming rate of South stations is ", mean_warming_south, "/n")
+
+#or 
+sd_south <- sd(south_slopes)
+n_south <- 3
+t_crit_south <- qt(0.975, df = n_south - 1)
+moe_south <- t_crit_south * (sd_south / sqrt(n_south))
+ci_south2 <- c(mean_warming_south - moe_south, mean_warming_south + moe_south)
+ci_south2
 ```
 
 Write your explanation
