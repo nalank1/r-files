@@ -1,7 +1,7 @@
 ---
 title: Bio4158/Bio5158 - Report 4
 subtitle: Exercise
-author: "Group XX - Name_1, Name_2, Name_3"
+author: "Group 22 - Nalan Kurnaz"
 date: today
 format:
   html:
@@ -22,22 +22,36 @@ __Biological hypothesis__: Differences in the relative frequency of the two form
 
 # The study
 
-In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. Two growth chamber were set up containing branches and leaves:
+In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. **Two growth chamber** were set up containing branches and leaves:
 
-1. in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark);
-2. in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour.
+1. **in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark)**;
+2. **in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour**.
 
-Each bird was introduced in turn into each chamber (half into the dark first and half into the light first), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, 50 pale moths (typica) and 50 dark moths (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.
+Each bird was introduced in turn into each chamber (**half into the dark first** and **half into the light first**), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, **50 pale moths** (typica) and **50 dark moths** (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.
 
 
 # The data
 
-The file `Biston_student.csv` contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are incomplete and do not allow him to tell which value comes from which bird. In this file there are 30 lines (representing the 30 birds) and two columns (one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber). However, numbers on a given line do NOT necessarily come from the same bird (i.e. the order of observations in the two columns has been mixed up).
+The file `Biston_student.csv` contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are **incomplete** and do not allow him to tell which value comes from which bird. In this file **there are 30 lines** (representing the 30 birds) and **two columns** (**one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber*). However, **numbers on a given line do NOT necessarily come from the same bird (i.e. the order of observations in the two columns has been mixed up)**.
 
-The file `Biston_pd2.csv` is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as `Biston_student.csv`, and contains the same data, except that observations on the same line now come from the same bird (i.e. paired observations are known). 
+The file `Biston_pd2.csv` is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as `Biston_student.csv`, and contains the same data, **except that observations on the same line now come from the same bird (i.e. paired observations are known)**. 
 
 
 # The task
+### Data Preprocessing
+```{r}
+#import the libraries and read the data
+
+library(dplyr)
+library(pwr)
+library(ggplot2)
+
+
+student_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_student.csv", sep = ",", stringsAsFactors = TRUE)
+
+postdoc_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_pd_2.csv", sep = ",", stringsAsFactors = TRUE)
+
+```
 ## 1. Student data
 
 Analyze the data and determine if the results in `Biston_student.csv` support or refute the biological hypothesis. 
@@ -50,11 +64,8 @@ Give a statement of the biological hypothesis and its prediction (1 point)
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The survival rate of dark peppered moths depends on the color of the substrate moth is located in. Dark moths are expected to be less frequently captured by birds in dark (polluted) environment where they are better camouflaged and more frequently captured in pale (non-polluted) environments, where they are more visible. It was predicted that fewer dark moths will be captured in the dark chamber compared to the pale chamber.
 
 <!--#################################################################-->
 
@@ -65,23 +76,23 @@ a statement of the null hypothesis (1 point)
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
+The mean number of dark peppered moths captured in dark chamber is equal or greater than the mean number of dark peppered moths captured in pale chamber. 
 
-Write your explanation
 
 <!--#################################################################-->
 
 ### c.
 
 ::: {.callout}
-fit the adequate statistical model, and evaluate the statistical assumptions _(2 points)_
+fit the adequate statistical model, and evaluate the statistical assumptions _(2 points)_ - not paired, one tailed test
 :::
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+#do not change into ordinal - you will lose the clarity
+
+t.test(number ~ room, data = student_data, alternative = "less", conf.level = 0.95)
+
 ```
 
 Write your explanation
