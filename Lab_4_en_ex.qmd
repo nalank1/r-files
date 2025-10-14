@@ -41,10 +41,12 @@ The file `Biston_pd2.csv` is later reconstructed by a post-doc from the same lab
 ### Data Preprocessing
 ```{r}
 #import the libraries and read the data
-
+#install.packages("car")
 library(dplyr)
 library(pwr)
 library(ggplot2)
+library(lmtest)
+library(car)
 
 
 student_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_student.csv", sep = ",", stringsAsFactors = TRUE)
@@ -52,6 +54,7 @@ student_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs
 postdoc_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_pd_2.csv", sep = ",", stringsAsFactors = TRUE)
 
 ```
+
 ## 1. Student data
 
 Analyze the data and determine if the results in `Biston_student.csv` support or refute the biological hypothesis. 
@@ -76,7 +79,7 @@ a statement of the null hypothesis (1 point)
 :::
 
 <!--#################################################################-->
-The mean number of dark peppered moths captured in dark chamber is equal or greater than the mean number of dark peppered moths captured in pale chamber. 
+The mean number of dark peppered moths captured in dark chamber is equal the mean number of dark peppered moths captured in pale chamber. 
 
 
 <!--#################################################################-->
@@ -90,12 +93,82 @@ fit the adequate statistical model, and evaluate the statistical assumptions _(2
 <!--#################################################################-->
 ```{r}
 #do not change into ordinal - you will lose the clarity
+ggplot(student_data, aes(x = room, y = number, fill = room)) +
+  geom_boxplot() +
+  labs(title = "Number of Dark Peppered Moths Captured by Chamber",
+       x = "Chamber",
+       y = "Number of Dark Moths Captured") +
+  theme_minimal()
+```
 
-t.test(number ~ room, data = student_data, alternative = "less", conf.level = 0.95)
+```{r}
+#checking normality
+ggplot(student_data, aes(x = number, fill = room)) +
+  geom_histogram(aes(y = ..density..), color = "black", alpha = 0.3, bins = 10) +
+  geom_density(alpha = 0.5) +
+  geom_rug() +
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = mean(student_data$number),
+      sd = sd(student_data$number)
+    ),
+    color = "red"
+  ) +
+  facet_grid(. ~ room) + #splits the plot into separate panels for each chamber
+  xlab("Number of Dark Moths Captured") +
+  theme_minimal()
+```
+```{r}
+shapiro.test(student_data$number)
+```
+
+As seen in both histograms and Shapiro-Wilk tests, it was indicated that both groups are approximately normally distributed (p-value > 0.05) so parametric t-test is appropriate for comparing means.
+
+As groups are normally distributed and the variances in the two groups don't differ much, it is safe to use two sample t-test.
+
+```{r}
+#assuming variances are equal
+t.test(number ~ room, data = student_data, alternative = "two.sided", var.equal = TRUE)
+t_critical <- qt(p = 0.975, df = 58)
+t_critical
+```
+
+The t-test showed a non-significant difference between groups (p = 0.126). Although the sample means differ (29.47 vs 32.27), this difference is not statistically significant and could easily occur by chance alone. We want to also be sure and test all bases. 
+
+```{r}
+#assuming variances are not equal
+t.test(number ~ room, data = student_data, alternative = "two.sided", var.equal = FALSE)
+```
+
+
+```{r}
+wilcox.test(number ~ room, data = student_data, alternative = "two.sided")
+```
+
+The Welch Two Sample t-test produced results nearly identical to the standard t-test, with only minor differences in the confidence interval and degrees of freedom. Both t-tests yield a t-statistic of -1.55, which falls below the critical value of approximately 2.00 required for statistical significance at α = 0.05. This indicates that the observed difference in means is not large enough to be considered statistically significant.
+
+The non-parametric Wilcoxon rank sum test aligns with this conclusion, also failing to find sufficient evidence for a difference in distributions between the two groups.
+
+Given that these different approaches all point toward the same conclusion, a final assessment of the model assumptions was conducted to verify the appropriateness of the parametric t-test.
+
+```{r}
+model.1 <- lm(number ~ room, data = student_data)
+par(mfrow = c(2,2))
+plot(model.1)
 
 ```
 
-Write your explanation
+The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (>0.05), the test indicates that the residuals are normal. 
+
+```{r}
+shapiro.test(residuals(model.1))
+
+leveneTest(model.1)
+
+bptest(model.1)
+```
+
 
 <!--#################################################################-->
 
@@ -105,11 +178,11 @@ The statistical conclusion (i.e. inference). Do you accept or reject the null hy
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+Based on the results of the two-sample t-test, we fail to reject the null hypothesis that the mean number of dark peppered moths is the same in dark and pale environments. The decision was made by comparing the calculated t-statistic to the critical t-value from the Student's t-distribution. The calculated t-statistic from the test is |t_statistic| = 1.5532, and for a two-tailed test with a significance level of \alpha\ = 0.05 and df = 58, the t_critical is 2.002. Since |t_statistic| < t_critical, we fail to reject the null hypothesis. <br>
+The validity of results of t-test were verified by the model's underlying assumptions. Shapiro-Wilk test was used on the data and the residuals,and QQ Plot indicated no significant deviation from normality. Levene's Test (F = 0.139 and p = 0.711) and BP Test (BP = 0.028, p = 0.867) confirm the assumption of equal variances. The residual plot also showed the consistent spread for both groups. <br>
+
+Additionally, we have also tried t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.
 
 <!--#################################################################-->
 
@@ -119,11 +192,8 @@ The “biological” conclusion (i.e. a qualified statement about the biological
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+
 
 <!--#################################################################-->
 
