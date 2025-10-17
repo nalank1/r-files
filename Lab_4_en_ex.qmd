@@ -188,12 +188,11 @@ Additionally, we have also tried t-test under unequal variances and non-parametr
 
 ### e.
 ::: {.callout} 
-The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).
+The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points). - **NEED REVISION**
 :::
 
 <!--#################################################################-->
-
-
+The results from this experiment don't support the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 months with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. A difference of 2.8 moths (approximately a 9% change from the mean) is unlikely to represent a biologically meaningful selective pressure, especially considering the lack of precision in the estimate. Therefore, this experiment fails to provide evidence that the camouflage advantage of dark moths on a dark substrate is a strong factor influencing predation rates under these conditions.
 
 <!--#################################################################-->
 
@@ -207,7 +206,7 @@ A statement about your confidence in the statistical conclusion (for example wit
 #write your code here
 ```
 
-Write your explanation
+Write your explanation -NON CODE
 
 <!--#################################################################-->
 
