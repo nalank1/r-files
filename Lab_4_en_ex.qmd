@@ -47,6 +47,7 @@ library(pwr)
 library(ggplot2)
 library(lmtest)
 library(car)
+library(boot)
 
 
 student_data <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_student.csv", sep = ",", stringsAsFactors = TRUE)
@@ -129,7 +130,8 @@ As groups are normally distributed and the variances in the two groups don't dif
 
 ```{r}
 #assuming variances are equal
-t.test(number ~ room, data = student_data, alternative = "two.sided", var.equal = TRUE)
+t_result <- t.test(number ~ room, data = student_data, alternative = "two.sided", var.equal = TRUE)
+t_result
 t_critical <- qt(p = 0.975, df = 58)
 t_critical
 ```
@@ -188,11 +190,11 @@ Additionally, we have also tried t-test under unequal variances and non-parametr
 
 ### e.
 ::: {.callout} 
-The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points). - **NEED REVISION**
+The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points). - **NEEDs REVISION**
 :::
 
 <!--#################################################################-->
-The results from this experiment don't support the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 months with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. A difference of 2.8 moths (approximately a 9% change from the mean) is unlikely to represent a biologically meaningful selective pressure, especially considering the lack of precision in the estimate. Therefore, this experiment fails to provide evidence that the camouflage advantage of dark moths on a dark substrate is a strong factor influencing predation rates under these conditions.
+The results from this experiment don't support the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. A difference of 2.8 moths (approximately a 9% change from the mean) is unlikely to represent a biologically meaningful selective pressure, especially considering the lack of precision in the estimate. Therefore, this experiment fails to provide evidence that the camouflage advantage of dark moths on a dark substrate is a strong factor influencing predation rates under these conditions.
 
 <!--#################################################################-->
 
@@ -202,11 +204,38 @@ A statement about your confidence in the statistical conclusion (for example wit
 :::
 
 <!--#################################################################-->
+We have high confidence in the statistical conclusion to fail to reject the null hypothesis, as it is robust and supported by multiple lines of evidence. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch's t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that if a real effect exists, our experiment had a very low probability of detecting it. Therefore, while we are confident in the statistical conclusion based on the current data, we cannot rule out the possibility of a Type II error (failing to detect a real biological effect). <br>
+
+Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.69, 6.30) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. This aligns with our t-test results and strengthens our confidence in failing to reject the null hypothesis.
+
 ```{r}
-#write your code here
+mean_dark <- t_result$estimate[1]
+mean_pale <- t_result$estimate[2]
+
+sd_dark <- sd(student_data$number[student_data$room == "dark"])
+sd_pale <- sd(student_data$number[student_data$room == "pale"])
+
+d <- function(u1, u2, sd1, sd2){
+  abs(u1 - u2) / sqrt((sd1^2 + sd2^2) / 2)
+}
+
+pwr.t.test(n = 30, d = d(u1 = mean_dark, u2 = mean_pale, sd1 = sd_dark, sd2 = sd_pale), sig.level = 0.05, type = "two.sample")
 ```
 
-Write your explanation -NON CODE
+```{r}
+bs <- function(formula, data, indices){
+  d <- data[indices, ]
+  fit <- lm(formula, data = d)
+  return(coef(fit))
+}
+
+results <- boot(
+  data = student_data, statistic = bs, R = 1000,
+  formula = number ~ room
+)
+results
+boot.ci(results, type = "bca", index = 2)
+```
 
 <!--#################################################################-->
 
@@ -220,11 +249,10 @@ a statement of the biological hypothesis and its prediction (1 point)
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The mean number of dark peppered moths in pale and dark environment differs because the survival from bird predation depends on the colour of the moth in relation to the colour of the environment. Dark peppered moths are better camouflaged on dark substrates than on pale (non‑polluted) substrates, so a bird will capture fewer dark moths when foraging on a dark substrate than when foraging on a pale substrate. <br>
+
+When the same individual birds are tested in both environments, they will capture significantly fewer dark moths in the dark, polluted environment (where the dark moths are less visible) than in the pale, non-polluted environment.
 
 <!--#################################################################-->
 
@@ -234,11 +262,7 @@ a statement of the null hypothesis (1 point)
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
-
-Write your explanation
+The null hypothesis is that the mean difference in the number of dark peppered moths captured between the pale and dark chambers is zero. 
 
 <!--#################################################################-->
 
@@ -249,10 +273,74 @@ fit the adequate statistical model, and evaluate the statistical assumptions _(3
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+postdoc_data$difference <- postdoc_data$pale - postdoc_data$dark
+
+par(mfrow = c(1, 1))
+
+density_values <- density(postdoc_data$difference)
+
+max_density <- max(density_values$y)
+
+hist(postdoc_data$difference,
+     main = "Histogram of Differences",
+     xlab = "Difference (Pale - Dark)",
+     col = "lightblue",
+     probability = TRUE,
+     ylim = c(0, max_density * 1.1)) # TRUE helped me to overlay the density curve and normal curve on same scale
+
+lines(density_values, col = "red", lwd = 2)
+curve(dnorm(x, 
+            mean = mean(postdoc_data$difference),
+            sd = sd(postdoc_data$difference)),
+      col = "blue", lwd = 2, lty = 2, add = TRUE)
+legend("topright", legend = c("Data Density", "Normal Curve"),
+      col = c("red", "blue"), lty = c(1, 2), lwd = 2)
 ```
 
-Write your explanation
+```{r}
+qqnorm(postdoc_data$difference, main = "QQ-Plot of Differences")
+qqline(postdoc_data$difference, col = "red")
+```
+
+```{r}
+boxplot(postdoc_data$difference, 
+        main = "Boxplot of DIfferences",
+        ylab = "Difference (Pale - Dark)",
+        col = "lightgreen")
+points(mean(postdoc_data$difference), pch = 20, col = "red", cex = 1.5)
+legend("topright", legend = "Mean", pch = 20, col = "red")
+```
+
+```{r}
+
+plot(postdoc_data$difference ~ rep(mean(postdoc_data$difference), nrow(postdoc_data)),
+    main = "Differences vs Central Tendency",
+    xlab = "Overall Mean Difference",
+    ylab = "Individual Differences",
+    pch = 20, col = "darkblue")
+
+abline(h = 0, col = "red", lwd = 2)
+abline(h = mean(postdoc_data$difference), col = "blue", lwd = 2, lty = 2)
+legend("topright", 
+      legend = c("Zero Reference", "Mean Difference"),
+      col = c("red", "blue"),
+      lty = c(1, 2),
+      lwd = 2)
+
+```
+
+```{r}
+shapiro.test(postdoc_data$difference)
+```
+
+A one-tailed paired t-test was selected as the appropriate statistical model because the experiment had repeated measures, meaning each bird is tested in both chambers. Also, we were testing a directional biological prediction since more dark moths captured in pale chambers. <br>
+
+The statistical assumptions were evaluated, beginning with the normality of the differences between paired observations. This was assessed using multiple complementary approaches: a histogram with overlaid density curves showed a bell-shaped distribution that closely followed the theoretical normal curve; a Q-Q plot showed points falling reasonably close to the reference line; a boxplot displayed a symmetric distribution with no evidence of extreme outliers and a formal Shapiro-Wilk test yielded a p-value of 0.1215, above the 0.05 threshold, confirming no significant departure from normality. The independence assumption was satisfied as well since birds were randomly sampled and tested independently. Both the normality and independence assumptions are met, validating the use of the paired t-test for this analysis.
+
+```{r}
+t.test(postdoc_data$pale, postdoc_data$dark, paired = TRUE, alternative = "greater")
+```
+
 
 <!--#################################################################-->
 
@@ -262,11 +350,7 @@ The statistical conclusion (i.e. inference). Do you accept or reject the null hy
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
-
-Write your explanation
+Based on the results of the paired t-test, we reject the null hypothesis that the mean difference in dark moth captures between chambers is zero. The paired t-test yielded a statistically significant result (t_statistic(29) = 2.0932, p-value = 0.0226). Also, the 95% lower confidence bound (0.527 moths) excludes zero, indicating the true effect is positive. In other words, having confidence interval above zero means the effect is consistently positive and zero is not a value for the true effect size. Since |t_statistic| = 2.0932 > |t_critical| = qt(0.95, df = 29) = 1.699, we are safe to reject the null hypothesis. 
 
 <!--#################################################################-->
 
@@ -276,11 +360,10 @@ The “biological” conclusion (i.e. a qualified statement about the biological
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The results provide clear biological support for the camouflage hypothesis in peppered moths. The raw effect size shows that birds captured an average of 2.8 more dark moths in the pale chamber compared to the dark chamber. However, the precision of this estimate is limited (since the true effect exceeds 0.53 moths), the upper bound is unbounded in this one-tailed framework.
+
+The effect magnitude appears biologically relevant for natural selection. A consistent 2.8-moth advantage per foraging bout, when accumulated across numerous predator-prey interactions, may generate sufficient selective pressure to explain the observed industrial melanism in peppered moth populations.
 
 <!--#################################################################-->
 
@@ -290,11 +373,8 @@ A statement about your confidence in the statistical conclusion (for example wit
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+We have strong confidence in our conclusion that birds catch more dark moths in pale chambers
 
 <!--#################################################################-->
 
@@ -309,10 +389,20 @@ the student? _(1 point)_
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+d_students <- 2.5 / sqrt((sd_dark^2 + sd_pale^2) / 2)
+
+power_students <- pwr.t.test(
+  n = 30,
+  d = d_students,
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided"
+)
+
+power_students
 ```
 
-Write your explanation
+For the student's unpaired design with 30 birds in each group, the power to detect a biologically meaningful difference of 2.5 moths is approximately 27.6%.
 
 <!--#################################################################-->
 
@@ -329,10 +419,20 @@ using the `d()` function you can specify it as `d(0, mean differences, sd differ
 
 <!--#################################################################-->
 ```{r}
-#write your code here
+d_postdoc <- d(u1 = 2.5, u2 = 0, sd1 = sd(postdoc_data$difference), sd2 = sd(postdoc_data$difference))
+
+power_postdoc <- pwr.t.test(
+  n = 30,
+  d = d_postdoc,
+  sig.level = 0.05,
+  type = "paired",
+  alternative = "greater"
+)
+
+power_postdoc
 ```
 
-Write your explanation
+For the postdoc's paired design with 30 bird pairs, the power to detect the same biologically meaningful difference of 2.5 moths is approximately 57.1%
 
 <!--#################################################################-->
 
@@ -342,10 +442,7 @@ Comment the difference between the power using the student and postdoc data. _(1
 :::
 
 <!--#################################################################-->
-```{r}
-#write your code here
-```
 
-Write your explanation
+The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This >2× increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test. 
 
 <!--#################################################################-->
