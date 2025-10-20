@@ -80,8 +80,8 @@ a statement of the null hypothesis (1 point)
 :::
 
 <!--#################################################################-->
-The mean number of dark peppered moths captured in dark chamber is equal the mean number of dark peppered moths captured in pale chamber. 
 
+The mean number of dark peppered moths captured in dark chamber is equal the mean number of dark peppered moths captured in pale chamber. 
 
 <!--#################################################################-->
 
@@ -161,7 +161,7 @@ plot(model.1)
 
 ```
 
-The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (>0.05), the test indicates that the residuals are normal. 
+The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (>0.05), the test indicates that the residuals are normal. The other two tests confirm the assessment of homogeneity of variance (homoscedasticity). The Levene's Test gives a p-value of 0.711. The Breusch-Pagan test (bptest) gives a p-value of 0.8673. Since both p-values (0.711 and 0.8673) are much greater than 0.05, we fail to reject the null hypothesis of equal variances. This statistically confirms that the homogeneity of variance assumption is met. 
 
 ```{r}
 shapiro.test(residuals(model.1))
@@ -184,7 +184,7 @@ The statistical conclusion (i.e. inference). Do you accept or reject the null hy
 Based on the results of the two-sample t-test, we fail to reject the null hypothesis that the mean number of dark peppered moths is the same in dark and pale environments. The decision was made by comparing the calculated t-statistic to the critical t-value from the Student's t-distribution. The calculated t-statistic from the test is |t_statistic| = 1.5532, and for a two-tailed test with a significance level of \alpha\ = 0.05 and df = 58, the t_critical is 2.002. Since |t_statistic| < t_critical, we fail to reject the null hypothesis. <br>
 The validity of results of t-test were verified by the model's underlying assumptions. Shapiro-Wilk test was used on the data and the residuals,and QQ Plot indicated no significant deviation from normality. Levene's Test (F = 0.139 and p = 0.711) and BP Test (BP = 0.028, p = 0.867) confirm the assumption of equal variances. The residual plot also showed the consistent spread for both groups. <br>
 
-Additionally, we have also tried t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.
+Additionally, we have also tried additional t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.
 
 <!--#################################################################-->
 
@@ -194,7 +194,7 @@ The “biological” conclusion (i.e. a qualified statement about the biological
 :::
 
 <!--#################################################################-->
-The results from this experiment don't support the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. A difference of 2.8 moths (approximately a 9% change from the mean) is unlikely to represent a biologically meaningful selective pressure, especially considering the lack of precision in the estimate. Therefore, this experiment fails to provide evidence that the camouflage advantage of dark moths on a dark substrate is a strong factor influencing predation rates under these conditions.
+Based on the student_data analysis, we fail to find statistical support for the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. Although a consistent 2.8-moth difference (approximately a 9% change from the mean) would likely be biologically meaningful as a selective pressure, the imprecision of this estimate means we cannot conclude such an effect exists. Therefore, this analysis fails to provide conclusive evidence to support the hypothesis.
 
 <!--#################################################################-->
 
@@ -204,9 +204,9 @@ A statement about your confidence in the statistical conclusion (for example wit
 :::
 
 <!--#################################################################-->
-We have high confidence in the statistical conclusion to fail to reject the null hypothesis, as it is robust and supported by multiple lines of evidence. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch's t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that if a real effect exists, our experiment had a very low probability of detecting it. Therefore, while we are confident in the statistical conclusion based on the current data, we cannot rule out the possibility of a Type II error (failing to detect a real biological effect). <br>
+We have low confidence in the statistical conclusion to fail to reject the null hypothesis as it is supported by multiple consistent analyses but limited by the study’s design and low power. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch's t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that even if a true difference exists, there was a high probability of not detecting it (Type II error). Therefore, while the analyses consistently support the null hypothesis, our confidence in interpreting this as evidence of no biological effect is low. <br>
 
-Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.69, 6.30) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. This aligns with our t-test results and strengthens our confidence in failing to reject the null hypothesis.
+Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.619, 6.013) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. As this interval includes zero and spans both positive and negative values, it supports the statistical conclusion but also highlights the uncertainty due to limited sample size and the unpaired design. The statistical conclusion may be consistent, however the external confidence is reduced by the limited power and unpaired data structure.
 
 ```{r}
 mean_dark <- t_result$estimate[1]
@@ -361,9 +361,8 @@ The “biological” conclusion (i.e. a qualified statement about the biological
 
 <!--#################################################################-->
 
-The results provide clear biological support for the camouflage hypothesis in peppered moths. The raw effect size shows that birds captured an average of 2.8 more dark moths in the pale chamber compared to the dark chamber. However, the precision of this estimate is limited (since the true effect exceeds 0.53 moths), the upper bound is unbounded in this one-tailed framework.
+The results supports the biological hypothesis that the survival of dark peppered moths (carbonaria) is significantly influenced by background color due to bird predation. The experiment showed a statistically significant advantage for the dark moths when resting on the dark, polluted background. The raw effect size is a mean difference of 2.8 dark moths captured per bird. In other words, on average, birds captured 2.8 more dark moths in the pale (non-polluted) chamber (mean capture 32.27) than in the dark (polluted) chamber (mean capture 29.47). This observed direction is precisely what is predicted by the camouflage hypothesis. The effect is estimated with reasonable precision, as evidenced by the paired t-test's p-value (0.0226) and the 95% lower confidence bound of 0.53 moths. Because the entire confidence range for the one-tailed test is [0.53,inf], we can be confident that the true difference is a positive value, ruling out a zero or negative difference. From a biological perspective, an average difference of 2.8 moths out of 30 available represents a 9.3% change in survival rate in a single foraging event. This level of selective pressure can be considered biologically strong for the rapid evolutionary change observed in the peppered moth population. The paired design was critical here successfully controlling for bird-to-bird variability to isolate and detect the effect.
 
-The effect magnitude appears biologically relevant for natural selection. A consistent 2.8-moth advantage per foraging bout, when accumulated across numerous predator-prey interactions, may generate sufficient selective pressure to explain the observed industrial melanism in peppered moth populations.
 
 <!--#################################################################-->
 
@@ -374,7 +373,21 @@ A statement about your confidence in the statistical conclusion (for example wit
 
 <!--#################################################################-->
 
-We have strong confidence in our conclusion that birds catch more dark moths in pale chambers. Our confidence stems from the robust paired experimental design, which effectively controlled for individual bird variability, and from meeting all key statistical assumptions including normality of differences and data independence. However, the study had relatively low statistical power (approximately 55%), indicating a substantial chance of failing to detect a real effect if it existed. Additionally, the p-value of 0.023, while statistically significant, sits close to the conventional 0.05 threshold, suggesting the effect may be modest in magnitude.
+We have strong confidence in our conclusion that birds catch more dark moths in pale chambers, leading us to confidently reject the null hypothesis. Our confidence stems from the paired experiments, which effectively controlled for individual bird variability, and from meeting all key statistical assumptions including normality of differences and data independence. A post-hoc power analysis indicated that the study had 65.5% power to detect the observed medium effect size (d = 0.38). The analysis yielded a statistically significant result (p=0.0226). Overall, the paired design allowed the true biological difference to be detected. 
+
+```{r}
+sd_postdoc <- sd(postdoc_data$difference)
+cohen_d <- mean(postdoc_data$difference) / sd_postdoc
+
+power_res <- pwr.t.test(
+  n = 30,
+  d = cohen_d,
+  sig.level = 0.05,
+  type = "one.sample",
+  alternative = "greater"
+)
+power_res
+```
 
 <!--#################################################################-->
 
@@ -443,6 +456,6 @@ Comment the difference between the power using the student and postdoc data. _(1
 
 <!--#################################################################-->
 
-The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This >2× increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test. 
+The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This twice of increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test. 
 
 <!--#################################################################-->

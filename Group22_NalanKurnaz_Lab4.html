@@ -2687,7 +2687,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
 </div>
-<p>The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (&gt;0.05), the test indicates that the residuals are normal.</p>
+<p>The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (&gt;0.05), the test indicates that the residuals are normal. The other two tests confirm the assessment of homogeneity of variance (homoscedasticity). The Levene’s Test gives a p-value of 0.711. The Breusch-Pagan test (bptest) gives a p-value of 0.8673. Since both p-values (0.711 and 0.8673) are much greater than 0.05, we fail to reject the null hypothesis of equal variances. This statistically confirms that the homogeneity of variance assumption is met.</p>
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -2738,7 +2738,7 @@ BP = 0.027916, df = 1, p-value = 0.8673</code></pre>
 </div>
 <!--#################################################################-->
 <p>Based on the results of the two-sample t-test, we fail to reject the null hypothesis that the mean number of dark peppered moths is the same in dark and pale environments. The decision was made by comparing the calculated t-statistic to the critical t-value from the Student’s t-distribution. The calculated t-statistic from the test is |t_statistic| = 1.5532, and for a two-tailed test with a significance level of  = 0.05 and df = 58, the t_critical is 2.002. Since |t_statistic| &lt; t_critical, we fail to reject the null hypothesis. <br> The validity of results of t-test were verified by the model’s underlying assumptions. Shapiro-Wilk test was used on the data and the residuals,and QQ Plot indicated no significant deviation from normality. Levene’s Test (F = 0.139 and p = 0.711) and BP Test (BP = 0.028, p = 0.867) confirm the assumption of equal variances. The residual plot also showed the consistent spread for both groups. <br></p>
-<p>Additionally, we have also tried t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.</p>
+<p>Additionally, we have also tried additional t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.</p>
 <!--#################################################################-->
 </section>
 <section id="e." class="level3">
@@ -2749,12 +2749,12 @@ BP = 0.027916, df = 1, p-value = 0.8673</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points). - <strong>NEEDs REVISION</strong></p>
+<p>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</p>
 </div>
 </div>
 </div>
 <!--#################################################################-->
-<p>The results from this experiment don’t support the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. A difference of 2.8 moths (approximately a 9% change from the mean) is unlikely to represent a biologically meaningful selective pressure, especially considering the lack of precision in the estimate. Therefore, this experiment fails to provide evidence that the camouflage advantage of dark moths on a dark substrate is a strong factor influencing predation rates under these conditions.</p>
+<p>Based on the student_data analysis, we fail to find statistical support for the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. Although a consistent 2.8-moth difference (approximately a 9% change from the mean) would likely be biologically meaningful as a selective pressure, the imprecision of this estimate means we cannot conclude such an effect exists. Therefore, this analysis fails to provide conclusive evidence to support the hypothesis.</p>
 <!--#################################################################-->
 </section>
 <section id="f." class="level3">
@@ -2770,8 +2770,8 @@ BP = 0.027916, df = 1, p-value = 0.8673</code></pre>
 </div>
 </div>
 <!--#################################################################-->
-<p>We have high confidence in the statistical conclusion to fail to reject the null hypothesis, as it is robust and supported by multiple lines of evidence. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch’s t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that if a real effect exists, our experiment had a very low probability of detecting it. Therefore, while we are confident in the statistical conclusion based on the current data, we cannot rule out the possibility of a Type II error (failing to detect a real biological effect). <br></p>
-<p>Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.69, 6.30) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. This aligns with our t-test results and strengthens our confidence in failing to reject the null hypothesis.</p>
+<p>We have low confidence in the statistical conclusion to fail to reject the null hypothesis as it is supported by multiple consistent analyses but limited by the study’s design and low power. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch’s t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that even if a true difference exists, there was a high probability of not detecting it (Type II error). Therefore, while the analyses consistently support the null hypothesis, our confidence in interpreting this as evidence of no biological effect is low. <br></p>
+<p>Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.619, 6.013) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. As this interval includes zero and spans both positive and negative values, it supports the statistical conclusion but also highlights the uncertainty due to limited sample size and the unpaired design. The statistical conclusion may be consistent, however the external confidence is reduced by the limited power and unpaired data structure.</p>
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -2826,9 +2826,9 @@ boot(data = student_data, statistic = bs, R = 1000, formula = number ~
 
 
 Bootstrap Statistics :
-    original      bias    std. error
-t1* 29.46667  0.06289163    1.297117
-t2*  2.80000 -0.02009653    1.800547</code></pre>
+    original       bias    std. error
+t1* 29.46667  0.008888558    1.285343
+t2*  2.80000 -0.127559733    1.788218</code></pre>
 </div>
 <details open class="code-fold">
 <summary>Code</summary>
@@ -2843,7 +2843,7 @@ boot.ci(boot.out = results, type = &quot;bca&quot;, index = 2)
 
 Intervals : 
 Level       BCa          
-95%   (-0.722,  6.478 )  
+95%   (-0.717,  6.386 )  
 Calculations and Intervals on Original Scale</code></pre>
 </div>
 </div>
@@ -3055,8 +3055,7 @@ mean difference
 </div>
 </div>
 <!--#################################################################-->
-<p>The results provide clear biological support for the camouflage hypothesis in peppered moths. The raw effect size shows that birds captured an average of 2.8 more dark moths in the pale chamber compared to the dark chamber. However, the precision of this estimate is limited (since the true effect exceeds 0.53 moths), the upper bound is unbounded in this one-tailed framework.</p>
-<p>The effect magnitude appears biologically relevant for natural selection. A consistent 2.8-moth advantage per foraging bout, when accumulated across numerous predator-prey interactions, may generate sufficient selective pressure to explain the observed industrial melanism in peppered moth populations.</p>
+<p>The results supports the biological hypothesis that the survival of dark peppered moths (carbonaria) is significantly influenced by background color due to bird predation. The experiment showed a statistically significant advantage for the dark moths when resting on the dark, polluted background. The raw effect size is a mean difference of 2.8 dark moths captured per bird. In other words, on average, birds captured 2.8 more dark moths in the pale (non-polluted) chamber (mean capture 32.27) than in the dark (polluted) chamber (mean capture 29.47). This observed direction is precisely what is predicted by the camouflage hypothesis. The effect is estimated with reasonable precision, as evidenced by the paired t-test’s p-value (0.0226) and the 95% lower confidence bound of 0.53 moths. Because the entire confidence range for the one-tailed test is [0.53,inf], we can be confident that the true difference is a positive value, ruling out a zero or negative difference. From a biological perspective, an average difference of 2.8 moths out of 30 available represents a 9.3% change in survival rate in a single foraging event. This level of selective pressure can be considered biologically strong for the rapid evolutionary change observed in the peppered moth population. The paired design was critical here successfully controlling for bird-to-bird variability to isolate and detect the effect.</p>
 <!--#################################################################-->
 </section>
 <section id="f.-1" class="level3">
@@ -3072,7 +3071,33 @@ mean difference
 </div>
 </div>
 <!--#################################################################-->
-<p>We have strong confidence in our conclusion that birds catch more dark moths in pale chambers</p>
+<p>We have strong confidence in our conclusion that birds catch more dark moths in pale chambers, leading us to confidently reject the null hypothesis. Our confidence stems from the paired experiments, which effectively controlled for individual bird variability, and from meeting all key statistical assumptions including normality of differences and data independence. A post-hoc power analysis indicated that the study had 65.5% power to detect the observed medium effect size (d = 0.38). The analysis yielded a statistically significant result (p=0.0226). Overall, the paired design allowed the true biological difference to be detected.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>sd_postdoc <span class="ot">&lt;-</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>cohen_d <span class="ot">&lt;-</span> <span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference) <span class="sc">/</span> sd_postdoc</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>power_res <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> cohen_d,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>power_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     One-sample t test power calculation 
+
+              n = 30
+              d = 0.3821559
+      sig.level = 0.05
+          power = 0.6550824
+    alternative = greater</code></pre>
+</div>
+</div>
 <!--#################################################################-->
 </section>
 </section>
@@ -3095,17 +3120,17 @@ mean difference
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>d_students <span class="ot">&lt;-</span> <span class="fl">2.5</span> <span class="sc">/</span> <span class="fu">sqrt</span>((sd_dark<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_pale<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>power_students <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_students,</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>power_students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>d_students <span class="ot">&lt;-</span> <span class="fl">2.5</span> <span class="sc">/</span> <span class="fu">sqrt</span>((sd_dark<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_pale<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>power_students <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_students,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>power_students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -3153,17 +3178,17 @@ Warning
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>d_postdoc <span class="ot">&lt;-</span> <span class="fu">d</span>(<span class="at">u1 =</span> <span class="fl">2.5</span>, <span class="at">u2 =</span> <span class="dv">0</span>, <span class="at">sd1 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">sd2 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference))</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>power_postdoc <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_postdoc,</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>power_postdoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>d_postdoc <span class="ot">&lt;-</span> <span class="fu">d</span>(<span class="at">u1 =</span> <span class="fl">2.5</span>, <span class="at">u2 =</span> <span class="dv">0</span>, <span class="at">sd1 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">sd2 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference))</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>power_postdoc <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_postdoc,</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>power_postdoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -3194,7 +3219,7 @@ NOTE: n is number of *pairs*</code></pre>
 </div>
 </div>
 <!--#################################################################-->
-<p>The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This &gt;2× increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test.</p>
+<p>The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This twice of increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test.</p>
 <!--#################################################################-->
 <!-- -->
 
@@ -3654,453 +3679,466 @@ NOTE: n is number of *pairs*</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb56" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Bio4158/Bio5158 - Report 4</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Exercise</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Group 22 - Nalan Kurnaz&quot;</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># The problem</span></span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>The peppered moth (_Biston betularia_ Lepidoptera : Geometridae) is a nocturnal insect common in Europe and North America. Adults fly at night and stay put during the day on birch trees. Adult coloration is variable, ranging from a clear form (typica) to a melanic form that is very dark (carbonaria), with many intermediate forms.</span>
-<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>The proportion of individuals of each form has varied considerably in natural populations over the last 150 years. The melanic form was rare before 1850 but represented over 90% of the population in industrial sectors of England by 1900. According to Majerus (1998), J.W. Tutt was the first to suggest in 1896 an hypothesis to explain the temporal change in the proportion of the dark form. </span>
-<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>__Biological hypothesis__: Differences in the relative frequency of the two forms arise because survival from bird predation of each depends on habitat color. In particular, the pale form is less visible in non-polluted environments when birch trees are covered by pale greyish lichens. Inversely, the dark form is favored in industrial areas where soot darkens their resting places. Therefore, the increase of the dark form (carbonaria) in England resulted from bird predation and a change in habitat (soot pollution). </span>
-<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># The study</span></span>
-<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. **Two growth chamber** were set up containing branches and leaves:</span>
-<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark)**;</span>
-<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour**.</span>
-<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>Each bird was introduced in turn into each chamber (**half into the dark first** and **half into the light first**), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, **50 pale moths** (typica) and **50 dark moths** (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.</span>
-<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># The data</span></span>
-<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a>The file <span class="in">`Biston_student.csv`</span> contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are **incomplete** and do not allow him to tell which value comes from which bird. In this file **there are 30 lines** (representing the 30 birds) and **two columns** (**one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber*). However, **numbers on a given line do NOT necessarily come from the same bird (i.e. the order of observations in the two columns has been mixed up)**.</span>
-<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-37"><a href="#cb56-37" aria-hidden="true" tabindex="-1"></a>The file <span class="in">`Biston_pd2.csv`</span> is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as <span class="in">`Biston_student.csv`</span>, and contains the same data, **except that observations on the same line now come from the same bird (i.e. paired observations are known)**. </span>
-<span id="cb56-38"><a href="#cb56-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-39"><a href="#cb56-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-40"><a href="#cb56-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># The task</span></span>
-<span id="cb56-41"><a href="#cb56-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Preprocessing</span></span>
-<span id="cb56-44"><a href="#cb56-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-45"><a href="#cb56-45" aria-hidden="true" tabindex="-1"></a><span class="co">#import the libraries and read the data</span></span>
-<span id="cb56-46"><a href="#cb56-46" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;car&quot;)</span></span>
-<span id="cb56-47"><a href="#cb56-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb56-48"><a href="#cb56-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
-<span id="cb56-49"><a href="#cb56-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb56-50"><a href="#cb56-50" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb56-51"><a href="#cb56-51" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb56-52"><a href="#cb56-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
-<span id="cb56-53"><a href="#cb56-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-54"><a href="#cb56-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-55"><a href="#cb56-55" aria-hidden="true" tabindex="-1"></a>student_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_student.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb56-56"><a href="#cb56-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-57"><a href="#cb56-57" aria-hidden="true" tabindex="-1"></a>postdoc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_pd_2.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb56-58"><a href="#cb56-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-59"><a href="#cb56-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-60"><a href="#cb56-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-61"><a href="#cb56-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Student data</span></span>
-<span id="cb56-62"><a href="#cb56-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-63"><a href="#cb56-63" aria-hidden="true" tabindex="-1"></a>Analyze the data and determine if the results in <span class="in">`Biston_student.csv`</span> support or refute the biological hypothesis. </span>
-<span id="cb56-64"><a href="#cb56-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-65"><a href="#cb56-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-66"><a href="#cb56-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### a.</span></span>
-<span id="cb56-67"><a href="#cb56-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-68"><a href="#cb56-68" aria-hidden="true" tabindex="-1"></a>::: {.callout}</span>
-<span id="cb56-69"><a href="#cb56-69" aria-hidden="true" tabindex="-1"></a>Give a statement of the biological hypothesis and its prediction (1 point)</span>
-<span id="cb56-70"><a href="#cb56-70" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-71"><a href="#cb56-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-72"><a href="#cb56-72" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-73"><a href="#cb56-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-74"><a href="#cb56-74" aria-hidden="true" tabindex="-1"></a>The survival rate of dark peppered moths depends on the color of the substrate moth is located in. Dark moths are expected to be less frequently captured by birds in dark (polluted) environment where they are better camouflaged and more frequently captured in pale (non-polluted) environments, where they are more visible. It was predicted that fewer dark moths will be captured in the dark chamber compared to the pale chamber.</span>
-<span id="cb56-75"><a href="#cb56-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-76"><a href="#cb56-76" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-77"><a href="#cb56-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-78"><a href="#cb56-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### b.</span></span>
-<span id="cb56-79"><a href="#cb56-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-80"><a href="#cb56-80" aria-hidden="true" tabindex="-1"></a>::: {.callout}</span>
-<span id="cb56-81"><a href="#cb56-81" aria-hidden="true" tabindex="-1"></a>a statement of the null hypothesis (1 point)</span>
-<span id="cb56-82"><a href="#cb56-82" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-83"><a href="#cb56-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-84"><a href="#cb56-84" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-85"><a href="#cb56-85" aria-hidden="true" tabindex="-1"></a>The mean number of dark peppered moths captured in dark chamber is equal the mean number of dark peppered moths captured in pale chamber. </span>
-<span id="cb56-86"><a href="#cb56-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-87"><a href="#cb56-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-88"><a href="#cb56-88" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-89"><a href="#cb56-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-90"><a href="#cb56-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### c.</span></span>
-<span id="cb56-91"><a href="#cb56-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-92"><a href="#cb56-92" aria-hidden="true" tabindex="-1"></a>::: {.callout}</span>
-<span id="cb56-93"><a href="#cb56-93" aria-hidden="true" tabindex="-1"></a>fit the adequate statistical model, and evaluate the statistical assumptions _(2 points)_ - not paired, one tailed test</span>
-<span id="cb56-94"><a href="#cb56-94" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-95"><a href="#cb56-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-96"><a href="#cb56-96" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-99"><a href="#cb56-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-100"><a href="#cb56-100" aria-hidden="true" tabindex="-1"></a><span class="co">#do not change into ordinal - you will lose the clarity</span></span>
-<span id="cb56-101"><a href="#cb56-101" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(student_data, <span class="fu">aes</span>(<span class="at">x =</span> room, <span class="at">y =</span> number, <span class="at">fill =</span> room)) <span class="sc">+</span></span>
-<span id="cb56-102"><a href="#cb56-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb56-103"><a href="#cb56-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of Dark Peppered Moths Captured by Chamber&quot;</span>,</span>
-<span id="cb56-104"><a href="#cb56-104" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Chamber&quot;</span>,</span>
-<span id="cb56-105"><a href="#cb56-105" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Dark Moths Captured&quot;</span>) <span class="sc">+</span></span>
-<span id="cb56-106"><a href="#cb56-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb56-107"><a href="#cb56-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-108"><a href="#cb56-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-111"><a href="#cb56-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-112"><a href="#cb56-112" aria-hidden="true" tabindex="-1"></a><span class="co">#checking normality</span></span>
-<span id="cb56-113"><a href="#cb56-113" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(student_data, <span class="fu">aes</span>(<span class="at">x =</span> number, <span class="at">fill =</span> room)) <span class="sc">+</span></span>
-<span id="cb56-114"><a href="#cb56-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb56-115"><a href="#cb56-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb56-116"><a href="#cb56-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
-<span id="cb56-117"><a href="#cb56-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
-<span id="cb56-118"><a href="#cb56-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> dnorm,</span>
-<span id="cb56-119"><a href="#cb56-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">args =</span> <span class="fu">list</span>(</span>
-<span id="cb56-120"><a href="#cb56-120" aria-hidden="true" tabindex="-1"></a>      <span class="at">mean =</span> <span class="fu">mean</span>(student_data<span class="sc">$</span>number),</span>
-<span id="cb56-121"><a href="#cb56-121" aria-hidden="true" tabindex="-1"></a>      <span class="at">sd =</span> <span class="fu">sd</span>(student_data<span class="sc">$</span>number)</span>
-<span id="cb56-122"><a href="#cb56-122" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb56-123"><a href="#cb56-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb56-124"><a href="#cb56-124" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb56-125"><a href="#cb56-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> room) <span class="sc">+</span> <span class="co">#splits the plot into separate panels for each chamber</span></span>
-<span id="cb56-126"><a href="#cb56-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of Dark Moths Captured&quot;</span>) <span class="sc">+</span></span>
-<span id="cb56-127"><a href="#cb56-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb56-128"><a href="#cb56-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-131"><a href="#cb56-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-132"><a href="#cb56-132" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(student_data<span class="sc">$</span>number)</span>
-<span id="cb56-133"><a href="#cb56-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-134"><a href="#cb56-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-135"><a href="#cb56-135" aria-hidden="true" tabindex="-1"></a>As seen in both histograms and Shapiro-Wilk tests, it was indicated that both groups are approximately normally distributed (p-value &gt; 0.05) so parametric t-test is appropriate for comparing means.</span>
-<span id="cb56-136"><a href="#cb56-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-137"><a href="#cb56-137" aria-hidden="true" tabindex="-1"></a>As groups are normally distributed and the variances in the two groups don&#39;t differ much, it is safe to use two sample t-test.</span>
-<span id="cb56-138"><a href="#cb56-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-141"><a href="#cb56-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-142"><a href="#cb56-142" aria-hidden="true" tabindex="-1"></a><span class="co">#assuming variances are equal</span></span>
-<span id="cb56-143"><a href="#cb56-143" aria-hidden="true" tabindex="-1"></a>t_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb56-144"><a href="#cb56-144" aria-hidden="true" tabindex="-1"></a>t_result</span>
-<span id="cb56-145"><a href="#cb56-145" aria-hidden="true" tabindex="-1"></a>t_critical <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">58</span>)</span>
-<span id="cb56-146"><a href="#cb56-146" aria-hidden="true" tabindex="-1"></a>t_critical</span>
-<span id="cb56-147"><a href="#cb56-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-148"><a href="#cb56-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-149"><a href="#cb56-149" aria-hidden="true" tabindex="-1"></a>The t-test showed a non-significant difference between groups (p = 0.126). Although the sample means differ (29.47 vs 32.27), this difference is not statistically significant and could easily occur by chance alone. We want to also be sure and test all bases. </span>
-<span id="cb56-150"><a href="#cb56-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-153"><a href="#cb56-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-154"><a href="#cb56-154" aria-hidden="true" tabindex="-1"></a><span class="co">#assuming variances are not equal</span></span>
-<span id="cb56-155"><a href="#cb56-155" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb56-156"><a href="#cb56-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-157"><a href="#cb56-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-158"><a href="#cb56-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-161"><a href="#cb56-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-162"><a href="#cb56-162" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
-<span id="cb56-163"><a href="#cb56-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-164"><a href="#cb56-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-165"><a href="#cb56-165" aria-hidden="true" tabindex="-1"></a>The Welch Two Sample t-test produced results nearly identical to the standard t-test, with only minor differences in the confidence interval and degrees of freedom. Both t-tests yield a t-statistic of -1.55, which falls below the critical value of approximately 2.00 required for statistical significance at α = 0.05. This indicates that the observed difference in means is not large enough to be considered statistically significant.</span>
-<span id="cb56-166"><a href="#cb56-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-167"><a href="#cb56-167" aria-hidden="true" tabindex="-1"></a>The non-parametric Wilcoxon rank sum test aligns with this conclusion, also failing to find sufficient evidence for a difference in distributions between the two groups.</span>
-<span id="cb56-168"><a href="#cb56-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-169"><a href="#cb56-169" aria-hidden="true" tabindex="-1"></a>Given that these different approaches all point toward the same conclusion, a final assessment of the model assumptions was conducted to verify the appropriateness of the parametric t-test.</span>
-<span id="cb56-170"><a href="#cb56-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-173"><a href="#cb56-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-174"><a href="#cb56-174" aria-hidden="true" tabindex="-1"></a>model<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data)</span>
-<span id="cb56-175"><a href="#cb56-175" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb56-176"><a href="#cb56-176" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="fl">.1</span>)</span>
-<span id="cb56-177"><a href="#cb56-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-178"><a href="#cb56-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-179"><a href="#cb56-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-180"><a href="#cb56-180" aria-hidden="true" tabindex="-1"></a>The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (&gt;0.05), the test indicates that the residuals are normal. </span>
-<span id="cb56-181"><a href="#cb56-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-184"><a href="#cb56-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-185"><a href="#cb56-185" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(model<span class="fl">.1</span>))</span>
-<span id="cb56-186"><a href="#cb56-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-187"><a href="#cb56-187" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(model<span class="fl">.1</span>)</span>
-<span id="cb56-188"><a href="#cb56-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-189"><a href="#cb56-189" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model<span class="fl">.1</span>)</span>
-<span id="cb56-190"><a href="#cb56-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-191"><a href="#cb56-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-192"><a href="#cb56-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-193"><a href="#cb56-193" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-194"><a href="#cb56-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-195"><a href="#cb56-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### d.</span></span>
-<span id="cb56-196"><a href="#cb56-196" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-197"><a href="#cb56-197" aria-hidden="true" tabindex="-1"></a>The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? (3 points)</span>
-<span id="cb56-198"><a href="#cb56-198" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-199"><a href="#cb56-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-200"><a href="#cb56-200" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-201"><a href="#cb56-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-202"><a href="#cb56-202" aria-hidden="true" tabindex="-1"></a>Based on the results of the two-sample t-test, we fail to reject the null hypothesis that the mean number of dark peppered moths is the same in dark and pale environments. The decision was made by comparing the calculated t-statistic to the critical t-value from the Student&#39;s t-distribution. The calculated t-statistic from the test is |t_statistic| = 1.5532, and for a two-tailed test with a significance level of \alpha\ = 0.05 and df = 58, the t_critical is 2.002. Since |t_statistic| &lt; t_critical, we fail to reject the null hypothesis. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
-<span id="cb56-203"><a href="#cb56-203" aria-hidden="true" tabindex="-1"></a>The validity of results of t-test were verified by the model&#39;s underlying assumptions. Shapiro-Wilk test was used on the data and the residuals,and QQ Plot indicated no significant deviation from normality. Levene&#39;s Test (F = 0.139 and p = 0.711) and BP Test (BP = 0.028, p = 0.867) confirm the assumption of equal variances. The residual plot also showed the consistent spread for both groups. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
-<span id="cb56-204"><a href="#cb56-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-205"><a href="#cb56-205" aria-hidden="true" tabindex="-1"></a>Additionally, we have also tried t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.</span>
-<span id="cb56-206"><a href="#cb56-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-207"><a href="#cb56-207" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-208"><a href="#cb56-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-209"><a href="#cb56-209" aria-hidden="true" tabindex="-1"></a><span class="fu">### e.</span></span>
-<span id="cb56-210"><a href="#cb56-210" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-211"><a href="#cb56-211" aria-hidden="true" tabindex="-1"></a>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points). - **NEEDs REVISION**</span>
-<span id="cb56-212"><a href="#cb56-212" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-213"><a href="#cb56-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-214"><a href="#cb56-214" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-215"><a href="#cb56-215" aria-hidden="true" tabindex="-1"></a>The results from this experiment don&#39;t support the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. A difference of 2.8 moths (approximately a 9% change from the mean) is unlikely to represent a biologically meaningful selective pressure, especially considering the lack of precision in the estimate. Therefore, this experiment fails to provide evidence that the camouflage advantage of dark moths on a dark substrate is a strong factor influencing predation rates under these conditions.</span>
-<span id="cb56-216"><a href="#cb56-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-217"><a href="#cb56-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-218"><a href="#cb56-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-219"><a href="#cb56-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### f.</span></span>
-<span id="cb56-220"><a href="#cb56-220" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-221"><a href="#cb56-221" aria-hidden="true" tabindex="-1"></a>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</span>
-<span id="cb56-222"><a href="#cb56-222" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-223"><a href="#cb56-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-224"><a href="#cb56-224" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-225"><a href="#cb56-225" aria-hidden="true" tabindex="-1"></a>We have high confidence in the statistical conclusion to fail to reject the null hypothesis, as it is robust and supported by multiple lines of evidence. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch&#39;s t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that if a real effect exists, our experiment had a very low probability of detecting it. Therefore, while we are confident in the statistical conclusion based on the current data, we cannot rule out the possibility of a Type II error (failing to detect a real biological effect). <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
-<span id="cb56-226"><a href="#cb56-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-227"><a href="#cb56-227" aria-hidden="true" tabindex="-1"></a>Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.69, 6.30) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. This aligns with our t-test results and strengthens our confidence in failing to reject the null hypothesis.</span>
-<span id="cb56-228"><a href="#cb56-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-231"><a href="#cb56-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-232"><a href="#cb56-232" aria-hidden="true" tabindex="-1"></a>mean_dark <span class="ot">&lt;-</span> t_result<span class="sc">$</span>estimate[<span class="dv">1</span>]</span>
-<span id="cb56-233"><a href="#cb56-233" aria-hidden="true" tabindex="-1"></a>mean_pale <span class="ot">&lt;-</span> t_result<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
-<span id="cb56-234"><a href="#cb56-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-235"><a href="#cb56-235" aria-hidden="true" tabindex="-1"></a>sd_dark <span class="ot">&lt;-</span> <span class="fu">sd</span>(student_data<span class="sc">$</span>number[student_data<span class="sc">$</span>room <span class="sc">==</span> <span class="st">&quot;dark&quot;</span>])</span>
-<span id="cb56-236"><a href="#cb56-236" aria-hidden="true" tabindex="-1"></a>sd_pale <span class="ot">&lt;-</span> <span class="fu">sd</span>(student_data<span class="sc">$</span>number[student_data<span class="sc">$</span>room <span class="sc">==</span> <span class="st">&quot;pale&quot;</span>])</span>
-<span id="cb56-237"><a href="#cb56-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-238"><a href="#cb56-238" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="cf">function</span>(u1, u2, sd1, sd2){</span>
-<span id="cb56-239"><a href="#cb56-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(u1 <span class="sc">-</span> u2) <span class="sc">/</span> <span class="fu">sqrt</span>((sd1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb56-240"><a href="#cb56-240" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb56-241"><a href="#cb56-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-242"><a href="#cb56-242" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">d =</span> <span class="fu">d</span>(<span class="at">u1 =</span> mean_dark, <span class="at">u2 =</span> mean_pale, <span class="at">sd1 =</span> sd_dark, <span class="at">sd2 =</span> sd_pale), <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span>
-<span id="cb56-243"><a href="#cb56-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-244"><a href="#cb56-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-247"><a href="#cb56-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-248"><a href="#cb56-248" aria-hidden="true" tabindex="-1"></a>bs <span class="ot">&lt;-</span> <span class="cf">function</span>(formula, data, indices){</span>
-<span id="cb56-249"><a href="#cb56-249" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> data[indices, ]</span>
-<span id="cb56-250"><a href="#cb56-250" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> d)</span>
-<span id="cb56-251"><a href="#cb56-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">coef</span>(fit))</span>
-<span id="cb56-252"><a href="#cb56-252" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb56-253"><a href="#cb56-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-254"><a href="#cb56-254" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">boot</span>(</span>
-<span id="cb56-255"><a href="#cb56-255" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> student_data, <span class="at">statistic =</span> bs, <span class="at">R =</span> <span class="dv">1000</span>,</span>
-<span id="cb56-256"><a href="#cb56-256" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> number <span class="sc">~</span> room</span>
-<span id="cb56-257"><a href="#cb56-257" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-258"><a href="#cb56-258" aria-hidden="true" tabindex="-1"></a>results</span>
-<span id="cb56-259"><a href="#cb56-259" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.ci</span>(results, <span class="at">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="at">index =</span> <span class="dv">2</span>)</span>
-<span id="cb56-260"><a href="#cb56-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-261"><a href="#cb56-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-262"><a href="#cb56-262" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-263"><a href="#cb56-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-264"><a href="#cb56-264" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Postdoc data</span></span>
-<span id="cb56-265"><a href="#cb56-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-266"><a href="#cb56-266" aria-hidden="true" tabindex="-1"></a>Analyze the data and determine if the results in <span class="in">`Biston_pd2.csv `</span>support or refute the biological hypothesis.</span>
-<span id="cb56-267"><a href="#cb56-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-268"><a href="#cb56-268" aria-hidden="true" tabindex="-1"></a><span class="fu">### a.</span></span>
-<span id="cb56-269"><a href="#cb56-269" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-270"><a href="#cb56-270" aria-hidden="true" tabindex="-1"></a>a statement of the biological hypothesis and its prediction (1 point)</span>
-<span id="cb56-271"><a href="#cb56-271" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-272"><a href="#cb56-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-273"><a href="#cb56-273" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-274"><a href="#cb56-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-275"><a href="#cb56-275" aria-hidden="true" tabindex="-1"></a>The mean number of dark peppered moths in pale and dark environment differs because the survival from bird predation depends on the colour of the moth in relation to the colour of the environment. Dark peppered moths are better camouflaged on dark substrates than on pale (non‑polluted) substrates, so a bird will capture fewer dark moths when foraging on a dark substrate than when foraging on a pale substrate. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
-<span id="cb56-276"><a href="#cb56-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-277"><a href="#cb56-277" aria-hidden="true" tabindex="-1"></a>When the same individual birds are tested in both environments, they will capture significantly fewer dark moths in the dark, polluted environment (where the dark moths are less visible) than in the pale, non-polluted environment.</span>
-<span id="cb56-278"><a href="#cb56-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-279"><a href="#cb56-279" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-280"><a href="#cb56-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-281"><a href="#cb56-281" aria-hidden="true" tabindex="-1"></a><span class="fu">### b.</span></span>
-<span id="cb56-282"><a href="#cb56-282" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-283"><a href="#cb56-283" aria-hidden="true" tabindex="-1"></a>a statement of the null hypothesis (1 point)</span>
-<span id="cb56-284"><a href="#cb56-284" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-285"><a href="#cb56-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-286"><a href="#cb56-286" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-287"><a href="#cb56-287" aria-hidden="true" tabindex="-1"></a>The null hypothesis is that the mean difference in the number of dark peppered moths captured between the pale and dark chambers is zero. </span>
-<span id="cb56-288"><a href="#cb56-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-289"><a href="#cb56-289" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-290"><a href="#cb56-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-291"><a href="#cb56-291" aria-hidden="true" tabindex="-1"></a><span class="fu">### c.</span></span>
-<span id="cb56-292"><a href="#cb56-292" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-293"><a href="#cb56-293" aria-hidden="true" tabindex="-1"></a>fit the adequate statistical model, and evaluate the statistical assumptions _(3 points)_</span>
-<span id="cb56-294"><a href="#cb56-294" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-295"><a href="#cb56-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-296"><a href="#cb56-296" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-299"><a href="#cb56-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-300"><a href="#cb56-300" aria-hidden="true" tabindex="-1"></a>postdoc_data<span class="sc">$</span>difference <span class="ot">&lt;-</span> postdoc_data<span class="sc">$</span>pale <span class="sc">-</span> postdoc_data<span class="sc">$</span>dark</span>
-<span id="cb56-301"><a href="#cb56-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-302"><a href="#cb56-302" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb56-303"><a href="#cb56-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-304"><a href="#cb56-304" aria-hidden="true" tabindex="-1"></a>density_values <span class="ot">&lt;-</span> <span class="fu">density</span>(postdoc_data<span class="sc">$</span>difference)</span>
-<span id="cb56-305"><a href="#cb56-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-306"><a href="#cb56-306" aria-hidden="true" tabindex="-1"></a>max_density <span class="ot">&lt;-</span> <span class="fu">max</span>(density_values<span class="sc">$</span>y)</span>
-<span id="cb56-307"><a href="#cb56-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-308"><a href="#cb56-308" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(postdoc_data<span class="sc">$</span>difference,</span>
-<span id="cb56-309"><a href="#cb56-309" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Differences&quot;</span>,</span>
-<span id="cb56-310"><a href="#cb56-310" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Difference (Pale - Dark)&quot;</span>,</span>
-<span id="cb56-311"><a href="#cb56-311" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
-<span id="cb56-312"><a href="#cb56-312" aria-hidden="true" tabindex="-1"></a>     <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb56-313"><a href="#cb56-313" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_density <span class="sc">*</span> <span class="fl">1.1</span>)) <span class="co"># TRUE helped me to overlay the density curve and normal curve on same scale</span></span>
-<span id="cb56-314"><a href="#cb56-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-315"><a href="#cb56-315" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(density_values, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb56-316"><a href="#cb56-316" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, </span>
-<span id="cb56-317"><a href="#cb56-317" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference),</span>
-<span id="cb56-318"><a href="#cb56-318" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference)),</span>
-<span id="cb56-319"><a href="#cb56-319" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb56-320"><a href="#cb56-320" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Data Density&quot;</span>, <span class="st">&quot;Normal Curve&quot;</span>),</span>
-<span id="cb56-321"><a href="#cb56-321" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb56-322"><a href="#cb56-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-323"><a href="#cb56-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-326"><a href="#cb56-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-327"><a href="#cb56-327" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(postdoc_data<span class="sc">$</span>difference, <span class="at">main =</span> <span class="st">&quot;QQ-Plot of Differences&quot;</span>)</span>
-<span id="cb56-328"><a href="#cb56-328" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(postdoc_data<span class="sc">$</span>difference, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb56-329"><a href="#cb56-329" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-330"><a href="#cb56-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-333"><a href="#cb56-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-334"><a href="#cb56-334" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(postdoc_data<span class="sc">$</span>difference, </span>
-<span id="cb56-335"><a href="#cb56-335" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of DIfferences&quot;</span>,</span>
-<span id="cb56-336"><a href="#cb56-336" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Difference (Pale - Dark)&quot;</span>,</span>
-<span id="cb56-337"><a href="#cb56-337" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightgreen&quot;</span>)</span>
-<span id="cb56-338"><a href="#cb56-338" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb56-339"><a href="#cb56-339" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;Mean&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb56-340"><a href="#cb56-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-341"><a href="#cb56-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-344"><a href="#cb56-344" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-345"><a href="#cb56-345" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(postdoc_data<span class="sc">$</span>difference <span class="sc">~</span> <span class="fu">rep</span>(<span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference), <span class="fu">nrow</span>(postdoc_data)),</span>
-<span id="cb56-346"><a href="#cb56-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Differences vs Central Tendency&quot;</span>,</span>
-<span id="cb56-347"><a href="#cb56-347" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Overall Mean Difference&quot;</span>,</span>
-<span id="cb56-348"><a href="#cb56-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Individual Differences&quot;</span>,</span>
-<span id="cb56-349"><a href="#cb56-349" aria-hidden="true" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
-<span id="cb56-350"><a href="#cb56-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-351"><a href="#cb56-351" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb56-352"><a href="#cb56-352" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb56-353"><a href="#cb56-353" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
-<span id="cb56-354"><a href="#cb56-354" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Zero Reference&quot;</span>, <span class="st">&quot;Mean Difference&quot;</span>),</span>
-<span id="cb56-355"><a href="#cb56-355" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb56-356"><a href="#cb56-356" aria-hidden="true" tabindex="-1"></a>      <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb56-357"><a href="#cb56-357" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb56-358"><a href="#cb56-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-359"><a href="#cb56-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-360"><a href="#cb56-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-363"><a href="#cb56-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-364"><a href="#cb56-364" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(postdoc_data<span class="sc">$</span>difference)</span>
-<span id="cb56-365"><a href="#cb56-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-366"><a href="#cb56-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-367"><a href="#cb56-367" aria-hidden="true" tabindex="-1"></a>A one-tailed paired t-test was selected as the appropriate statistical model because the experiment had repeated measures, meaning each bird is tested in both chambers. Also, we were testing a directional biological prediction since more dark moths captured in pale chambers. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
-<span id="cb56-368"><a href="#cb56-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-369"><a href="#cb56-369" aria-hidden="true" tabindex="-1"></a>The statistical assumptions were evaluated, beginning with the normality of the differences between paired observations. This was assessed using multiple complementary approaches: a histogram with overlaid density curves showed a bell-shaped distribution that closely followed the theoretical normal curve; a Q-Q plot showed points falling reasonably close to the reference line; a boxplot displayed a symmetric distribution with no evidence of extreme outliers and a formal Shapiro-Wilk test yielded a p-value of 0.1215, above the 0.05 threshold, confirming no significant departure from normality. The independence assumption was satisfied as well since birds were randomly sampled and tested independently. Both the normality and independence assumptions are met, validating the use of the paired t-test for this analysis.</span>
-<span id="cb56-370"><a href="#cb56-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-373"><a href="#cb56-373" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-374"><a href="#cb56-374" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(postdoc_data<span class="sc">$</span>pale, postdoc_data<span class="sc">$</span>dark, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
-<span id="cb56-375"><a href="#cb56-375" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-376"><a href="#cb56-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-377"><a href="#cb56-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-378"><a href="#cb56-378" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-379"><a href="#cb56-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-380"><a href="#cb56-380" aria-hidden="true" tabindex="-1"></a><span class="fu">### d.</span></span>
-<span id="cb56-381"><a href="#cb56-381" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-382"><a href="#cb56-382" aria-hidden="true" tabindex="-1"></a>The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? Include your test results. (3 points)</span>
-<span id="cb56-383"><a href="#cb56-383" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-384"><a href="#cb56-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-385"><a href="#cb56-385" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-386"><a href="#cb56-386" aria-hidden="true" tabindex="-1"></a>Based on the results of the paired t-test, we reject the null hypothesis that the mean difference in dark moth captures between chambers is zero. The paired t-test yielded a statistically significant result (t_statistic(29) = 2.0932, p-value = 0.0226). Also, the 95% lower confidence bound (0.527 moths) excludes zero, indicating the true effect is positive. In other words, having confidence interval above zero means the effect is consistently positive and zero is not a value for the true effect size. Since |t_statistic| = 2.0932 &gt; |t_critical| = qt(0.95, df = 29) = 1.699, we are safe to reject the null hypothesis. </span>
-<span id="cb56-387"><a href="#cb56-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-388"><a href="#cb56-388" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-389"><a href="#cb56-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-390"><a href="#cb56-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### e.</span></span>
-<span id="cb56-391"><a href="#cb56-391" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-392"><a href="#cb56-392" aria-hidden="true" tabindex="-1"></a>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</span>
-<span id="cb56-393"><a href="#cb56-393" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-394"><a href="#cb56-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-395"><a href="#cb56-395" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-396"><a href="#cb56-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-397"><a href="#cb56-397" aria-hidden="true" tabindex="-1"></a>The results provide clear biological support for the camouflage hypothesis in peppered moths. The raw effect size shows that birds captured an average of 2.8 more dark moths in the pale chamber compared to the dark chamber. However, the precision of this estimate is limited (since the true effect exceeds 0.53 moths), the upper bound is unbounded in this one-tailed framework.</span>
-<span id="cb56-398"><a href="#cb56-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-399"><a href="#cb56-399" aria-hidden="true" tabindex="-1"></a>The effect magnitude appears biologically relevant for natural selection. A consistent 2.8-moth advantage per foraging bout, when accumulated across numerous predator-prey interactions, may generate sufficient selective pressure to explain the observed industrial melanism in peppered moth populations.</span>
-<span id="cb56-400"><a href="#cb56-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-401"><a href="#cb56-401" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-402"><a href="#cb56-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-403"><a href="#cb56-403" aria-hidden="true" tabindex="-1"></a><span class="fu">### f.</span></span>
-<span id="cb56-404"><a href="#cb56-404" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-405"><a href="#cb56-405" aria-hidden="true" tabindex="-1"></a>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</span>
-<span id="cb56-406"><a href="#cb56-406" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-407"><a href="#cb56-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-408"><a href="#cb56-408" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-409"><a href="#cb56-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-410"><a href="#cb56-410" aria-hidden="true" tabindex="-1"></a>We have strong confidence in our conclusion that birds catch more dark moths in pale chambers</span>
-<span id="cb56-411"><a href="#cb56-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-412"><a href="#cb56-412" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-413"><a href="#cb56-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-414"><a href="#cb56-414" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Power issues</span></span>
-<span id="cb56-415"><a href="#cb56-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-416"><a href="#cb56-416" aria-hidden="true" tabindex="-1"></a>Assuming that a difference of 5% (or 2.5 moths) of predation rate between treatments is biologically meaningful, what would be the power to detect this with alpha=0.05 and the data collected by:</span>
-<span id="cb56-417"><a href="#cb56-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-418"><a href="#cb56-418" aria-hidden="true" tabindex="-1"></a><span class="fu">### a.</span></span>
-<span id="cb56-419"><a href="#cb56-419" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-420"><a href="#cb56-420" aria-hidden="true" tabindex="-1"></a>the student? _(1 point)_</span>
-<span id="cb56-421"><a href="#cb56-421" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-422"><a href="#cb56-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-423"><a href="#cb56-423" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-426"><a href="#cb56-426" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-427"><a href="#cb56-427" aria-hidden="true" tabindex="-1"></a>d_students <span class="ot">&lt;-</span> <span class="fl">2.5</span> <span class="sc">/</span> <span class="fu">sqrt</span>((sd_dark<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_pale<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb56-428"><a href="#cb56-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-429"><a href="#cb56-429" aria-hidden="true" tabindex="-1"></a>power_students <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
-<span id="cb56-430"><a href="#cb56-430" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
-<span id="cb56-431"><a href="#cb56-431" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_students,</span>
-<span id="cb56-432"><a href="#cb56-432" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb56-433"><a href="#cb56-433" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
-<span id="cb56-434"><a href="#cb56-434" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span></span>
-<span id="cb56-435"><a href="#cb56-435" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-436"><a href="#cb56-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-437"><a href="#cb56-437" aria-hidden="true" tabindex="-1"></a>power_students</span>
-<span id="cb56-438"><a href="#cb56-438" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-439"><a href="#cb56-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-440"><a href="#cb56-440" aria-hidden="true" tabindex="-1"></a>For the student&#39;s unpaired design with 30 birds in each group, the power to detect a biologically meaningful difference of 2.5 moths is approximately 27.6%.</span>
-<span id="cb56-441"><a href="#cb56-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-442"><a href="#cb56-442" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-443"><a href="#cb56-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-444"><a href="#cb56-444" aria-hidden="true" tabindex="-1"></a><span class="fu">### b.</span></span>
-<span id="cb56-445"><a href="#cb56-445" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-446"><a href="#cb56-446" aria-hidden="true" tabindex="-1"></a>the postdoc? _(1 point)_</span>
-<span id="cb56-447"><a href="#cb56-447" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-448"><a href="#cb56-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-449"><a href="#cb56-449" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb56-450"><a href="#cb56-450" aria-hidden="true" tabindex="-1"></a><span class="in">`d`</span> for a paired t-test is estimated as $d = \text{mean differences} / \text{sd differences}$</span>
-<span id="cb56-451"><a href="#cb56-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-452"><a href="#cb56-452" aria-hidden="true" tabindex="-1"></a>using the <span class="in">`d()`</span> function you can specify it as <span class="in">`d(0, mean differences, sd differences, sd differences)`</span></span>
-<span id="cb56-453"><a href="#cb56-453" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-454"><a href="#cb56-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-455"><a href="#cb56-455" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-458"><a href="#cb56-458" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-459"><a href="#cb56-459" aria-hidden="true" tabindex="-1"></a>d_postdoc <span class="ot">&lt;-</span> <span class="fu">d</span>(<span class="at">u1 =</span> <span class="fl">2.5</span>, <span class="at">u2 =</span> <span class="dv">0</span>, <span class="at">sd1 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">sd2 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference))</span>
-<span id="cb56-460"><a href="#cb56-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-461"><a href="#cb56-461" aria-hidden="true" tabindex="-1"></a>power_postdoc <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
-<span id="cb56-462"><a href="#cb56-462" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
-<span id="cb56-463"><a href="#cb56-463" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_postdoc,</span>
-<span id="cb56-464"><a href="#cb56-464" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb56-465"><a href="#cb56-465" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
-<span id="cb56-466"><a href="#cb56-466" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
-<span id="cb56-467"><a href="#cb56-467" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-468"><a href="#cb56-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-469"><a href="#cb56-469" aria-hidden="true" tabindex="-1"></a>power_postdoc</span>
-<span id="cb56-470"><a href="#cb56-470" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-471"><a href="#cb56-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-472"><a href="#cb56-472" aria-hidden="true" tabindex="-1"></a>For the postdoc&#39;s paired design with 30 bird pairs, the power to detect the same biologically meaningful difference of 2.5 moths is approximately 57.1%</span>
-<span id="cb56-473"><a href="#cb56-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-474"><a href="#cb56-474" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-475"><a href="#cb56-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-476"><a href="#cb56-476" aria-hidden="true" tabindex="-1"></a><span class="fu">### c.</span></span>
-<span id="cb56-477"><a href="#cb56-477" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
-<span id="cb56-478"><a href="#cb56-478" aria-hidden="true" tabindex="-1"></a>Comment the difference between the power using the student and postdoc data. _(1 point)_</span>
-<span id="cb56-479"><a href="#cb56-479" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-480"><a href="#cb56-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-481"><a href="#cb56-481" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
-<span id="cb56-482"><a href="#cb56-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-483"><a href="#cb56-483" aria-hidden="true" tabindex="-1"></a>The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This &gt;2× increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test. </span>
-<span id="cb56-484"><a href="#cb56-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-485"><a href="#cb56-485" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<div class="sourceCode" id="cb58" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Bio4158/Bio5158 - Report 4</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Exercise</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Group 22 - Nalan Kurnaz&quot;</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># The problem</span></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>The peppered moth (_Biston betularia_ Lepidoptera : Geometridae) is a nocturnal insect common in Europe and North America. Adults fly at night and stay put during the day on birch trees. Adult coloration is variable, ranging from a clear form (typica) to a melanic form that is very dark (carbonaria), with many intermediate forms.</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>The proportion of individuals of each form has varied considerably in natural populations over the last 150 years. The melanic form was rare before 1850 but represented over 90% of the population in industrial sectors of England by 1900. According to Majerus (1998), J.W. Tutt was the first to suggest in 1896 an hypothesis to explain the temporal change in the proportion of the dark form. </span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>__Biological hypothesis__: Differences in the relative frequency of the two forms arise because survival from bird predation of each depends on habitat color. In particular, the pale form is less visible in non-polluted environments when birch trees are covered by pale greyish lichens. Inversely, the dark form is favored in industrial areas where soot darkens their resting places. Therefore, the increase of the dark form (carbonaria) in England resulted from bird predation and a change in habitat (soot pollution). </span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># The study</span></span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>In a study designed to test this hypothesis, a random sample of 30 insectivorous birds was used to estimate predation susceptibility of the pale and dark forms on both pale and dark substrates. **Two growth chamber** were set up containing branches and leaves:</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**in the first, the branches and leaves were taken from a polluted area and were covered with soot (and were thus dark)**;</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**in the second, the branches and leaves were taken from a non-polluted area and were thus lighter in colour**.</span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>Each bird was introduced in turn into each chamber (**half into the dark first** and **half into the light first**), with a fasting period in between to keep hunger constant. Just before introducing a bird to a chamber, **50 pale moths** (typica) and **50 dark moths** (carbonaria) were randomly selected and put in the chamber. After a fixed period of time, the number of pale and dark moths captured by the bird in the pale and dark chambers was determined. After each experiment, the remaining moths were discarded before putting in fresh moths for the next experiment.</span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># The data</span></span>
+<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>The file <span class="in">`Biston_student.csv`</span> contains a fraction of the data that a professor has managed to unearth after his MSc student left without a trace prior to publishing their results. Unfortunately, the data sheets are **incomplete** and do not allow him to tell which value comes from which bird. In this file **there are 30 lines** (representing the 30 birds) and **two columns** (**one for the number of dark moths captured in the dark chamber and one for the number of dark moths captured in the pale chamber*). However, **numbers on a given line do NOT necessarily come from the same bird (i.e. the order of observations in the two columns has been mixed up)**.</span>
+<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a>The file <span class="in">`Biston_pd2.csv`</span> is later reconstructed by a post-doc from the same lab. This post-doc is much more persistent than the prof and manages to find additional data sheets that allow her to match each result to a particular bird. This file has the same structure as <span class="in">`Biston_student.csv`</span>, and contains the same data, **except that observations on the same line now come from the same bird (i.e. paired observations are known)**. </span>
+<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-39"><a href="#cb58-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-40"><a href="#cb58-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># The task</span></span>
+<span id="cb58-41"><a href="#cb58-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Preprocessing</span></span>
+<span id="cb58-44"><a href="#cb58-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-45"><a href="#cb58-45" aria-hidden="true" tabindex="-1"></a><span class="co">#import the libraries and read the data</span></span>
+<span id="cb58-46"><a href="#cb58-46" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;car&quot;)</span></span>
+<span id="cb58-47"><a href="#cb58-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb58-48"><a href="#cb58-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb58-49"><a href="#cb58-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb58-50"><a href="#cb58-50" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb58-51"><a href="#cb58-51" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb58-52"><a href="#cb58-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb58-53"><a href="#cb58-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-54"><a href="#cb58-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-55"><a href="#cb58-55" aria-hidden="true" tabindex="-1"></a>student_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_student.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-56"><a href="#cb58-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-57"><a href="#cb58-57" aria-hidden="true" tabindex="-1"></a>postdoc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/Biston_pd_2.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-58"><a href="#cb58-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-59"><a href="#cb58-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-60"><a href="#cb58-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-61"><a href="#cb58-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Student data</span></span>
+<span id="cb58-62"><a href="#cb58-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-63"><a href="#cb58-63" aria-hidden="true" tabindex="-1"></a>Analyze the data and determine if the results in <span class="in">`Biston_student.csv`</span> support or refute the biological hypothesis. </span>
+<span id="cb58-64"><a href="#cb58-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-65"><a href="#cb58-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-66"><a href="#cb58-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### a.</span></span>
+<span id="cb58-67"><a href="#cb58-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-68"><a href="#cb58-68" aria-hidden="true" tabindex="-1"></a>::: {.callout}</span>
+<span id="cb58-69"><a href="#cb58-69" aria-hidden="true" tabindex="-1"></a>Give a statement of the biological hypothesis and its prediction (1 point)</span>
+<span id="cb58-70"><a href="#cb58-70" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-71"><a href="#cb58-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-72"><a href="#cb58-72" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-73"><a href="#cb58-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-74"><a href="#cb58-74" aria-hidden="true" tabindex="-1"></a>The survival rate of dark peppered moths depends on the color of the substrate moth is located in. Dark moths are expected to be less frequently captured by birds in dark (polluted) environment where they are better camouflaged and more frequently captured in pale (non-polluted) environments, where they are more visible. It was predicted that fewer dark moths will be captured in the dark chamber compared to the pale chamber.</span>
+<span id="cb58-75"><a href="#cb58-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-76"><a href="#cb58-76" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-77"><a href="#cb58-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-78"><a href="#cb58-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### b.</span></span>
+<span id="cb58-79"><a href="#cb58-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-80"><a href="#cb58-80" aria-hidden="true" tabindex="-1"></a>::: {.callout}</span>
+<span id="cb58-81"><a href="#cb58-81" aria-hidden="true" tabindex="-1"></a>a statement of the null hypothesis (1 point)</span>
+<span id="cb58-82"><a href="#cb58-82" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-83"><a href="#cb58-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-84"><a href="#cb58-84" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-85"><a href="#cb58-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-86"><a href="#cb58-86" aria-hidden="true" tabindex="-1"></a>The mean number of dark peppered moths captured in dark chamber is equal the mean number of dark peppered moths captured in pale chamber. </span>
+<span id="cb58-87"><a href="#cb58-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-88"><a href="#cb58-88" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-89"><a href="#cb58-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-90"><a href="#cb58-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### c.</span></span>
+<span id="cb58-91"><a href="#cb58-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-92"><a href="#cb58-92" aria-hidden="true" tabindex="-1"></a>::: {.callout}</span>
+<span id="cb58-93"><a href="#cb58-93" aria-hidden="true" tabindex="-1"></a>fit the adequate statistical model, and evaluate the statistical assumptions _(2 points)_ - not paired, one tailed test</span>
+<span id="cb58-94"><a href="#cb58-94" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-95"><a href="#cb58-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-96"><a href="#cb58-96" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-99"><a href="#cb58-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-100"><a href="#cb58-100" aria-hidden="true" tabindex="-1"></a><span class="co">#do not change into ordinal - you will lose the clarity</span></span>
+<span id="cb58-101"><a href="#cb58-101" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(student_data, <span class="fu">aes</span>(<span class="at">x =</span> room, <span class="at">y =</span> number, <span class="at">fill =</span> room)) <span class="sc">+</span></span>
+<span id="cb58-102"><a href="#cb58-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb58-103"><a href="#cb58-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of Dark Peppered Moths Captured by Chamber&quot;</span>,</span>
+<span id="cb58-104"><a href="#cb58-104" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Chamber&quot;</span>,</span>
+<span id="cb58-105"><a href="#cb58-105" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Dark Moths Captured&quot;</span>) <span class="sc">+</span></span>
+<span id="cb58-106"><a href="#cb58-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb58-107"><a href="#cb58-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-108"><a href="#cb58-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-111"><a href="#cb58-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-112"><a href="#cb58-112" aria-hidden="true" tabindex="-1"></a><span class="co">#checking normality</span></span>
+<span id="cb58-113"><a href="#cb58-113" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(student_data, <span class="fu">aes</span>(<span class="at">x =</span> number, <span class="at">fill =</span> room)) <span class="sc">+</span></span>
+<span id="cb58-114"><a href="#cb58-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb58-115"><a href="#cb58-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb58-116"><a href="#cb58-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb58-117"><a href="#cb58-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
+<span id="cb58-118"><a href="#cb58-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> dnorm,</span>
+<span id="cb58-119"><a href="#cb58-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">args =</span> <span class="fu">list</span>(</span>
+<span id="cb58-120"><a href="#cb58-120" aria-hidden="true" tabindex="-1"></a>      <span class="at">mean =</span> <span class="fu">mean</span>(student_data<span class="sc">$</span>number),</span>
+<span id="cb58-121"><a href="#cb58-121" aria-hidden="true" tabindex="-1"></a>      <span class="at">sd =</span> <span class="fu">sd</span>(student_data<span class="sc">$</span>number)</span>
+<span id="cb58-122"><a href="#cb58-122" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb58-123"><a href="#cb58-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb58-124"><a href="#cb58-124" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb58-125"><a href="#cb58-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> room) <span class="sc">+</span> <span class="co">#splits the plot into separate panels for each chamber</span></span>
+<span id="cb58-126"><a href="#cb58-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of Dark Moths Captured&quot;</span>) <span class="sc">+</span></span>
+<span id="cb58-127"><a href="#cb58-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb58-128"><a href="#cb58-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-131"><a href="#cb58-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-132"><a href="#cb58-132" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(student_data<span class="sc">$</span>number)</span>
+<span id="cb58-133"><a href="#cb58-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-134"><a href="#cb58-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-135"><a href="#cb58-135" aria-hidden="true" tabindex="-1"></a>As seen in both histograms and Shapiro-Wilk tests, it was indicated that both groups are approximately normally distributed (p-value &gt; 0.05) so parametric t-test is appropriate for comparing means.</span>
+<span id="cb58-136"><a href="#cb58-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-137"><a href="#cb58-137" aria-hidden="true" tabindex="-1"></a>As groups are normally distributed and the variances in the two groups don&#39;t differ much, it is safe to use two sample t-test.</span>
+<span id="cb58-138"><a href="#cb58-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-141"><a href="#cb58-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-142"><a href="#cb58-142" aria-hidden="true" tabindex="-1"></a><span class="co">#assuming variances are equal</span></span>
+<span id="cb58-143"><a href="#cb58-143" aria-hidden="true" tabindex="-1"></a>t_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-144"><a href="#cb58-144" aria-hidden="true" tabindex="-1"></a>t_result</span>
+<span id="cb58-145"><a href="#cb58-145" aria-hidden="true" tabindex="-1"></a>t_critical <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">58</span>)</span>
+<span id="cb58-146"><a href="#cb58-146" aria-hidden="true" tabindex="-1"></a>t_critical</span>
+<span id="cb58-147"><a href="#cb58-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-148"><a href="#cb58-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-149"><a href="#cb58-149" aria-hidden="true" tabindex="-1"></a>The t-test showed a non-significant difference between groups (p = 0.126). Although the sample means differ (29.47 vs 32.27), this difference is not statistically significant and could easily occur by chance alone. We want to also be sure and test all bases. </span>
+<span id="cb58-150"><a href="#cb58-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-153"><a href="#cb58-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-154"><a href="#cb58-154" aria-hidden="true" tabindex="-1"></a><span class="co">#assuming variances are not equal</span></span>
+<span id="cb58-155"><a href="#cb58-155" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb58-156"><a href="#cb58-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-157"><a href="#cb58-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-158"><a href="#cb58-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-161"><a href="#cb58-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-162"><a href="#cb58-162" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb58-163"><a href="#cb58-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-164"><a href="#cb58-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-165"><a href="#cb58-165" aria-hidden="true" tabindex="-1"></a>The Welch Two Sample t-test produced results nearly identical to the standard t-test, with only minor differences in the confidence interval and degrees of freedom. Both t-tests yield a t-statistic of -1.55, which falls below the critical value of approximately 2.00 required for statistical significance at α = 0.05. This indicates that the observed difference in means is not large enough to be considered statistically significant.</span>
+<span id="cb58-166"><a href="#cb58-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-167"><a href="#cb58-167" aria-hidden="true" tabindex="-1"></a>The non-parametric Wilcoxon rank sum test aligns with this conclusion, also failing to find sufficient evidence for a difference in distributions between the two groups.</span>
+<span id="cb58-168"><a href="#cb58-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-169"><a href="#cb58-169" aria-hidden="true" tabindex="-1"></a>Given that these different approaches all point toward the same conclusion, a final assessment of the model assumptions was conducted to verify the appropriateness of the parametric t-test.</span>
+<span id="cb58-170"><a href="#cb58-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-173"><a href="#cb58-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-174"><a href="#cb58-174" aria-hidden="true" tabindex="-1"></a>model<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(number <span class="sc">~</span> room, <span class="at">data =</span> student_data)</span>
+<span id="cb58-175"><a href="#cb58-175" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb58-176"><a href="#cb58-176" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="fl">.1</span>)</span>
+<span id="cb58-177"><a href="#cb58-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-178"><a href="#cb58-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-179"><a href="#cb58-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-180"><a href="#cb58-180" aria-hidden="true" tabindex="-1"></a>The first graph shows the spread of the residuals for the two groups and since both columns have roughly the same vertical height (similar range of residuals), the variances are homogeneous. The second graph (QQ plot of the residuals of the model) also seems to depict a straight line, meaning the normality assumption is satisfied. The proof that normality assumption is satisfied can also be verified by the Shapiro Test on residuals below. With W = 0.97992 and p-value = 0.4251 (&gt;0.05), the test indicates that the residuals are normal. The other two tests confirm the assessment of homogeneity of variance (homoscedasticity). The Levene&#39;s Test gives a p-value of 0.711. The Breusch-Pagan test (bptest) gives a p-value of 0.8673. Since both p-values (0.711 and 0.8673) are much greater than 0.05, we fail to reject the null hypothesis of equal variances. This statistically confirms that the homogeneity of variance assumption is met. </span>
+<span id="cb58-181"><a href="#cb58-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-184"><a href="#cb58-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-185"><a href="#cb58-185" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(model<span class="fl">.1</span>))</span>
+<span id="cb58-186"><a href="#cb58-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-187"><a href="#cb58-187" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(model<span class="fl">.1</span>)</span>
+<span id="cb58-188"><a href="#cb58-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-189"><a href="#cb58-189" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model<span class="fl">.1</span>)</span>
+<span id="cb58-190"><a href="#cb58-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-191"><a href="#cb58-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-192"><a href="#cb58-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-193"><a href="#cb58-193" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-194"><a href="#cb58-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-195"><a href="#cb58-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### d.</span></span>
+<span id="cb58-196"><a href="#cb58-196" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-197"><a href="#cb58-197" aria-hidden="true" tabindex="-1"></a>The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? (3 points)</span>
+<span id="cb58-198"><a href="#cb58-198" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-199"><a href="#cb58-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-200"><a href="#cb58-200" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-201"><a href="#cb58-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-202"><a href="#cb58-202" aria-hidden="true" tabindex="-1"></a>Based on the results of the two-sample t-test, we fail to reject the null hypothesis that the mean number of dark peppered moths is the same in dark and pale environments. The decision was made by comparing the calculated t-statistic to the critical t-value from the Student&#39;s t-distribution. The calculated t-statistic from the test is |t_statistic| = 1.5532, and for a two-tailed test with a significance level of \alpha\ = 0.05 and df = 58, the t_critical is 2.002. Since |t_statistic| &lt; t_critical, we fail to reject the null hypothesis. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb58-203"><a href="#cb58-203" aria-hidden="true" tabindex="-1"></a>The validity of results of t-test were verified by the model&#39;s underlying assumptions. Shapiro-Wilk test was used on the data and the residuals,and QQ Plot indicated no significant deviation from normality. Levene&#39;s Test (F = 0.139 and p = 0.711) and BP Test (BP = 0.028, p = 0.867) confirm the assumption of equal variances. The residual plot also showed the consistent spread for both groups. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb58-204"><a href="#cb58-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-205"><a href="#cb58-205" aria-hidden="true" tabindex="-1"></a>Additionally, we have also tried additional t-test under unequal variances and non-parametric Wilcoxon test. Both of these tests failed to reject null hypothesis, supporting the conclusion from the primary analysis.</span>
+<span id="cb58-206"><a href="#cb58-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-207"><a href="#cb58-207" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-208"><a href="#cb58-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-209"><a href="#cb58-209" aria-hidden="true" tabindex="-1"></a><span class="fu">### e.</span></span>
+<span id="cb58-210"><a href="#cb58-210" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-211"><a href="#cb58-211" aria-hidden="true" tabindex="-1"></a>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</span>
+<span id="cb58-212"><a href="#cb58-212" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-213"><a href="#cb58-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-214"><a href="#cb58-214" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-215"><a href="#cb58-215" aria-hidden="true" tabindex="-1"></a>Based on the student_data analysis, we fail to find statistical support for the biological hypothesis that substrate color affects the survival of dark peppered moths through bird predation. The raw effect size (the observed difference in mean moth counts) was 2.8 moths with the pale room showing a slightly higher mean (32.27) than the dark room (29.47). However, this small observed effect is highly imprecise. The 95% confidence interval for the true difference ranges from -6.41 to +0.81 moths, meaning the data are consistent with a scenario where the dark room could have up to 6.4 fewer moths, both rooms could be equal or dark room could have a slight advantage of 0.8 moths. Given that the confidence interval includes zero and spans both positive and negative values, an effect of this magnitude is not statistically distinguishable from random variation. Although a consistent 2.8-moth difference (approximately a 9% change from the mean) would likely be biologically meaningful as a selective pressure, the imprecision of this estimate means we cannot conclude such an effect exists. Therefore, this analysis fails to provide conclusive evidence to support the hypothesis.</span>
+<span id="cb58-216"><a href="#cb58-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-217"><a href="#cb58-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-218"><a href="#cb58-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-219"><a href="#cb58-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### f.</span></span>
+<span id="cb58-220"><a href="#cb58-220" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-221"><a href="#cb58-221" aria-hidden="true" tabindex="-1"></a>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</span>
+<span id="cb58-222"><a href="#cb58-222" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-223"><a href="#cb58-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-224"><a href="#cb58-224" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-225"><a href="#cb58-225" aria-hidden="true" tabindex="-1"></a>We have low confidence in the statistical conclusion to fail to reject the null hypothesis as it is supported by multiple consistent analyses but limited by the study’s design and low power. First, all statistical assumptions for the t-test were thoroughly validated; both graphical analysis and formal tests confirmed no significant violations of normality or homoscedasticity. Second, the conclusion was consistently reinforced by alternative approaches, including Welch&#39;s t-test and the non-parametric Wilcoxon test. The main limitation is the issue of low statistical power. A post-hoc power analysis reveals the study had only 33.3% power to detect the observed effect size (d = 0.40) with the given sample size (n=30 per group). This means that even if a true difference exists, there was a high probability of not detecting it (Type II error). Therefore, while the analyses consistently support the null hypothesis, our confidence in interpreting this as evidence of no biological effect is low. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb58-226"><a href="#cb58-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-227"><a href="#cb58-227" aria-hidden="true" tabindex="-1"></a>Bootstrap analysis with 1,000 replicates produced a 95% confidence interval of (-0.619, 6.013) for the difference in moth captures between pale and dark rooms. Since this interval includes zero, it confirms that the observed difference of 2.8 moths is not statistically significant. As this interval includes zero and spans both positive and negative values, it supports the statistical conclusion but also highlights the uncertainty due to limited sample size and the unpaired design. The statistical conclusion may be consistent, however the external confidence is reduced by the limited power and unpaired data structure.</span>
+<span id="cb58-228"><a href="#cb58-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-231"><a href="#cb58-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-232"><a href="#cb58-232" aria-hidden="true" tabindex="-1"></a>mean_dark <span class="ot">&lt;-</span> t_result<span class="sc">$</span>estimate[<span class="dv">1</span>]</span>
+<span id="cb58-233"><a href="#cb58-233" aria-hidden="true" tabindex="-1"></a>mean_pale <span class="ot">&lt;-</span> t_result<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
+<span id="cb58-234"><a href="#cb58-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-235"><a href="#cb58-235" aria-hidden="true" tabindex="-1"></a>sd_dark <span class="ot">&lt;-</span> <span class="fu">sd</span>(student_data<span class="sc">$</span>number[student_data<span class="sc">$</span>room <span class="sc">==</span> <span class="st">&quot;dark&quot;</span>])</span>
+<span id="cb58-236"><a href="#cb58-236" aria-hidden="true" tabindex="-1"></a>sd_pale <span class="ot">&lt;-</span> <span class="fu">sd</span>(student_data<span class="sc">$</span>number[student_data<span class="sc">$</span>room <span class="sc">==</span> <span class="st">&quot;pale&quot;</span>])</span>
+<span id="cb58-237"><a href="#cb58-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-238"><a href="#cb58-238" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="cf">function</span>(u1, u2, sd1, sd2){</span>
+<span id="cb58-239"><a href="#cb58-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(u1 <span class="sc">-</span> u2) <span class="sc">/</span> <span class="fu">sqrt</span>((sd1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb58-240"><a href="#cb58-240" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb58-241"><a href="#cb58-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-242"><a href="#cb58-242" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">d =</span> <span class="fu">d</span>(<span class="at">u1 =</span> mean_dark, <span class="at">u2 =</span> mean_pale, <span class="at">sd1 =</span> sd_dark, <span class="at">sd2 =</span> sd_pale), <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span>
+<span id="cb58-243"><a href="#cb58-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-244"><a href="#cb58-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-247"><a href="#cb58-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-248"><a href="#cb58-248" aria-hidden="true" tabindex="-1"></a>bs <span class="ot">&lt;-</span> <span class="cf">function</span>(formula, data, indices){</span>
+<span id="cb58-249"><a href="#cb58-249" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> data[indices, ]</span>
+<span id="cb58-250"><a href="#cb58-250" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> d)</span>
+<span id="cb58-251"><a href="#cb58-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">coef</span>(fit))</span>
+<span id="cb58-252"><a href="#cb58-252" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb58-253"><a href="#cb58-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-254"><a href="#cb58-254" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">boot</span>(</span>
+<span id="cb58-255"><a href="#cb58-255" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> student_data, <span class="at">statistic =</span> bs, <span class="at">R =</span> <span class="dv">1000</span>,</span>
+<span id="cb58-256"><a href="#cb58-256" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> number <span class="sc">~</span> room</span>
+<span id="cb58-257"><a href="#cb58-257" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-258"><a href="#cb58-258" aria-hidden="true" tabindex="-1"></a>results</span>
+<span id="cb58-259"><a href="#cb58-259" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.ci</span>(results, <span class="at">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="at">index =</span> <span class="dv">2</span>)</span>
+<span id="cb58-260"><a href="#cb58-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-261"><a href="#cb58-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-262"><a href="#cb58-262" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-263"><a href="#cb58-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-264"><a href="#cb58-264" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Postdoc data</span></span>
+<span id="cb58-265"><a href="#cb58-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-266"><a href="#cb58-266" aria-hidden="true" tabindex="-1"></a>Analyze the data and determine if the results in <span class="in">`Biston_pd2.csv `</span>support or refute the biological hypothesis.</span>
+<span id="cb58-267"><a href="#cb58-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-268"><a href="#cb58-268" aria-hidden="true" tabindex="-1"></a><span class="fu">### a.</span></span>
+<span id="cb58-269"><a href="#cb58-269" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-270"><a href="#cb58-270" aria-hidden="true" tabindex="-1"></a>a statement of the biological hypothesis and its prediction (1 point)</span>
+<span id="cb58-271"><a href="#cb58-271" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-272"><a href="#cb58-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-273"><a href="#cb58-273" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-274"><a href="#cb58-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-275"><a href="#cb58-275" aria-hidden="true" tabindex="-1"></a>The mean number of dark peppered moths in pale and dark environment differs because the survival from bird predation depends on the colour of the moth in relation to the colour of the environment. Dark peppered moths are better camouflaged on dark substrates than on pale (non‑polluted) substrates, so a bird will capture fewer dark moths when foraging on a dark substrate than when foraging on a pale substrate. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb58-276"><a href="#cb58-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-277"><a href="#cb58-277" aria-hidden="true" tabindex="-1"></a>When the same individual birds are tested in both environments, they will capture significantly fewer dark moths in the dark, polluted environment (where the dark moths are less visible) than in the pale, non-polluted environment.</span>
+<span id="cb58-278"><a href="#cb58-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-279"><a href="#cb58-279" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-280"><a href="#cb58-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-281"><a href="#cb58-281" aria-hidden="true" tabindex="-1"></a><span class="fu">### b.</span></span>
+<span id="cb58-282"><a href="#cb58-282" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-283"><a href="#cb58-283" aria-hidden="true" tabindex="-1"></a>a statement of the null hypothesis (1 point)</span>
+<span id="cb58-284"><a href="#cb58-284" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-285"><a href="#cb58-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-286"><a href="#cb58-286" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-287"><a href="#cb58-287" aria-hidden="true" tabindex="-1"></a>The null hypothesis is that the mean difference in the number of dark peppered moths captured between the pale and dark chambers is zero. </span>
+<span id="cb58-288"><a href="#cb58-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-289"><a href="#cb58-289" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-290"><a href="#cb58-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-291"><a href="#cb58-291" aria-hidden="true" tabindex="-1"></a><span class="fu">### c.</span></span>
+<span id="cb58-292"><a href="#cb58-292" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-293"><a href="#cb58-293" aria-hidden="true" tabindex="-1"></a>fit the adequate statistical model, and evaluate the statistical assumptions _(3 points)_</span>
+<span id="cb58-294"><a href="#cb58-294" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-295"><a href="#cb58-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-296"><a href="#cb58-296" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-299"><a href="#cb58-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-300"><a href="#cb58-300" aria-hidden="true" tabindex="-1"></a>postdoc_data<span class="sc">$</span>difference <span class="ot">&lt;-</span> postdoc_data<span class="sc">$</span>pale <span class="sc">-</span> postdoc_data<span class="sc">$</span>dark</span>
+<span id="cb58-301"><a href="#cb58-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-302"><a href="#cb58-302" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb58-303"><a href="#cb58-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-304"><a href="#cb58-304" aria-hidden="true" tabindex="-1"></a>density_values <span class="ot">&lt;-</span> <span class="fu">density</span>(postdoc_data<span class="sc">$</span>difference)</span>
+<span id="cb58-305"><a href="#cb58-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-306"><a href="#cb58-306" aria-hidden="true" tabindex="-1"></a>max_density <span class="ot">&lt;-</span> <span class="fu">max</span>(density_values<span class="sc">$</span>y)</span>
+<span id="cb58-307"><a href="#cb58-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-308"><a href="#cb58-308" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(postdoc_data<span class="sc">$</span>difference,</span>
+<span id="cb58-309"><a href="#cb58-309" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Differences&quot;</span>,</span>
+<span id="cb58-310"><a href="#cb58-310" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Difference (Pale - Dark)&quot;</span>,</span>
+<span id="cb58-311"><a href="#cb58-311" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb58-312"><a href="#cb58-312" aria-hidden="true" tabindex="-1"></a>     <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb58-313"><a href="#cb58-313" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_density <span class="sc">*</span> <span class="fl">1.1</span>)) <span class="co"># TRUE helped me to overlay the density curve and normal curve on same scale</span></span>
+<span id="cb58-314"><a href="#cb58-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-315"><a href="#cb58-315" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(density_values, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb58-316"><a href="#cb58-316" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, </span>
+<span id="cb58-317"><a href="#cb58-317" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference),</span>
+<span id="cb58-318"><a href="#cb58-318" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference)),</span>
+<span id="cb58-319"><a href="#cb58-319" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-320"><a href="#cb58-320" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Data Density&quot;</span>, <span class="st">&quot;Normal Curve&quot;</span>),</span>
+<span id="cb58-321"><a href="#cb58-321" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb58-322"><a href="#cb58-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-323"><a href="#cb58-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-326"><a href="#cb58-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-327"><a href="#cb58-327" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(postdoc_data<span class="sc">$</span>difference, <span class="at">main =</span> <span class="st">&quot;QQ-Plot of Differences&quot;</span>)</span>
+<span id="cb58-328"><a href="#cb58-328" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(postdoc_data<span class="sc">$</span>difference, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb58-329"><a href="#cb58-329" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-330"><a href="#cb58-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-333"><a href="#cb58-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-334"><a href="#cb58-334" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(postdoc_data<span class="sc">$</span>difference, </span>
+<span id="cb58-335"><a href="#cb58-335" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of DIfferences&quot;</span>,</span>
+<span id="cb58-336"><a href="#cb58-336" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Difference (Pale - Dark)&quot;</span>,</span>
+<span id="cb58-337"><a href="#cb58-337" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightgreen&quot;</span>)</span>
+<span id="cb58-338"><a href="#cb58-338" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb58-339"><a href="#cb58-339" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;Mean&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb58-340"><a href="#cb58-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-341"><a href="#cb58-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-344"><a href="#cb58-344" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-345"><a href="#cb58-345" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(postdoc_data<span class="sc">$</span>difference <span class="sc">~</span> <span class="fu">rep</span>(<span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference), <span class="fu">nrow</span>(postdoc_data)),</span>
+<span id="cb58-346"><a href="#cb58-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Differences vs Central Tendency&quot;</span>,</span>
+<span id="cb58-347"><a href="#cb58-347" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Overall Mean Difference&quot;</span>,</span>
+<span id="cb58-348"><a href="#cb58-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Individual Differences&quot;</span>,</span>
+<span id="cb58-349"><a href="#cb58-349" aria-hidden="true" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb58-350"><a href="#cb58-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-351"><a href="#cb58-351" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb58-352"><a href="#cb58-352" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb58-353"><a href="#cb58-353" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
+<span id="cb58-354"><a href="#cb58-354" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Zero Reference&quot;</span>, <span class="st">&quot;Mean Difference&quot;</span>),</span>
+<span id="cb58-355"><a href="#cb58-355" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb58-356"><a href="#cb58-356" aria-hidden="true" tabindex="-1"></a>      <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb58-357"><a href="#cb58-357" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb58-358"><a href="#cb58-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-359"><a href="#cb58-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-360"><a href="#cb58-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-363"><a href="#cb58-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-364"><a href="#cb58-364" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(postdoc_data<span class="sc">$</span>difference)</span>
+<span id="cb58-365"><a href="#cb58-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-366"><a href="#cb58-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-367"><a href="#cb58-367" aria-hidden="true" tabindex="-1"></a>A one-tailed paired t-test was selected as the appropriate statistical model because the experiment had repeated measures, meaning each bird is tested in both chambers. Also, we were testing a directional biological prediction since more dark moths captured in pale chambers. <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
+<span id="cb58-368"><a href="#cb58-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-369"><a href="#cb58-369" aria-hidden="true" tabindex="-1"></a>The statistical assumptions were evaluated, beginning with the normality of the differences between paired observations. This was assessed using multiple complementary approaches: a histogram with overlaid density curves showed a bell-shaped distribution that closely followed the theoretical normal curve; a Q-Q plot showed points falling reasonably close to the reference line; a boxplot displayed a symmetric distribution with no evidence of extreme outliers and a formal Shapiro-Wilk test yielded a p-value of 0.1215, above the 0.05 threshold, confirming no significant departure from normality. The independence assumption was satisfied as well since birds were randomly sampled and tested independently. Both the normality and independence assumptions are met, validating the use of the paired t-test for this analysis.</span>
+<span id="cb58-370"><a href="#cb58-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-373"><a href="#cb58-373" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-374"><a href="#cb58-374" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(postdoc_data<span class="sc">$</span>pale, postdoc_data<span class="sc">$</span>dark, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb58-375"><a href="#cb58-375" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-376"><a href="#cb58-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-377"><a href="#cb58-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-378"><a href="#cb58-378" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-379"><a href="#cb58-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-380"><a href="#cb58-380" aria-hidden="true" tabindex="-1"></a><span class="fu">### d.</span></span>
+<span id="cb58-381"><a href="#cb58-381" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-382"><a href="#cb58-382" aria-hidden="true" tabindex="-1"></a>The statistical conclusion (i.e. inference). Do you accept or reject the null hypothesis? Include your test results. (3 points)</span>
+<span id="cb58-383"><a href="#cb58-383" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-384"><a href="#cb58-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-385"><a href="#cb58-385" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-386"><a href="#cb58-386" aria-hidden="true" tabindex="-1"></a>Based on the results of the paired t-test, we reject the null hypothesis that the mean difference in dark moth captures between chambers is zero. The paired t-test yielded a statistically significant result (t_statistic(29) = 2.0932, p-value = 0.0226). Also, the 95% lower confidence bound (0.527 moths) excludes zero, indicating the true effect is positive. In other words, having confidence interval above zero means the effect is consistently positive and zero is not a value for the true effect size. Since |t_statistic| = 2.0932 &gt; |t_critical| = qt(0.95, df = 29) = 1.699, we are safe to reject the null hypothesis. </span>
+<span id="cb58-387"><a href="#cb58-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-388"><a href="#cb58-388" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-389"><a href="#cb58-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-390"><a href="#cb58-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### e.</span></span>
+<span id="cb58-391"><a href="#cb58-391" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-392"><a href="#cb58-392" aria-hidden="true" tabindex="-1"></a>The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).</span>
+<span id="cb58-393"><a href="#cb58-393" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-394"><a href="#cb58-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-395"><a href="#cb58-395" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-396"><a href="#cb58-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-397"><a href="#cb58-397" aria-hidden="true" tabindex="-1"></a>The results supports the biological hypothesis that the survival of dark peppered moths (carbonaria) is significantly influenced by background color due to bird predation. The experiment showed a statistically significant advantage for the dark moths when resting on the dark, polluted background. The raw effect size is a mean difference of 2.8 dark moths captured per bird. In other words, on average, birds captured 2.8 more dark moths in the pale (non-polluted) chamber (mean capture 32.27) than in the dark (polluted) chamber (mean capture 29.47). This observed direction is precisely what is predicted by the camouflage hypothesis. The effect is estimated with reasonable precision, as evidenced by the paired t-test&#39;s p-value (0.0226) and the 95% lower confidence bound of 0.53 moths. Because the entire confidence range for the one-tailed test is <span class="co">[</span><span class="ot">0.53,inf</span><span class="co">]</span>, we can be confident that the true difference is a positive value, ruling out a zero or negative difference. From a biological perspective, an average difference of 2.8 moths out of 30 available represents a 9.3% change in survival rate in a single foraging event. This level of selective pressure can be considered biologically strong for the rapid evolutionary change observed in the peppered moth population. The paired design was critical here successfully controlling for bird-to-bird variability to isolate and detect the effect.</span>
+<span id="cb58-398"><a href="#cb58-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-399"><a href="#cb58-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-400"><a href="#cb58-400" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-401"><a href="#cb58-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-402"><a href="#cb58-402" aria-hidden="true" tabindex="-1"></a><span class="fu">### f.</span></span>
+<span id="cb58-403"><a href="#cb58-403" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-404"><a href="#cb58-404" aria-hidden="true" tabindex="-1"></a>A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues ) (2 points)</span>
+<span id="cb58-405"><a href="#cb58-405" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-406"><a href="#cb58-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-407"><a href="#cb58-407" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-408"><a href="#cb58-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-409"><a href="#cb58-409" aria-hidden="true" tabindex="-1"></a>We have strong confidence in our conclusion that birds catch more dark moths in pale chambers, leading us to confidently reject the null hypothesis. Our confidence stems from the paired experiments, which effectively controlled for individual bird variability, and from meeting all key statistical assumptions including normality of differences and data independence. A post-hoc power analysis indicated that the study had 65.5% power to detect the observed medium effect size (d = 0.38). The analysis yielded a statistically significant result (p=0.0226). Overall, the paired design allowed the true biological difference to be detected. </span>
+<span id="cb58-410"><a href="#cb58-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-413"><a href="#cb58-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-414"><a href="#cb58-414" aria-hidden="true" tabindex="-1"></a>sd_postdoc <span class="ot">&lt;-</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference)</span>
+<span id="cb58-415"><a href="#cb58-415" aria-hidden="true" tabindex="-1"></a>cohen_d <span class="ot">&lt;-</span> <span class="fu">mean</span>(postdoc_data<span class="sc">$</span>difference) <span class="sc">/</span> sd_postdoc</span>
+<span id="cb58-416"><a href="#cb58-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-417"><a href="#cb58-417" aria-hidden="true" tabindex="-1"></a>power_res <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb58-418"><a href="#cb58-418" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
+<span id="cb58-419"><a href="#cb58-419" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> cohen_d,</span>
+<span id="cb58-420"><a href="#cb58-420" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb58-421"><a href="#cb58-421" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>,</span>
+<span id="cb58-422"><a href="#cb58-422" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb58-423"><a href="#cb58-423" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-424"><a href="#cb58-424" aria-hidden="true" tabindex="-1"></a>power_res</span>
+<span id="cb58-425"><a href="#cb58-425" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-426"><a href="#cb58-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-427"><a href="#cb58-427" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-428"><a href="#cb58-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-429"><a href="#cb58-429" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Power issues</span></span>
+<span id="cb58-430"><a href="#cb58-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-431"><a href="#cb58-431" aria-hidden="true" tabindex="-1"></a>Assuming that a difference of 5% (or 2.5 moths) of predation rate between treatments is biologically meaningful, what would be the power to detect this with alpha=0.05 and the data collected by:</span>
+<span id="cb58-432"><a href="#cb58-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-433"><a href="#cb58-433" aria-hidden="true" tabindex="-1"></a><span class="fu">### a.</span></span>
+<span id="cb58-434"><a href="#cb58-434" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-435"><a href="#cb58-435" aria-hidden="true" tabindex="-1"></a>the student? _(1 point)_</span>
+<span id="cb58-436"><a href="#cb58-436" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-437"><a href="#cb58-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-438"><a href="#cb58-438" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-441"><a href="#cb58-441" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-442"><a href="#cb58-442" aria-hidden="true" tabindex="-1"></a>d_students <span class="ot">&lt;-</span> <span class="fl">2.5</span> <span class="sc">/</span> <span class="fu">sqrt</span>((sd_dark<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_pale<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb58-443"><a href="#cb58-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-444"><a href="#cb58-444" aria-hidden="true" tabindex="-1"></a>power_students <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb58-445"><a href="#cb58-445" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
+<span id="cb58-446"><a href="#cb58-446" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_students,</span>
+<span id="cb58-447"><a href="#cb58-447" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb58-448"><a href="#cb58-448" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb58-449"><a href="#cb58-449" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span></span>
+<span id="cb58-450"><a href="#cb58-450" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-451"><a href="#cb58-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-452"><a href="#cb58-452" aria-hidden="true" tabindex="-1"></a>power_students</span>
+<span id="cb58-453"><a href="#cb58-453" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-454"><a href="#cb58-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-455"><a href="#cb58-455" aria-hidden="true" tabindex="-1"></a>For the student&#39;s unpaired design with 30 birds in each group, the power to detect a biologically meaningful difference of 2.5 moths is approximately 27.6%.</span>
+<span id="cb58-456"><a href="#cb58-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-457"><a href="#cb58-457" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-458"><a href="#cb58-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-459"><a href="#cb58-459" aria-hidden="true" tabindex="-1"></a><span class="fu">### b.</span></span>
+<span id="cb58-460"><a href="#cb58-460" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-461"><a href="#cb58-461" aria-hidden="true" tabindex="-1"></a>the postdoc? _(1 point)_</span>
+<span id="cb58-462"><a href="#cb58-462" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-463"><a href="#cb58-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-464"><a href="#cb58-464" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb58-465"><a href="#cb58-465" aria-hidden="true" tabindex="-1"></a><span class="in">`d`</span> for a paired t-test is estimated as $d = \text{mean differences} / \text{sd differences}$</span>
+<span id="cb58-466"><a href="#cb58-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-467"><a href="#cb58-467" aria-hidden="true" tabindex="-1"></a>using the <span class="in">`d()`</span> function you can specify it as <span class="in">`d(0, mean differences, sd differences, sd differences)`</span></span>
+<span id="cb58-468"><a href="#cb58-468" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-469"><a href="#cb58-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-470"><a href="#cb58-470" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-473"><a href="#cb58-473" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-474"><a href="#cb58-474" aria-hidden="true" tabindex="-1"></a>d_postdoc <span class="ot">&lt;-</span> <span class="fu">d</span>(<span class="at">u1 =</span> <span class="fl">2.5</span>, <span class="at">u2 =</span> <span class="dv">0</span>, <span class="at">sd1 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference), <span class="at">sd2 =</span> <span class="fu">sd</span>(postdoc_data<span class="sc">$</span>difference))</span>
+<span id="cb58-475"><a href="#cb58-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-476"><a href="#cb58-476" aria-hidden="true" tabindex="-1"></a>power_postdoc <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb58-477"><a href="#cb58-477" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">30</span>,</span>
+<span id="cb58-478"><a href="#cb58-478" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> d_postdoc,</span>
+<span id="cb58-479"><a href="#cb58-479" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb58-480"><a href="#cb58-480" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>,</span>
+<span id="cb58-481"><a href="#cb58-481" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb58-482"><a href="#cb58-482" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-483"><a href="#cb58-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-484"><a href="#cb58-484" aria-hidden="true" tabindex="-1"></a>power_postdoc</span>
+<span id="cb58-485"><a href="#cb58-485" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-486"><a href="#cb58-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-487"><a href="#cb58-487" aria-hidden="true" tabindex="-1"></a>For the postdoc&#39;s paired design with 30 bird pairs, the power to detect the same biologically meaningful difference of 2.5 moths is approximately 57.1%</span>
+<span id="cb58-488"><a href="#cb58-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-489"><a href="#cb58-489" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-490"><a href="#cb58-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-491"><a href="#cb58-491" aria-hidden="true" tabindex="-1"></a><span class="fu">### c.</span></span>
+<span id="cb58-492"><a href="#cb58-492" aria-hidden="true" tabindex="-1"></a>::: {.callout} </span>
+<span id="cb58-493"><a href="#cb58-493" aria-hidden="true" tabindex="-1"></a>Comment the difference between the power using the student and postdoc data. _(1 point)_</span>
+<span id="cb58-494"><a href="#cb58-494" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb58-495"><a href="#cb58-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-496"><a href="#cb58-496" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
+<span id="cb58-497"><a href="#cb58-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-498"><a href="#cb58-498" aria-hidden="true" tabindex="-1"></a>The paired postdoc design (57.1% power) provides substantially higher detection capability than the unpaired student design (27.6% power). This twice of increase in power occurs because the paired design reduces variability by controlling for individual bird differences, yielding a more sensitive test. </span>
+<span id="cb58-499"><a href="#cb58-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-500"><a href="#cb58-500" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--#################################################################--&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
