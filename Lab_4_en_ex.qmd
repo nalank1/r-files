@@ -190,7 +190,7 @@ Additionally, we have also tried t-test under unequal variances and non-parametr
 
 ### e.
 ::: {.callout} 
-The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points). - **NEEDs REVISION**
+The “biological” conclusion (i.e. a qualified statement about the biological hypothesis concerning moth survival, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically interesting) (2 points).
 :::
 
 <!--#################################################################-->
@@ -374,7 +374,7 @@ A statement about your confidence in the statistical conclusion (for example wit
 
 <!--#################################################################-->
 
-We have strong confidence in our conclusion that birds catch more dark moths in pale chambers
+We have strong confidence in our conclusion that birds catch more dark moths in pale chambers. Our confidence stems from the robust paired experimental design, which effectively controlled for individual bird variability, and from meeting all key statistical assumptions including normality of differences and data independence. However, the study had relatively low statistical power (approximately 55%), indicating a substantial chance of failing to detect a real effect if it existed. Additionally, the p-value of 0.023, while statistically significant, sits close to the conventional 0.05 threshold, suggesting the effect may be modest in magnitude.
 
 <!--#################################################################-->
 
