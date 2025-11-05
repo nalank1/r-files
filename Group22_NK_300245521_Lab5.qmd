@@ -1,0 +1,187 @@
+---
+title: Bio4158/Bio5158 - Report 5
+subtitle: Exercise
+author: "Group 22 - Nalan Kurnaz"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+
+# Background
+
+Evason et al. (2005) tested the influence of an anticonvulsant medication on the lifespan of the rock star of all nematodes: *Caenorhabditis elegans*. The study **compared the lifespan of nematodes** under **three treatment levels** with a compound. Worms were either exposed to **water-only (the control)** or to the compound **at the larval stage only**, **at the adult stage**, or **at both larval and adult stages**. For my information, anticonvulsant is a medication to prevent seizures by calming the abnormal activity in the brain. For C.elegans, it extends the lifespan and delays the age-related decline. For larval ones, it affects badly (impaired nervous sytem functions, late development), for adult, extended lifespan. <br>
+
+Evason, Kimberley et al. “Valproic acid extends Caenorhabditis elegans lifespan.” Aging cell vol. 7,3 (2008): 305-17. doi:10.1111/j.1474-9726.2008.00375.x
+
+# The data
+
+The file `nematodes.csv` contains the results of this experiment. **Each line corresponds to one worm**. The two columns are the treatment level and the lifespan (in days). 
+
+# The task
+
+1. Analyze the data and determine if there is any evidence that the compound alters lifespan of the worms.
+    a. The biological hypothesis and its predictions _(3 points)_
+    b. The statistical null hypothesis for the omnibus test. _(2 points)_
+    c. A relevant plot of the data separately by treatment level _(1 point)_
+    d. Written description of the model to be fitted and provide a justification for the choice of analysis _(2 points)_
+    e. Fit the model and provide evidence (plot, test, or statement) that you examined the statistical assumptions underlying a standard parametric analysis and a statement as to what you conclude. _(4 points)_
+    f. The statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject the null hypothesis?). Include follow-up tests, if appropriate, and explain what you conclude from them. _(4 points)_
+    g. A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). _(1 point)_
+    h. The ‘biological’ conclusion, meaning a qualified statement about worm lifespan, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically relevant. _(2 points)_. 
+2. Would your answers to 1f. change if you were later told that the authors had tested 18 other compounds? Explain. _(1 point)_
+
+# Reference
+Evason, K., C. Huang, I. Yamben, D. F. Covey, and K. Kornfeld. 2005. Anticonvulsant Medications Extend Worm Life-Span. Science 307: 258-262.
+
+
+-------------------------------------
+
+# Report
+
+### Data Preprocessing
+```{r}
+library(dplyr)
+library(pwr)
+library(ggplot2)
+library(car)
+
+data_nema <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/nematodes.csv", header = TRUE, sep = ",", stringsAsFactors = TRUE)
+data_nema$lifespan <- as.numeric(data_nema$lifespan) #to not treated as continuous variable
+#if you leave it as a continuous numerical variable, it will perform a linear regression
+
+str(data_nema)
+
+```
+
+## 1. Analyze the data and determine if there is any evidence that the compound alters lifespan of the worms.
+### a. The biological hypothesis and its predictions _(3 points)_
+
+The anticonvulsant compound influences the lifespan of Caenorhabditis elegans depending on the treatment level (water-only control, larval stage only, adult stage only or both larval and adult stages). This is because anticonvulsants are known to extend lifespan and delay age-related decline in adult worms, while potentially impairing nervous system functions and development in larval worms. Therefore, the compound's effects are expected to vary based on the life stage at which it is administered. <br>
+
+Worms exposed to water-only (control) are expected to have a baseline lifespan, while larval-stage exposure may reduce lifespan due to developmental impairments, adult-stage exposure may extend lifespan by delaying age-related decline and combine exposure may result in mixed or intermediate effects.
+
+
+### b. The statistical null hypothesis for the omnibus test. _(2 points)_
+
+There is no significant difference in the lifespan of Caenorhabditis elegans across the different treatment levels (water-only control, larval stage only, adult stage only or both larval and adult stages).
+
+### c. A relevant plot of the data separately by treatment level _(1 point)_
+
+```{r}
+mygraph <- ggplot(data_nema, aes(x = lifespan)) +
+  labs(x = "Lifespan (Days)") +
+  geom_density() +
+  geom_rug() +
+  geom_histogram(aes(y = after_stat(density)),
+    binwidth = 2,
+    color = "black",
+    alpha = 0.3
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = mean(data_nema$lifespan),
+      sd = sd(data_nema$lifespan)
+    ),
+    color = "red"
+  )
+
+mygraph + facet_wrap(~treatment, ncol = 2)
+```
+
+```{r}
+boxplot(lifespan ~ treatment, data = data_nema)
+```
+
+The adult treatment seems relatively normal with a peak around the mean lifespan. There are no outliers visible (as it can be seen in boxplot) and the red normal curve aligns well with the histogram and density plot, implying normality. There is a drop in lifespan in the treatment level of larval stage only
+
+### d. Written description of the model to be fitted and provide a justification for the choice of analysis _(2 points)_
+
+We will use one-way ANOVA to analyze the data. The dependent variable is the lifespan of Caenorhabditis elegans and the independent variable is the treatment level (water-only control, larval stage only, adult stage only or both larval and adult stages). ANOVA is appropriate because it allows us to test whether there are significant differences in the mean lifespan across the three treatment groups and control group. In other words, ANOVA tests the null hypothesis that the means of the lifespan across all treatment groups are equal. If the null hypothesis is rejected, it indicates that at least one group differs significantly from the others. This model assumes the residuals are normally distributed, the error variance is the same for all groups and the residuals are independent.
+
+### e. Fit the model and provide evidence (plot, test, or statement) that you examined the statistical assumptions underlying a standard parametric analysis and a statement as to what you conclude. _(4 points)_
+
+```{r}
+anova.model1 <- lm(lifespan ~ treatment, data = data_nema)
+par(mfrow = c(2,2))
+plot(anova.model1)
+```
+
+As observed in graphs, there could be problems with both normality and variance heterogeneity. On the first graph, it can be observed that the variance of each group differs, directing for heteroscedasticity. QQ-Plot (Second Graph) shows deviations from normality in the lower part. We can further check the normality and homoscedasticity with formal tests.
+
+```{r}
+shapiro.test(residuals(anova.model1))
+```
+
+The Shapiro-Wilk test resulted in W=0.97626 and p-value = 0.001808. As p-value is smaller than 0.05, we can reject the null hypothesis the normality of residuals. In other words, the residuals are not normally distributed.
+
+```{r}
+leveneTest(lifespan ~ treatment, data = data_nema)
+```
+
+Levene's Test for Homogeneity of Variance produced a very small p-value (1.493e-12). This means that we are rejecting the null hypothesis that the residuals are homoscedastic. <br>
+The graphs at the beginning showed signs of violation of assumptions (homoscedasticity and normality) and the formal tests confirmed our suspicions. Despite the violation of the assumptions, a standard one-way ANOVA was initially performed due to the robustness of the F-test to these violations when sample sizes are large (n = 200) and equal across groups (n = 50 per group, a balanced design). 
+
+```{r}
+anova(anova.model1)
+```
+
+According to the result of One-Way ANOVA, we can see that F-value is 15.25, meaning the ratio of variance between groups to variance within groups is large, and p-value (5.869e-09) is extremely small and well below the standard level (0.05). By looking at these results, we can reject the null hypothesis of having no significant difference in the mean lifespan across the different treatment groups.
+```{r}
+aov.model1 <- aov(lifespan ~ treatment, data = data_nema)
+tukey.result <- TukeyHSD(aov.model1, which = "treatment")
+tukey.result
+print(tukey.result$treatment)
+
+```
+
+```{r}
+par(mar = c(5, 10, 2, 1))
+plot(tukey.result, las = 1)
+```
+
+The results found in Tukey's HSD post-hoc test confirms our biological hypothesis. The adult-only group has a significant longer lifespan than both larval-only group (diff = 5.16) and the Water control group (diff = 4.20), which supports the idea that the anticonvulsant extends the lifespan when administered during adulthood. Both Larval and Adult group has a longer lifespan than the larval-only group (diff = 6.84) and the Water control group (diff = 5.88). As mentioned previously, ANOVA and Tukey's result is statistically unreliable since the residuals are not homoscedastic and the normality is not fully met. In this case, it would be best to run non-parametric alternative to ANOVA.
+
+```{r}
+kruskal.result1 <- kruskal.test(lifespan ~ treatment, data = data_nema)
+kruskal.result1
+```
+
+Given the extremely small p-value obtained from the Kruskal-Wallis test (1.79e-06) is extremely smaller than 0.05, we reject the null hypothesis. This evidence indicates that there is a statistically significant difference in the lifespan of Caenorhabditis elegans across the various anticonvulsant treatment levels (water-only control, larval stage only, adult stage only, and both larval and adult stages).
+
+
+### f. The statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject the null hypothesis?). Include follow-up tests, if appropriate, and explain what you conclude from them. (4 points)
+
+```{r}
+pairwise_result <- pairwise.t.test(
+  x = data_nema$lifespan,
+  g = data_nema$treatment,
+  p.adjust.method = "fdr",
+  pool.sd = FALSE #since unequal variance t-test for each
+)
+
+pairwise_result
+```
+
+Based on the statistical analysis, we reject the null hypothesis. The null hypothesis, which stated that there is no significant difference in the lifespan of Caenorhabditis elegans across the different treatment levels (water-only control, larval stage only, adult stage only, or both larval and adult stages), is rejected due to the extremely significant result of the Kruskal-Wallis test (p-value = 1.79e-06). The rejection means that at least one treatment group's lifespan differs from the others. The pairwise result mean that the adult group has a longer lifespan than larval-only group (p = 1.5e-05) and the water control group (p = 0.00024). Also, both larval and adult group has a longer lifespan than the larval-only group (p = 1.3e-05). These results mean that the exposure to the anticonvulsant compound during adulthood (either adult only ot both larval and adult stages) increases lifespan compared to larval exposure or no exposure. <br>
+Our results also backed up with the findings of one-way anova and Tukey's Test (even if we had assumption violations).
+
+### g. A statement about your confidence in the statistical conclusion (for example with respect to the violation of certain assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). (1 point)
+
+Our confidence in the statistical conclusion is high as they are supported by both parametric and non-parametric tests despite having violation of key ANOVA assumptions. At the beginning, we had severe violation of homogeneity of variances as confirmed by the Levene's Test and minor violation of normality. The Kruskal-Wallis test confirmed the overall finding of a significant difference in the lifespan across groups (p = 1.79e-06). Also, the pairwise t-test confirmed the precise pattern of pairwise significances initially suggested by the compromised Tukey's HSD test. This strong convergence between the p-values of the standard, non-parametric, and robust tests confirm the conclusion that the effect sizes are large enough to be detected reliably despite the non-ideal distribution of error. Furthermore, the experimental design was optimal for controlling bias and maximizing power. The large sample size (N=200) and the perfectly balanced design (n=50 per group) provided high statistical power, allowing for the detection of the biological effects. The balance in group size also increased the overall robustness of the t-tests against the variance inequality.
+
+### h. The ‘biological’ conclusion, meaning a qualified statement about worm lifespan, including an estimate of raw effect size, its precision, and whether an effect of this magnitude seems biologically relevant. (2 points). 
+
+The biological conclusion is that the anticonvulsant compound significantly extends the lifespan of C. elegans when administration is restricted to the adult stage, thereby supporting the initial biological hypothesis that the compound's effects are stage-dependent. The raw effect size, estimated from the mean difference between the Adult-only treatment and the Water-only Control group, is approximately 4.20 days of extended lifespan. The precision of this estimate is taken by the 95% confidence interval (derived from the Tukey's analysis), which ranges from 1.12 days to 7.28 days. Since this entire interval lies above zero, it firmly confirms the statistical significance of the biological effect.
+
+## 2. Would your answers to 1f. change if you were later told that the authors had tested 18 other compounds? Explain. (1 point)
+
+Yes, my interpretation of the statistical conclusion in 1f would need to change significantly. The problem introduced is the p-hacking. When researchers conduct 19 independent tests (this compound + 18 others) but only report the significant one, the overall false positive rate (Type I error) is dramatically inflated. The standard significance threshold of alpha = 0.05 means we accept a 5% chance of a false positive for a single test. With 19 tests, the probability of finding at least one false positive by chance alone rises to approximately 62%. While a correction like Bonferroni could be applied, and our p-value might still meet that stricter threshold, the interpretation shifts. This result can no longer be trusted as standalone evidence.
+
+
+
