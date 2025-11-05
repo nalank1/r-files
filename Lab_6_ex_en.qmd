@@ -1,0 +1,123 @@
+---
+title: Bio4158/Bio5158 - Report 6
+subtitle: Exercise
+author: "Group 22 - Nalan Kurnaz"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+
+# Background
+
+For normal cells, lack of oxygen (hypoxia) results in cell death. Yet some cancer cells can continue to grow and replicate under low oxygen conditions. Not surprisingly, this observation has lead researchers to investigate how cancer cells tolerate hypoxic conditions. Recently, attention has focused on two genes: HIF1 and HIF2. Exposure of both normal and cancer cells to hypoxia results in these genes being turned on, which in turn results in the corresponding HIF1 and HIF2 transcription factors being produced. (Transcription factors are proteins that bind to DNA and, by so doing, allow RNA synthesis to occur.) The presence of the transcription factor then allows normal transcription to occur and the cell to continue to grow and divide despite low oxygen levels.
+
+These data have led to the suggestion that in solid cancers (such as breast cancer), adaptation to hypoxia arises from these transcription factors being over expressed. That is, compared to normal cells, under hypoxic conditions many more HIF1 and/or HIF2 transcripts are produced in cancer cells than in normal cells. The larger number of transcripts produced by cancer cells makes it much more likely that normal transcription can take place. In normal cells, however, under extreme hypoxia, few HIF1 or HIF2 transcripts are produced, with the result that normal transcription often does not occur, leading to cell death.
+
+Based on the above, we can propose several biological hypotheses, one of which is:
+
+Cancer cell survival under hypoxic conditions occurs due to the overexpression of both HIF1 and HIF2. 
+
+To test this hypothesis, a research team sets up an experiment. In this experiment, gene-silencing mutants were developed for the breast cancer cell lines, resulting in four different cell lines:
+
+* HIF 1+/2+ (normal forms of both genes)
+* HIF 1-/2+ (HIF1 silenced, HIF2 normal)
+* HIF 1+/2- (HIF1 normal, HIF2 silenced)
+* HIF 1-/2- (both HIF1 and HIF2 silenced).
+
+The HIF1- mutant cannot produce any HIF1 transcripts, and the HIF2 mutant cannot produce any HIF2 transcripts.
+
+Ten cultures of each strain were then grown under normal and 10 under hypoxic conditions, and the average growth rate (r, measured as the number of cell division per hour) was estimated. r > 0 indicates that the cell line will survive. 
+
+# The data
+
+The file `hypoxia_uottawa.csv` contains the results of this experiment.
+The three variables are:
+
+* genotype (HIF1+/HIF2+, HIF1+/HIF2-, HIF1-/HIF2+, HIF1-/HIF2-)
+* environment (normoxic, hypoxic)
+* growth rate r.
+
+# The task
+
+Analyze the data obtained by researchers to test the hypothesis that both HIF1 overexpression and HIF2 overexpression are necessary for cancer cell survival under hypoxic conditions. In your answer, you should provide: 
+
+a. A description of the data including: the identity of the dependent and independent variables, whether the latter are fixed/random, crossed (i.e. factorial) or nested, and the identity of the levels of each. Also indicate whether there is replication or not within the individual combinations, and if there is replication, whether the design is balanced or unbalanced. _(4 points)_
+b. A box plot of the data by treatment combinations (i.e. for the different genotypes and both oxygen levels) and a visual interpretation (i.e. description) of the apparent effects of your independent variables. _(3 points)_
+c. A statement of the model you are going to fit (i.e. what type of ANOVA) and the corresponding null hypotheses. _(4 points)_
+d. Fit the model and provide some evidence (plots, tests, and/or statements) that you examined the statistical assumptions underlying a parametric model and what you conclude. _(3 points)_
+e. The results/statistical conclusion (i.e. inference) you make from your analysis (*i.e.* do you accept or reject each of the null hypotheses). With reference to the biological hypothesis in the question, explain what follow-up tests you do and why, give the results of these tests, and explain what you conclude from them _(7 points)_.
+f. The “biological” conclusion, here a qualified statement about cancer cell survival under hypoxic conditions, including an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter _(3 points)_. 
+g. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). _(1 point)_
+
+-------------------------------------
+
+# Report
+
+### Data Preprocessing
+
+```{r}
+library(car)
+library(tidyverse)
+```
+
+## a. A description of the data including: the identity of the dependent and independent variables, whether the latter are fixed/random, crossed (i.e. factorial) or nested, and the identity of the levels of each. Also indicate whether there is replication or not within the individual combinations, and if there is replication, whether the design is balanced or unbalanced.
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
+## b. A box plot of the data by treatment combinations (i.e. for the different genotypes and both oxygen levels) and a visual interpretation (i.e. description) of the apparent effects of your independent variables.
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
+## c. A statement of the model you are going to fit (i.e. what type of ANOVA) and the corresponding null hypotheses.
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
+## d. Fit the model and provide some evidence (plots, tests, and/or statements) that you examined the statistical assumptions underlying a parametric model and what you conclude.
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
+## e. The results/statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). With reference to the biological hypothesis in the question, explain what follow-up tests you do and why, give the results of these tests, and explain what you conclude from them.
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
+## f. The “biological” conclusion, here a qualified statement about cancer cell survival under hypoxic conditions, including an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter. 
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
+## g. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues).
+
+```{r}
+#write your code here
+```
+
+Write your interpretation
+
