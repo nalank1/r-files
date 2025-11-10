@@ -14,9 +14,9 @@ format:
 
 # Background
 
-For normal cells, lack of oxygen (hypoxia) results in cell death. Yet some cancer cells can continue to grow and replicate under low oxygen conditions. Not surprisingly, this observation has lead researchers to investigate how cancer cells tolerate hypoxic conditions. Recently, attention has focused on two genes: HIF1 and HIF2. Exposure of both normal and cancer cells to hypoxia results in these genes being turned on, which in turn results in the corresponding HIF1 and HIF2 transcription factors being produced. (Transcription factors are proteins that bind to DNA and, by so doing, allow RNA synthesis to occur.) The presence of the transcription factor then allows normal transcription to occur and the cell to continue to grow and divide despite low oxygen levels.
+For normal cells, lack of oxygen (hypoxia) results in cell death. Yet some cancer cells can continue to grow and replicate under low oxygen conditions. Not surprisingly, this observation has lead researchers to investigate how cancer cells tolerate hypoxic conditions. Recently, attention has focused on **two genes: HIF1 and HIF2**. **Exposure of both normal and cancer cells** to hypoxia results in these genes being turned on, which in turn results in the corresponding HIF1 and HIF2 transcription factors being produced. (Transcription factors are **proteins that bind to DNA and, by so doing, allow RNA synthesis to occur**.) The presence of the transcription factor then **allows normal transcription to occur** and **the cell to continue to grow and divide despite low oxygen levels**.
 
-These data have led to the suggestion that in solid cancers (such as breast cancer), adaptation to hypoxia arises from these transcription factors being over expressed. That is, compared to normal cells, under hypoxic conditions many more HIF1 and/or HIF2 transcripts are produced in cancer cells than in normal cells. The larger number of transcripts produced by cancer cells makes it much more likely that normal transcription can take place. In normal cells, however, under extreme hypoxia, few HIF1 or HIF2 transcripts are produced, with the result that normal transcription often does not occur, leading to cell death.
+These data have led to the suggestion that in solid cancers (such as breast cancer), adaptation to hypoxia arises from these transcription factors being over expressed. That is, compared to normal cells, under hypoxic conditions **many more HIF1 and/or HIF2 transcripts are produced in cancer cells than in normal cells**. The larger number of transcripts produced by cancer cells makes it much more likely that normal transcription can take place. In normal cells, however, under extreme hypoxia, few HIF1 or HIF2 transcripts are produced, with the result that normal transcription often does not occur, leading to cell death.
 
 Based on the above, we can propose several biological hypotheses, one of which is:
 
@@ -31,7 +31,7 @@ To test this hypothesis, a research team sets up an experiment. In this experime
 
 The HIF1- mutant cannot produce any HIF1 transcripts, and the HIF2 mutant cannot produce any HIF2 transcripts.
 
-Ten cultures of each strain were then grown under normal and 10 under hypoxic conditions, and the average growth rate (r, measured as the number of cell division per hour) was estimated. r > 0 indicates that the cell line will survive. 
+Ten cultures of each strain were then grown **under normal and 10 under hypoxic conditions**, and **the average growth rate (r, measured as the number of cell division per hour)** was estimated. **r > 0 indicates that the cell line will survive**. 
 
 # The data
 
@@ -39,7 +39,7 @@ The file `hypoxia_uottawa.csv` contains the results of this experiment.
 The three variables are:
 
 * genotype (HIF1+/HIF2+, HIF1+/HIF2-, HIF1-/HIF2+, HIF1-/HIF2-)
-* environment (normoxic, hypoxic)
+* environment (normoxic, hypoxic) - fixed effect
 * growth rate r.
 
 # The task
@@ -60,26 +60,47 @@ g. A statement about your confidence in the statistical conclusion (for example 
 
 ### Data Preprocessing
 
+
 ```{r}
 library(car)
 library(tidyverse)
+#library(effects)
+
+data_hypoxia <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/hypoxia_uottawa.csv", header = TRUE, sep = ",", stringsAsFactors = TRUE)
 ```
 
 ## a. A description of the data including: the identity of the dependent and independent variables, whether the latter are fixed/random, crossed (i.e. factorial) or nested, and the identity of the levels of each. Also indicate whether there is replication or not within the individual combinations, and if there is replication, whether the design is balanced or unbalanced.
 
-```{r}
-#write your code here
-```
-
-Write your interpretation
+Environment (Independent) - Fixed Factor with two levels (Normoxic and Hypoxic)
+Genotype (Independent) - Fixed Factor with four levels (HIF1+/HIF2+, HIF1+/HIF2-, HIF1-/HIF2+, HIF1-/HIF2-)
+Growth Rate (Dependent)
+Overall design is crossed (factorial design) as shown below [Rough Design]("C:\Users\16132\OneDrive - University of Ottawa\Desktop\r-files")
+There is a replication within each combination of Genotype and Environment. The design appears to be balanced as each combination of Genotype and Environment has same number of replicates (10 observations per combination).
 
 ## b. A box plot of the data by treatment combinations (i.e. for the different genotypes and both oxygen levels) and a visual interpretation (i.e. description) of the apparent effects of your independent variables.
 
 ```{r}
-#write your code here
+
+ggplot(data_hypoxia, aes(x = environment, y = r, fill = environment)) +
+  geom_boxplot(notch = FALSE, fill = "white", color = "black", width = 0.6) +
+  facet_wrap(~genotype, ncol = 2, nrow = 2) +
+  labs(
+    title = "Growth Rate by Genotype and Environment",
+    x = "Environment",
+    y = "Growth Rate (r)"
+  ) +
+  theme_minimal() +
+  theme(
+    strip.background = element_rect(fill = "grey90", color = "grey70"),
+    strip.text = element_text(face = "bold"),
+    panel.spacing = unit(1, "lines"),
+    legend.position = "none"
+  )
+
 ```
 
-Write your interpretation
+Across all genotypes, the growth rate seems to be higher under normoxic conditions rather than hypoxic environment. This means that the lack of oxygen negatively influences the growth rate and cell division. Some genotypes (HIF1+/HIF2+) show positive growth rates, meaning that they are tolerable to low oxygen levels. <br>
+For the genotype, HIF1+/HIF2+ showed overall best growth rate compared to other genotypes, referring to overexpression increases chance of survival under hypoxic conditions. 
 
 ## c. A statement of the model you are going to fit (i.e. what type of ANOVA) and the corresponding null hypotheses.
 
