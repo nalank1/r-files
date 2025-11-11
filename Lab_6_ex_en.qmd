@@ -62,9 +62,13 @@ g. A statement about your confidence in the statistical conclusion (for example 
 
 
 ```{r}
+#install.packages("effects")
+
+```
+```{r}
 library(car)
 library(tidyverse)
-#library(effects)
+library(effects)
 
 data_hypoxia <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/hypoxia_uottawa.csv", header = TRUE, sep = ",", stringsAsFactors = TRUE)
 ```
@@ -74,7 +78,7 @@ data_hypoxia <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs
 Environment (Independent) - Fixed Factor with two levels (Normoxic and Hypoxic)
 Genotype (Independent) - Fixed Factor with four levels (HIF1+/HIF2+, HIF1+/HIF2-, HIF1-/HIF2+, HIF1-/HIF2-)
 Growth Rate (Dependent)
-Overall design is crossed (factorial design) as shown below [Rough Design]("C:\Users\16132\OneDrive - University of Ottawa\Desktop\r-files")
+Overall design is crossed (factorial design) as shown below.
 There is a replication within each combination of Genotype and Environment. The design appears to be balanced as each combination of Genotype and Environment has same number of replicates (10 observations per combination).
 
 ## b. A box plot of the data by treatment combinations (i.e. for the different genotypes and both oxygen levels) and a visual interpretation (i.e. description) of the apparent effects of your independent variables.
@@ -100,23 +104,49 @@ ggplot(data_hypoxia, aes(x = environment, y = r, fill = environment)) +
 ```
 
 Across all genotypes, the growth rate seems to be higher under normoxic conditions rather than hypoxic environment. This means that the lack of oxygen negatively influences the growth rate and cell division. Some genotypes (HIF1+/HIF2+) show positive growth rates, meaning that they are tolerable to low oxygen levels. <br>
-For the genotype, HIF1+/HIF2+ showed overall best growth rate compared to other genotypes, referring to overexpression increases chance of survival under hypoxic conditions. 
+For the genotype, HIF1+/HIF2+ showed overall best growth rate compared to other genotypes, referring to overexpression increases chance of survival under hypoxic conditions. The growth rates in HIF1-/HIF2+ were slightly better than HIF1+/HIF2- in both environments, meaning HIF2 was better contributor than HIF1. In HIF1-/HIF2-, there was lowest growth rate compared to rest.
 
 ## c. A statement of the model you are going to fit (i.e. what type of ANOVA) and the corresponding null hypotheses.
 
-```{r}
-#write your code here
-```
+Model 1 ANOVA is the model we are going to fit as all the factors are fixed. This is also a two-factor ANOVA. The expected model structure will be Y = mu + alpha (first factor) + beta (second factor) + alpha * beta (interaction) + error. <br>
+The null hypothesis are in the following: <br>
+* H01: There is no difference in means among levels of genotypes when pooling over levels of environment. <br>
+* H02: There is no difference in means among levels of environment when pooling over levels of genotype. <br>
+* H03: The effects of genotype and environment are independent, meaning there is no interaction between the factors.
 
-Write your interpretation
 
 ## d. Fit the model and provide some evidence (plots, tests, and/or statements) that you examined the statistical assumptions underlying a parametric model and what you conclude.
 
 ```{r}
-#write your code here
+anova.model1 <- aov(r ~ genotype + environment + genotype : environment, data = data_hypoxia)
+summary(anova.model1)
+
+Anova(anova.model1, type = 3)
+
+par(mfrow = c(2,2))
+plot(anova.model1)
 ```
 
-Write your interpretation
+```{r}
+# normality
+shapiro.test(residuals(anova.model1))
+
+```
+
+```{r}
+# for homogeneity
+leveneTest(r ~ genotype * environment, data = data_hypoxia)
+```
+
+```{r}
+allEffects(anova.model1)
+plot(allEffects(anova.model1), "genotype:environment")
+
+```
+
+Write your interpretation - CODE
+
+In ANOVA, normality, homogenenity of variance and the independence need to be checked. (for model assumptions)
 
 ## e. The results/statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). With reference to the biological hypothesis in the question, explain what follow-up tests you do and why, give the results of these tests, and explain what you conclude from them.
 
@@ -124,7 +154,7 @@ Write your interpretation
 #write your code here
 ```
 
-Write your interpretation
+Write your interpretation - FOLLOW UP TESTS- CODE
 
 ## f. The “biological” conclusion, here a qualified statement about cancer cell survival under hypoxic conditions, including an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter. 
 
@@ -141,4 +171,11 @@ Write your interpretation
 ```
 
 Write your interpretation
+
+## References
+1. ![Used for Part b](https://ggplot2-book.org/themes.html)
+2.   
+
+
+
 
