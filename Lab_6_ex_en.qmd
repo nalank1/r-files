@@ -108,7 +108,7 @@ For the genotype, HIF1+/HIF2+ showed overall best growth rate compared to other 
 
 ## c. A statement of the model you are going to fit (i.e. what type of ANOVA) and the corresponding null hypotheses.
 
-Model 1 ANOVA is the model we are going to fit as all the factors are fixed. This is also a two-factor ANOVA. The expected model structure will be Y = mu + alpha (first factor) + beta (second factor) + alpha * beta (interaction) + error. <br>
+Model 1 ANOVA is the model we are going to fit as all the factors are fixed. This is also a two-factor ANOVA. The expected model structure will be Y = mu + alpha (first factor) + beta (second factor) + alpha * beta (interaction) + error. Also, Type III (partial) sum of squares were applied since we want to see the effect of each factor and interactions. In addition to that, since the dataset is balanced, Type I and III will result the same. <br>
 The null hypothesis are in the following: <br>
 * H01: There is no difference in means among levels of genotypes when pooling over levels of environment. <br>
 * H02: There is no difference in means among levels of environment when pooling over levels of genotype. <br>
@@ -127,6 +127,8 @@ par(mfrow = c(2,2))
 plot(anova.model1)
 ```
 
+In ANOVA, normality, homogenenity of variance and the independence need to be checked. In order to check these model assumptions, the diagnostic plots of the residuals were plotted. The first graph shows an equal spread of the residuals, and this means that the ANOVA model meets with the assumption of homogeneity of the variance, meaning it is homoscedastic. On the second graph (QQ Plot), the line seems to be following a straight line, meaning the normality assumption is met. On the last graph, the Cook's distance is fairly close to zero, indicating that there are no outliers.
+
 ```{r}
 # normality
 shapiro.test(residuals(anova.model1))
@@ -138,15 +140,38 @@ shapiro.test(residuals(anova.model1))
 leveneTest(r ~ genotype * environment, data = data_hypoxia)
 ```
 
+To fully verify the normality, Shapiro Test was calculated. The test resulted in having p-value of 0.9386, meaning that it is failing to reject the null hypothesis that the data is normally distributed. The normality assumption is met and verified. To verify the homogeneity of the variance, Levene Test was used. The test resulted in f-value of 0.5988 and p-value of 0.7549. Since p-value is bigger than 0.05, we are failing to reject the null hypothesis that the data is homoscedastic, meaning the data is homoscedastic. For the independence, we can assume that the data points are independent. Since the model assumptions are met, we proceeded by fitting the model in ANOVA. As seen in ANOVA outputs, we can see that all factors' p-values are considerably lower than 0.05, and this indicates that all three null hypothesis are rejected. In other words, there is an effect of genotype, environment and interaction on the growth rate. 
 ```{r}
 allEffects(anova.model1)
-plot(allEffects(anova.model1), "genotype:environment")
+plot(allEffects(anova.model1), "genotype:environment", rotx = 45)
+```
+
+```{r}
+#follow up test
+tukey.result1 <- TukeyHSD(anova.model1, which = "genotype")
+tukey.result1
+
+par(mar = c(5, 14, 4, 1))
+plot(tukey.result1, las = 2)
 
 ```
 
-Write your interpretation - CODE
+```{r}
+tukey.result2 <- TukeyHSD(anova.model1, which = "environment")
+tukey.result2
 
-In ANOVA, normality, homogenenity of variance and the independence need to be checked. (for model assumptions)
+par(mar = c(5, 14, 4, 1))
+plot(tukey.result2, las = 2)
+```
+```{r}
+tukey.result3 <- TukeyHSD(anova.model1, which = "genotype:environment")
+tukey.result3
+
+par(mar = c(5, 14, 4, 1))
+plot(tukey.result3, las = 2)
+
+```
+
 
 ## e. The results/statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). With reference to the biological hypothesis in the question, explain what follow-up tests you do and why, give the results of these tests, and explain what you conclude from them.
 
@@ -174,7 +199,7 @@ Write your interpretation
 
 ## References
 1. ![Used for Part b](https://ggplot2-book.org/themes.html)
-2.   
+2.  For Debugging Purposes on effects package on Part d 
 
 
 
