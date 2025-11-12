@@ -75,10 +75,10 @@ data_hypoxia <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs
 
 ## a. A description of the data including: the identity of the dependent and independent variables, whether the latter are fixed/random, crossed (i.e. factorial) or nested, and the identity of the levels of each. Also indicate whether there is replication or not within the individual combinations, and if there is replication, whether the design is balanced or unbalanced.
 
-Environment (Independent) - Fixed Factor with two levels (Normoxic and Hypoxic)
-Genotype (Independent) - Fixed Factor with four levels (HIF1+/HIF2+, HIF1+/HIF2-, HIF1-/HIF2+, HIF1-/HIF2-)
-Growth Rate (Dependent)
-Overall design is crossed (factorial design) as shown below.
+Environment (Independent) - Fixed Factor with two levels (Normoxic and Hypoxic) <br>
+Genotype (Independent) - Fixed Factor with four levels (HIF1+/HIF2+, HIF1+/HIF2-, HIF1-/HIF2+, HIF1-/HIF2-) <br>
+Growth Rate (Dependent) <br>
+Overall design is crossed (factorial design) as shown in my GitHub profile (lab6.PNG). <br>
 There is a replication within each combination of Genotype and Environment. The design appears to be balanced as each combination of Genotype and Environment has same number of replicates (10 observations per combination).
 
 ## b. A box plot of the data by treatment combinations (i.e. for the different genotypes and both oxygen levels) and a visual interpretation (i.e. description) of the apparent effects of your independent variables.
@@ -189,9 +189,7 @@ eta_squared(car::Anova(anova.model1, type = 3))
 ```
 
 Our findings indicate that the overexpression of genes HIF1 and HIF2 increases the survival/growth rate of cancer cells under hypoxic conditions. The results of ANOVA indicate that genotype, environment and their interaction have an effect on the growth rate, resulting in a F-values of 17.09, 16.98 and 9.02 respectively. In addition to F-values, to quantify the  importance of these effects, we calculated eta-squared values, which represent the proportion of total variance explained by each factor. This showed that genotype accounts for 42% of the variance in growth rates, environment explains 19%, and their interaction contributes 27%. <br>
-This can also be seen by the post-hoc Tukey's HSD Test. HIF1+/HIF2+ genes show higher growth rates than the other genotypes. The difference of growth rates between HIF1+/HIF2+ and HIF1-/HIF2- was 0.064 - NEED TO WRITE STH HERE
-
-<br> The magnitude of these effects is robust and biologically significant. The genotype's 42% variance explanation emphasizes overexpression of genes is the major determinant of cell growth.
+This can also be seen by the post-hoc Tukey's HSD Test. HIF1+/HIF2+ genes show higher growth rates than the other genotypes. The difference of growth rates between HIF1+/HIF2+ and HIF1-/HIF2- was 0.064. The difference of growth rates between  HIF1+/HIF2+ and HIF1-/HIF2+ was 0.059, and the mean difference between  HIF1+/HIF2+ and HIF1+/HIF2- was 0.061. In contrast, all comparisons between other genotypes show no significant differences, with HIF1-/HIF2+ versus HIF1-/HIF2- the difference was 0.004, HIF1+/HIF2- versus HIF1-/HIF2- the difference was 0.002, and HIF1+/HIF2- versus HIF1-/HIF2+ the difference was -0.002 all exhibiting negligible differences with p-values approaching 1.0. Although the difference wasn't significant in other genotypes, we can see that it was biologically relevant as it shed light on whether overexpression of genes increased growth rate of cancer cells in hypoxic conditions. Overall, the magnitude of these effects is robust and biologically significant. The genotype's 42% variance explanation emphasizes overexpression of genes is the major determinant of cell growth.
 
 ## g. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues).
 
@@ -199,7 +197,7 @@ Our confidence in the statistical conclusion is high as the dataset is balanced 
 
 ## References
 1. [Used for Part b](https://ggplot2-book.org/themes.html)
-2.  ChatGPT For Debugging Purposes on effects package on Part d (Lattice package)
+2. [ChatGPT For Debugging Purposes on effects package on Part d] (Lattice package)
   - Used Prompt: "Can you help me debug why this problem occurs? Error in xyplot.formula(eval(parse(text = paste("fit ~ as.numeric(", predictors[x.var], : formal argument "scales" matched by multiple actual arguments)))))" - gave me solution of using rotx
 3. [For Part e](https://psychohawks.wordpress.com/2010/10/31/effect-size-for-analysis-of-variables-anova/)
 4. [For Part e](https://cran.r-project.org/web/packages/effectsize/vignettes/anovaES.html)
