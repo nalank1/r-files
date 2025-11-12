@@ -110,9 +110,9 @@ For the genotype, HIF1+/HIF2+ showed overall best growth rate compared to other 
 
 Model 1 ANOVA is the model we are going to fit as all the factors are fixed. This is also a two-factor ANOVA. The expected model structure will be Y = mu + alpha (first factor) + beta (second factor) + alpha * beta (interaction) + error. Also, Type III (partial) sum of squares were applied since we want to see the effect of each factor and interactions. In addition to that, since the dataset is balanced, Type I and III will result the same. <br>
 The null hypothesis are in the following: <br>
-* H01: There is no difference in means among levels of genotypes when pooling over levels of environment. <br>
-* H02: There is no difference in means among levels of environment when pooling over levels of genotype. <br>
-* H03: The effects of genotype and environment are independent, meaning there is no interaction between the factors.
+  - H01: There is no difference in means among levels of genotypes when pooling over levels of environment. <br>
+  - H02: There is no difference in means among levels of environment when pooling over levels of genotype. <br>
+  - H03: The effects of genotype and environment are independent, meaning there is no interaction between the factors.
 
 
 ## d. Fit the model and provide some evidence (plots, tests, and/or statements) that you examined the statistical assumptions underlying a parametric model and what you conclude.
@@ -140,7 +140,7 @@ shapiro.test(residuals(anova.model1))
 leveneTest(r ~ genotype * environment, data = data_hypoxia)
 ```
 
-To fully verify the normality, Shapiro Test was calculated. The test resulted in having p-value of 0.9386, meaning that it is failing to reject the null hypothesis that the data is normally distributed. The normality assumption is met and verified. To verify the homogeneity of the variance, Levene Test was used. The test resulted in f-value of 0.5988 and p-value of 0.7549. Since p-value is bigger than 0.05, we are failing to reject the null hypothesis that the data is homoscedastic, meaning the data is homoscedastic. For the independence, we can assume that the data points are independent. Since the model assumptions are met, we proceeded by fitting the model in ANOVA. As seen in ANOVA outputs, we can see that all factors' p-values are considerably lower than 0.05, and this indicates that all three null hypothesis are rejected. In other words, there is an effect of genotype, environment and interaction on the growth rate. 
+To fully verify the normality, Shapiro Test was calculated. The test resulted in having p-value of 0.9386, meaning that it is failing to reject the null hypothesis that the data is normally distributed. The normality assumption is met and verified. To verify the homogeneity of the variance, Levene Test was used. The test resulted in f-value of 0.5988 and p-value of 0.7549. Since p-value is bigger than 0.05, we are failing to reject the null hypothesis that the data is homoscedastic, meaning the data is homoscedastic. For the independence, we can assume that the data points are independent. Since the model assumptions are met, we proceeded by fitting the model in ANOVA. As seen in ANOVA outputs, we can see that all factors' p-values are considerably lower than 0.05, and this indicates that all three null hypothesis are rejected. In other words, there is an effect of genotype, environment and interaction (genotype and environment) on the growth rate. 
 ```{r}
 allEffects(anova.model1)
 plot(allEffects(anova.model1), "genotype:environment", rotx = 45)
@@ -157,49 +157,52 @@ plot(tukey.result1, las = 2)
 ```
 
 ```{r}
-tukey.result2 <- TukeyHSD(anova.model1, which = "environment")
-tukey.result2
-
-par(mar = c(5, 14, 4, 1))
-plot(tukey.result2, las = 2)
-```
-```{r}
 tukey.result3 <- TukeyHSD(anova.model1, which = "genotype:environment")
 tukey.result3
 
-par(mar = c(5, 14, 4, 1))
+par(mar = c(5, 22, 4, 1))
 plot(tukey.result3, las = 2)
 
 ```
 
+On the interaction plot, we can see that lines are not parallel, meaning there is an effect of interaction of environment and genotype on the growth rate. We can also see that means of genotypes are different, meaning genotype has an effect on the growth rate. In addition to that, we can see the means of environment differ by hypoxic and normoxic, indicating that the environment has an effect on the growth rate too. This aligns with our rejection of null hypothesis.<br>
+
+As seen in the first follow up test (on Genotype), we can see that HIF1+/HIF2+ has a higher mean than the rest of the genotypes. 95% family wise confidence levels of ((HIF1+/HIF2+ - HIF1-/HIF2-), (HIF1+/HIF2+ - HIF1-/HIF2+) and (HIF1+/HIF2+ - HIF1+/HIF2-)) don't contain zero, meaning the difference between those two genotype means is statistically significant. This does support our biological hypothesis (overexpression of both genes) as well. <br>
+
+The follow up test (on environment) was not needed since it only had two levels. <br>
+
+The third follow up test was the Tukey's HSD on the interaction of environment and genotype. As seen on the plot, the 95% confidence level of (HIF1+/HIF2+:HYPOXIC-HIF1-/HIF2+:HYPOXIC) seemed the highest, and then, (HIF1+/HIF2+ (Hypoxic) - HIF1-/HIF2- (Hypoxic)) came the second. Regardless of the order, we can see that HIF1+/HIF2+ gene in Hypoxic condition have a mean growth rate that is larger than the other genotypes. 
 
 ## e. The results/statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). With reference to the biological hypothesis in the question, explain what follow-up tests you do and why, give the results of these tests, and explain what you conclude from them.
 
-```{r}
-#write your code here
-```
+The analysis of a Two-way ANOVA testing the effects of Genotype, Environment and their interaction on the growth rate directed to the rejection of all three null hypotheses. <t>
 
-Write your interpretation - FOLLOW UP TESTS- CODE
+The ANOVA we fitted earlier indicated that there has been an effect of genotype, environment and their interaction on the growth rate, and it was deduced by the p-values and the interaction plot we did. Since ANOVA and the interaction plot indicated differences, Tukey's HSD test was performed as a post-hoc analysis. In this test, we performed all pairwise combinations and compared them to see which genes cause this high effect. The results of Genotype Tukey's Test showed that the mean of HIF1+/HIF2+ genotype was significantly higher than the means of other genotypes. The graphical explanation of the results can be found in part d. Also, we performed Tukey's Test on the interaction of genotype and environment on the growth rate. Under hypoxic conditions, HIF1+/HIF2+ showed significant growth compared to other genotype:environment combinations, with mean differences exceeding 0.12. Under normoxic conditions, there weren't significant differences detected. These results show that HIF1 and HIF2 function together to maintain growth under hypoxic conditions. The absence of the genes impairs growth rate on hypoxic conditions; however, the presence of both increases the growth rate significantly. We can also include that by both interaction plot and Tukey's Test, only presence of HIF1 drives the growth rate higher than only presence of HIF2. In other words, our findings were aligned with our biological hypothesis which was overexpression of genes increases survival of cancer cells in hypoxic conditions.  
 
-## f. The “biological” conclusion, here a qualified statement about cancer cell survival under hypoxic conditions, including an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter. 
+## f. The “biological” conclusion, here a qualified statement about cancer cell survival under hypoxic conditions, including an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter.
 
 ```{r}
-#write your code here
+library(effectsize)
+options(es.use_symbols = TRUE)
+
+eta_squared(car::Anova(anova.model1, type = 3))
 ```
 
-Write your interpretation
+Our findings indicate that the overexpression of genes HIF1 and HIF2 increases the survival/growth rate of cancer cells under hypoxic conditions. The results of ANOVA indicate that genotype, environment and their interaction have an effect on the growth rate, resulting in a F-values of 17.09, 16.98 and 9.02 respectively. In addition to F-values, to quantify the  importance of these effects, we calculated eta-squared values, which represent the proportion of total variance explained by each factor. This showed that genotype accounts for 42% of the variance in growth rates, environment explains 19%, and their interaction contributes 27%. <br>
+This can also be seen by the post-hoc Tukey's HSD Test. HIF1+/HIF2+ genes show higher growth rates than the other genotypes. The difference of growth rates between HIF1+/HIF2+ and HIF1-/HIF2- was 0.064 - NEED TO WRITE STH HERE
+
+<br> The magnitude of these effects is robust and biologically significant. The genotype's 42% variance explanation emphasizes overexpression of genes is the major determinant of cell growth.
 
 ## g. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues).
 
-```{r}
-#write your code here
-```
-
-Write your interpretation
+Our confidence in the statistical conclusion is high as the dataset is balanced and replicated. In addition to these, the model assumptions of normality, homoscedasticity and independence are met and verified. As it is balanced, there are no missing values, and there is enough data to verify and test our statistical conclusion. These premises increases our confidence in the statistical conclusion.
 
 ## References
-1. ![Used for Part b](https://ggplot2-book.org/themes.html)
-2.  For Debugging Purposes on effects package on Part d 
+1. [Used for Part b](https://ggplot2-book.org/themes.html)
+2.  ChatGPT For Debugging Purposes on effects package on Part d (Lattice package)
+  - Used Prompt: "Can you help me debug why this problem occurs? Error in xyplot.formula(eval(parse(text = paste("fit ~ as.numeric(", predictors[x.var], : formal argument "scales" matched by multiple actual arguments)))))" - gave me solution of using rotx
+3. [For Part e](https://psychohawks.wordpress.com/2010/10/31/effect-size-for-analysis-of-variables-anova/)
+4. [For Part e](https://cran.r-project.org/web/packages/effectsize/vignettes/anovaES.html)
 
 
 
