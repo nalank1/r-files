@@ -1,0 +1,249 @@
+---
+title: Bio4158/Bio5158 - Report 7
+subtitle: Exercise
+author: "Group 22 - Nalan Kurnaz"
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: show
+    code-tools: true
+---
+
+In memory of Antoine Morin, Professor of freshwater ecology, University of Ottawa (1989-2018), who died too young.
+
+# Background
+
+**Multiple variables** are affecting the **abundance of black flies larvae in rivers**. **Current speed** impact the larvae ability to catch food suspended in the water column because **they are passive filter feeders**. When the current is too slow, larvae are not able to catch enough food; if the current is too strong, larvae are displaced by the current and are not able to catch food. Of course , the quantity and quality of food available is also extremely important. Because black flies larvae are living in a linear environment (water always flows downstream), female flies fly upstream to lay their eggs in a lake, and the eggs and larvae are then dispersed by the current. Other invertebrates, like the caddis fly from the Hydropsichidae family, live in similar streams as black flies and their larvae compete for similar habitats.
+
+For his PhD thesis, Antoine Morin wanted to study how all those variables affected the abundance of black flies larvae, especially given that previous studies only looked at one or two variables at a time. Black flies biomass per metre square of substrate was use as a measure of their abundance.
+
+# The data
+
+The file `simuliidae.csv` contains non-published data from the study performed by Antoine Morin during his PhD sampling stream from Eastern Townships and Laurentian in Quebec. 
+At each site, he  sampled 12 rocks on which he measured several variables.
+The file `simuliidae.csv` contains the average observation per site for all the following variables:
+
+| Variable | Description |
+|----|------------------------|
+| `distance` | distance (m) from the closest lak upstream |
+| `cs` | chlorophyll content of suspended particules in water. this is an index of food quality (higher = better food)|
+| `v` | current speed (cm/s) |
+| `z` | water depth (cm) |
+| `a` | mean size of rock sampled (cm^2^) |
+| `bhydae` | Hydropsichidae biomass ($mg_{DM}/m^2$) |
+| `bsim` | biomass of black fly larvae ($mg_{DM}/m^2$) |
+
+
+# The task
+
+Analyze the data to determine the importance and relative effect of those different variables on the abundance of black fly larvae.
+
+a. Your biological prediction (one for each variable) _(2 points)_
+b. Corresponding null hypotheses _(2 point)_
+c. A plot visualizing the data adequately + a description of the most important aspects of the plot _(2 points)_
+d. The statistical model(s) + a justification for model choice  (do not include interactions yet) _(2 point)_
+e. Statement of the model assumptions and evidence that they were evaluated. If needed fit alternative model or use a different approach needed if assumptions are not met _(3 points)_
+f. Evaluate the interactions _(2 point)_
+g. The results and statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). _(2 points)_
+h. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). _(2 points)_
+i. The biological conclusion (an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter), include a conclusion in the regard to the starting hypothesis _(2 points)_.
+
+
+-------------------------------------
+
+# Report _3 points_ for proper formatting of the report
+
+### Data Preprocessing
+```{r}
+library(ggplot2)
+library(car)
+library(lmtest)
+library(GGally)
+
+data_simuli <- read.csv("https://raw.githubusercontent.com/nalank1/r-files/refs/heads/main/data-bioxx58/simuliidae.csv", header = TRUE, sep = ",", stringsAsFactors = TRUE)
+
+```
+
+## a. Your biological prediction (one for each variable) _(2 points)_
+
+- (Distance) -> Black fly larvae abundance is expected to decrease as the distance from the closest lake upstream increases as the female black flies lay their eggs in lake upstream.
+- (Chlorophyll Content) -> Higher chlorophyll content of suspended particles in water is expected to increase black fly larvae abundance since it provides food.
+- (Current Speed) -> Black fly larvae abundance is expected to be highest at intermediate current speeds. Very slow currents may not provide enough food for the larvae, and very fast currents may displace the larvae.
+- (Water Depth) -> Black fly larvae abundance is expected to increase with intermediate water depth. This is because shallow water has higher current speed, causing larvae to be less stable to attachment sites. On the other side, deeper water has reduced light penetration, which lowers algae production, and hence, decreases the quantity of suspended food particles (less chlorophyll (food)). 
+- (Mean Size of Rock Sampled) -> Black fly larvae abundance will increase with the mean size of the rocks as the larger rocks will provide a larger and more stable surface area for attachment. This will give larvae a more secure place against the current and it will allow more individuals to colonize on the rock.
+- (Hydropsichidae biomass) -> Black fly larvae abundance will decrease with higher biomass of Hydropsichidae caddisplies (bhydae) as they are competitors for similar habitats and for food.
+
+
+## b. Corresponding null hypotheses _(2 points)_
+
+- There is no relationship between the distance from the closest upstream lake and the biomass of black fly larvae. The coefficient (beta_distance) is zero. In other words, there is no change in black fly larvae biomass for each one-meter increase from the lake, assuming all other variables are held constant.
+- There is no relationship between the chlorophyll content of suspended particles and the biomass of the black fly larvae.
+- There is no relationship between water depth and the biomass of black fly larvae.
+- There is no relationship or correlation between the mean size of the rocks and the biomass of the black fly larvae.
+- There is no relationship between the Hydropsichidae biomass and the biomass of black fly larvae.
+
+## c. A plot visualizing the data adequately + a description of the most important aspects of the plot _(2 points)_ - CODE
+
+```{r}
+suppressWarnings(scatterplotMatrix(~ distance + cs + v + z + a+ bhydae + bsim, data = data_simuli, main = "Scatterplot Matrix of Variables Affecting Black Fly Larvae", smooth = FALSE, regLine = TRUE, span = 0.8, diagonal = TRUE))
+```
+
+```{r}
+ggpairs(data_simuli[, c("distance", "cs", "v", "z", "a", "bhydae", "bsim")],
+        title = "Scatterplot Matrix of Variables Affecting Black Fly Larvae",
+        lower = list(continuous = "points"),
+        upper = list(continuous = "cor"),
+        diag = list(continuous = "barDiag"))
+```
+
+The second graphing is done as the first graph was not visible enough. Most variables show weak or no linear relationship with one another as seen by cloud patterns in the scatterplots and low correlation values. <br>
+In addition to that, current speed (v) showed one of the strongest positive associations with black fly biomass (bsim), consistent with the idea that faster flow increases food delivery to passive filter feeders. Chlorophyll content of suspended particles (cs) also displayed a strong positive relationship with bsim, indicating that food quality may contribute to higher larval biomass. However, water depth (z) and the distance from the upstream lake (distance) showed little relationship with bsim, with points are widely dispersed and correlation near to zero. The second matrix also showed a moderate positive relationship between bhydae and bsim, meaning there could be a potential overlap in habitat. 
+
+## d. The statistical model(s) + a justification for model choice  (do not include interactions yet) _(2 point)_
+
+```{r}
+
+model1 <- lm(bsim ~ v, data = data_simuli)
+summary(model1)
+par(mfrow = c(2, 2))
+plot(model1)
+```
+
+By looking at the p-value and r-squared value (both multiple and adjusted), it can seen that v (current speed) has no effect by itself. There seems to be some problem with homoscedasticity and the normality by looking at the plots.
+
+```{r}
+model_cs <- lm(bsim ~ cs, data = data_simuli)
+summary(model_cs)
+```
+
+With p-value (0.00901), we can say variable cs (chlorophyll content of suspended particules) has an effect by its own.
+
+```{r}
+model_bhydae <- lm(bsim ~ bhydae, data = data_simuli)
+summary(model_bhydae)
+```
+
+With p-value (0.00782), the variable bhydae has an effect on the abundance by itself.
+```{r}
+model_strong <- lm(bsim ~ v + bhydae, data = data_simuli)
+summary(model_strong)
+```
+
+This model is on the same page with our findings above. Variable v doesn't have an effect as the p-value is much larger than 0.05. However, other two variables (cs and bhydae) have an effect in model_strong.
+
+```{r}
+model_habitat <- lm(bsim ~ cs + v + bhydae + z + a, data = data_simuli)
+summary(model_habitat)
+```
+
+We decided to group some variables based on the habitat quality. This model resulted in displaying no effect of v (current speed), z (water depth) and a (mean size of the rock) on the abundance of black fly larvae.
+
+```{r}
+model_distance <- lm(bsim ~ distance, data = data_simuli)
+summary(model_distance)
+```
+
+According to this result, we would accept the null hypothesis and conclude that there is no relationship between biomass of the black fly larvae and distance. 
+
+```{r}
+model_no_effect <- lm(bsim ~ distance + v + a, data = data_simuli)
+summary(model_no_effect)
+```
+
+Now, we reject both null hypotheses that the slope of regression of bsim on distance is zero, that the slope of regression of bsim on v is zero and that the slope of regression of bsim on a is zero.
+
+```{r}
+model_effect <- lm(bsim ~ cs + bhydae, data = data_simuli)
+summary(model_effect)
+```
+
+```{r}
+model_full <- lm(bsim ~ distance + v + a + z + cs + bhydae, data = data_simuli)
+summary(model_full)
+```
+
+According to the results, we will accept the null hypothesis that there is no relationship between water depth and the black fly larvae biomass.
+
+```{r}
+AIC(model_no_effect, model_effect)
+```
+
+After testing multiple variable combinations through incremental model building, I selected the biological model (bsim ~ cs + bhydae) as the most appropriate for explaining black fly larvae abundance. This decision was supported by AIC comparison, which clearly favored the biological model (AIC = 572.855) over the physical habitat model (AIC = 576.619), with a difference of 3.764 units indicating substantially better fit. The biological model also demonstrated strong statistical significance (p = 0.000197) with both predictors showing highly significant individual effects (cs: p = 0.00161, bhydae: p = 0.00141), and it achieved higher explanatory power (R^2 = 0.4234) with a greater value.
+
+## e. Statement of the model assumptions and evidence that they were evaluated. If needed fit alternative model or use a different approach needed if assumptions are not met _(3 points)_
+
+```{r}
+par(mfrow = c(2,2))
+plot(model_effect)
+```
+
+There seem to be some problem existing on homoscedasticity and normality. 
+
+```{r}
+shapiro.test(residuals(model_effect))
+
+bptest(model_effect)
+```
+
+The selected model (bsim ~ cs + bhydae) was evaluated for linear regression assumptions. The Breusch-Pagan test indicated no evidence of heteroscedasticity (BP = 1.006, p = 0.605), satisfying the assumption of constant variance. However, the Shapiro-Wilk test revealed a significant departure from normality (W = 0.804, p = 3.045e-05), indicating non-normal residuals. This violation of the normality assumption, combined with visual inspection of the Q-Q plot showing deviations from the diagonal line, suggests the model errors are not normally distributed. <br> Given the significant normality violation, I applied a log transformation to the response variable [lm(log(bsim+1) ~ cs + bhydae)] which improved residual distribution.
+
+```{r}
+model_effect_log <- lm(log(bsim + 1) ~ cs + bhydae, data = data_simuli)
+
+summary(model_effect_log)
+
+par(mfrow = c(2, 2))
+plot(model_effect_log)
+
+shapiro.test(residuals(model_effect_log))
+bptest(model_effect_log)
+
+```
+
+For the log-transformed model (log(bsim+1) ~ cs + bhydae), the Breusch-Pagan test confirms homoscedasticity is well-satisfied (BP = 0.290, p = 0.865), indicating constant variance across all fitted values. However, the Shapiro-Wilk test still indicates a significant departure from normality (W = 0.919, p = 0.015), though this represents a substantial improvement over the original model (p = 3.045e-05). While the normality assumption is not fully met, the violation is less severe after transformation, and the large sample size provides some robustness to this deviation.
+
+## f. Evaluate the interactions _(2 point)_
+
+```{r}
+model_interaction <- lm(log(bsim + 1) ~ cs * bhydae, data = data_simuli)
+summary(model_interaction)
+
+
+model_interaction1 <- lm(log(bsim + 1) ~ cs + bhydae + cs:bhydae, data = data_simuli)
+summary(model_interaction1)
+
+anova(model_effect_log, model_interaction)
+
+```
+
+The interaction between chlorophyll content and Hydropsichidae biomass was evaluated and found to be non-significant (cs:bhydae: p = 0.417). The ANOVA comparison between the model with and without the interaction term confirmed that adding the interaction does not significantly improve model fit (F = 0.678, p = 0.417). This indicates that the effects of food quality (chlorophyll content) and competitor biomass on black fly larvae abundance are independent and additive. The relationship between black flies and food quality does not depend on the level of competition, and vice versa. Both variables contribute to explaining black fly abundance, but they do not interact synergistically or antagonistically. The model without interactions is therefore retained for final inference.
+
+## g. The results and statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). _(2 points)_
+Based on the final log-transformed model (log(bsim + 1) ~ cs + bhydae), I draw the following statistical conclusions regarding the null hypotheses.
+
+- Reject the null hypothesis for chlorophyll content (p = 0.00161). There is strong statistical evidence that chlorophyll content has a significant positive relationship with black fly larvae biomass. For each unit increase in chlorophyll content, black fly biomass increases by an average of 2109.03 mg/m² (or approximately exp(6.17) in log-scale units).
+
+- Reject the null hypothesis for Hydropsichidae biomass (p = 0.00141). Contrary to the initial prediction of competition, there is a significant positive relationship between Hydropsichidae and black fly biomass. For each 1 mg/m² increase in Hydropsichidae biomass, black fly biomass increases by 2.81 mg/m², suggesting potential facilitation or shared habitat preferences rather than competition.
+
+- Cannot reject the null hypotheses for distance from lake, water depth, and mean rock size. These variables were not included in the final model as they did not show significant relationships with black fly biomass in the presence of the stronger predictors. Initial tests of these variables individually showed either non-significant effects or their significance disappeared when controlling for food quality and competitor biomass.
+
+The overall model is highly significant (F = 11.38, p = 0.000197) and explains 42.3% of the variation in black fly larvae biomass, indicating that food quality and the relationship with Hydropsichidae are the primary drivers of abundance in this system.
+
+## h. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). _(2 points)_
+
+My confidence in the statistical conclusions is moderately high, though with some important qualifications. The primary strength of the analysis lies in the robust and significant effects observed for both chlorophyll content and Hydropsichidae biomass, which remained consistent across multiple model specifications. However, several factors temper complete confidence: the log-transformed model still showed minor deviations from normality (Shapiro-Wilk p = 0.015), suggesting that p-values should be interpreted with some caution. The sample size provides adequate power for detecting medium to large effects but may be underpowered for detecting smaller ecological relationships. The observational nature of the data introduces potential confounding, as evidenced by the shifting significance of current speed depending on which other variables were included in the model. There is no indication of missing data issues and the model explains a biologically meaningful proportion of variance (42.3%). While the conclusions regarding food quality and the positive association with Hydropsichidae appear robust, the non-significance of physical habitat variables should be interpreted conservatively.
+
+## i. The biological conclusion (an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter), include a conclusion in the regard to the starting hypothesis _(2 points)_. 
+The biological conclusions reveal both expected and unexpected patterns in black fly ecology. Chlorophyll content demonstrates a strong positive effect on log-transformed black fly biomass (β = 6.17 ± 2.58, p = 0.023), confirming the starting hypothesis that food quality drives abundance. Back-transformed, this means that for each unit increase in chlorophyll content, black fly biomass increases by approximately exp(6.17) ≈ 480% under the log-linear approximation, representing a substantial biological effect.
+
+Contrary to the competition hypothesis, Hydropsichidae biomass shows a significant positive relationship with black flies (β = 0.0079 ± 0.0038, p = 0.046), suggesting facilitation or shared optimal habitat rather than competition. This effect is more modest - a 100 mg/m² increase in Hydropsichidae translates to only a 0.79% increase in black fly biomass.
+
+The final model explains 49% of variance in log-transformed black fly distribution (adjusted R² = 0.493), indicating that while food and biotic interactions are important, other unmeasured factors also contribute substantially. The starting hypotheses were partially supported: food quality matters as predicted, but the competitive relationship appears to be facilitative, and physical habitat variables proved less important than biological factors.
+
+### References
+- 
+
+
+
