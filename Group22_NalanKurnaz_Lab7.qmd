@@ -131,7 +131,7 @@ model_strong <- lm(bsim ~ v + bhydae, data = data_simuli)
 summary(model_strong)
 ```
 
-This model is on the same page with our findings above. Variable v doesn't have an effect as the p-value is much larger than 0.05. However, other two variables (cs and bhydae) have an effect in model_strong.
+This model is on the same page with our findings above. Variable v doesn't have an effect as the p-value is much larger than 0.05. However, other two variables (cs and bhydae) have an effect in model_strong. Finding no effect at variable v may be caused by the correlation of variables with each other. The effect of variable v is masked by the other variables. In other words, cs (food) and v (current speed) are likely correlated; fater current might bring more food, and when both of the variables are included in the same model, they explined similar variation in bsim. The model gave credit to the stronger predictor (cs). Therefore, causing variable v to show no effect in the model.
 
 ```{r}
 model_habitat <- lm(bsim ~ cs + v + bhydae + z + a, data = data_simuli)
@@ -152,7 +152,7 @@ model_no_effect <- lm(bsim ~ distance + v + a, data = data_simuli)
 summary(model_no_effect)
 ```
 
-Now, we reject both null hypotheses that the slope of regression of bsim on distance is zero, that the slope of regression of bsim on v is zero and that the slope of regression of bsim on a is zero.
+Now, we reject both null hypotheses that the slope of regression of bsim on distance is zero, that the slope of regression of bsim on v is zero and that the slope of regression of bsim on a is zero since p-values are below 0.05.
 
 ```{r}
 model_effect <- lm(bsim ~ cs + bhydae, data = data_simuli)
@@ -165,6 +165,12 @@ summary(model_full)
 ```
 
 According to the results, we will accept the null hypothesis that there is no relationship between water depth and the black fly larvae biomass.
+```{r}
+vif(model_effect)
+vif(model_full)
+```
+
+Variation Inflation Factors (VIF) show that how much the variance of an estimated coefficient factor is increased due to collinearity. It is generally accepted that VIF < 5 is a good indication of multicollinearity having little influence on estimated coefficient factors. Each factor have VIF < 2 showing that multicollinearity is not an issue. 
 
 ```{r}
 AIC(model_no_effect, model_effect)
@@ -185,12 +191,14 @@ There seem to be some problem existing on homoscedasticity and normality.
 shapiro.test(residuals(model_effect))
 
 bptest(model_effect)
+dwtest(model_effect)
+resettest(model_effect, type = "regressor", data = data_simuli)
 ```
 
-The selected model (bsim ~ cs + bhydae) was evaluated for linear regression assumptions. The Breusch-Pagan test indicated no evidence of heteroscedasticity (BP = 1.006, p = 0.605), satisfying the assumption of constant variance. However, the Shapiro-Wilk test revealed a significant departure from normality (W = 0.804, p = 3.045e-05), indicating non-normal residuals. This violation of the normality assumption, combined with visual inspection of the Q-Q plot showing deviations from the diagonal line, suggests the model errors are not normally distributed. <br> Given the significant normality violation, I applied a log transformation to the response variable [lm(log(bsim+1) ~ cs + bhydae)] which improved residual distribution.
+The selected model (bsim ~ cs + bhydae) was evaluated for linear regression assumptions. The Breusch-Pagan test indicated no evidence of heteroscedasticity (BP = 1.006, p = 0.605), satisfying the assumption of constant variance. However, the Shapiro-Wilk test revealed a significant departure from normality (W = 0.804, p = 3.045e-05), indicating non-normal residuals. This violation of the normality assumption, combined with visual inspection of the Q-Q plot showing deviations from the diagonal line, suggests the model errors are not normally distributed. In addition to that, with Durbin-Watson test, it was seen no serial correlation in residuals so no evidence of non-independence, and with Reset test, there was no significant deviation from linearity. Except for normality, everything seemed fine. <br> Given the significant normality violation, I applied a log transformation to the response variable [lm(log(bsim+1) ~ cs + bhydae)] which improved residual distribution.
 
 ```{r}
-model_effect_log <- lm(log(bsim + 1) ~ cs + bhydae, data = data_simuli)
+model_effect_log <- lm(log(bsim + 1) ~ log(cs) + log(bhydae), data = data_simuli)
 
 summary(model_effect_log)
 
@@ -202,12 +210,12 @@ bptest(model_effect_log)
 
 ```
 
-For the log-transformed model (log(bsim+1) ~ cs + bhydae), the Breusch-Pagan test confirms homoscedasticity is well-satisfied (BP = 0.290, p = 0.865), indicating constant variance across all fitted values. However, the Shapiro-Wilk test still indicates a significant departure from normality (W = 0.919, p = 0.015), though this represents a substantial improvement over the original model (p = 3.045e-05). While the normality assumption is not fully met, the violation is less severe after transformation, and the large sample size provides some robustness to this deviation.
+For the log-transformed model (log(bsim+1) ~ cs + bhydae), the Breusch-Pagan test confirms homoscedasticity is well-satisfied (BP = 2.1656, p = 0.3386), indicating constant variance across all fitted values. The Shapiro-Wilk test shows no evidence of non-normality (W = 0.978, p = 0.718), confirming that the residuals follow a normal distribution. Diagnostic plots were examined and showed no concerning patterns in residuals versus fitted values, no influential outliers, and a linear Q-Q plot. With both assumptions adequately satisfied, the model provides a reliable foundation for statistical inference without the need for further transformations or robust methods.
 
 ## f. Evaluate the interactions _(2 point)_
 
 ```{r}
-model_interaction <- lm(log(bsim + 1) ~ cs * bhydae, data = data_simuli)
+model_interaction <- lm(log(bsim + 1) ~ log(cs) * log(bhydae), data = data_simuli)
 summary(model_interaction)
 
 
@@ -218,32 +226,39 @@ anova(model_effect_log, model_interaction)
 
 ```
 
-The interaction between chlorophyll content and Hydropsichidae biomass was evaluated and found to be non-significant (cs:bhydae: p = 0.417). The ANOVA comparison between the model with and without the interaction term confirmed that adding the interaction does not significantly improve model fit (F = 0.678, p = 0.417). This indicates that the effects of food quality (chlorophyll content) and competitor biomass on black fly larvae abundance are independent and additive. The relationship between black flies and food quality does not depend on the level of competition, and vice versa. Both variables contribute to explaining black fly abundance, but they do not interact synergistically or antagonistically. The model without interactions is therefore retained for final inference.
+The interaction between log-transformed chlorophyll content and log-transformed Hydropsichidae biomass was evaluated and found to be non-significant (log(cs):log(bhydae): p = 0.888). The ANOVA comparison between the main effects model and the interaction model confirmed that adding the interaction term does not significantly improve model fit (F = 0.0202, p = 0.888). This indicates that the effects of food quality and competitor biomass on black fly larvae abundance are independent and additive when properly scaled using logarithmic transformations. The relationship between black flies and food quality does not depend on the level of competition, and vice versa. Both variables contribute to explaining black fly abundance through separate mechanisms rather than interacting effects. The model without interactions is therefore retained for final inference.
 
 ## g. The results and statistical conclusion (i.e. inference) you make from your analysis (i.e. do you accept or reject each of the null hypotheses). _(2 points)_
-Based on the final log-transformed model (log(bsim + 1) ~ cs + bhydae), I draw the following statistical conclusions regarding the null hypotheses.
+Based on the final log-transformed model (log(bsim + 1) ~ log(cs) + log(bhydae)), I draw the following statistical conclusions regarding the null hypotheses.
 
-- Reject the null hypothesis for chlorophyll content (p = 0.00161). There is strong statistical evidence that chlorophyll content has a significant positive relationship with black fly larvae biomass. For each unit increase in chlorophyll content, black fly biomass increases by an average of 2109.03 mg/m² (or approximately exp(6.17) in log-scale units).
+Reject the null hypothesis for chlorophyll content (p = 0.000185). There is very strong statistical evidence that chlorophyll content has a significant positive relationship with black fly larvae biomass. The positive coefficient (β = 1.025) indicates that higher chlorophyll levels are associated with increased black fly abundance.
 
-- Reject the null hypothesis for Hydropsichidae biomass (p = 0.00141). Contrary to the initial prediction of competition, there is a significant positive relationship between Hydropsichidae and black fly biomass. For each 1 mg/m² increase in Hydropsichidae biomass, black fly biomass increases by 2.81 mg/m², suggesting potential facilitation or shared habitat preferences rather than competition.
+- Reject the null hypothesis for Hydropsichidae biomass (p = 0.002102). Contrary to the initial prediction of competition, there is a significant positive relationship between Hydropsichidae and black fly biomass. The positive coefficient (β = 0.968) suggests potential facilitation or shared habitat preferences rather than competition.
 
-- Cannot reject the null hypotheses for distance from lake, water depth, and mean rock size. These variables were not included in the final model as they did not show significant relationships with black fly biomass in the presence of the stronger predictors. Initial tests of these variables individually showed either non-significant effects or their significance disappeared when controlling for food quality and competitor biomass.
+- Cannot reject the null hypotheses for distance from lake, water depth, and mean rock size. These variables were excluded from the final model as they did not contribute significantly to explaining black fly biomass variation when tested alongside the biological predictors.
 
-The overall model is highly significant (F = 11.38, p = 0.000197) and explains 42.3% of the variation in black fly larvae biomass, indicating that food quality and the relationship with Hydropsichidae are the primary drivers of abundance in this system.
+The overall model is highly significant (F = 18.38, p = 5.434e-06) and explains 54.3% of the variation in black fly larvae biomass, indicating that food quality and the relationship with Hydropsichidae are the primary drivers of abundance in this system.
 
 ## h. A statement about your confidence in the statistical conclusion (for example with respect to the violation of assumptions, to potential biases created by missing data, to suboptimal experimental design, and/or to power issues). _(2 points)_
 
-My confidence in the statistical conclusions is moderately high, though with some important qualifications. The primary strength of the analysis lies in the robust and significant effects observed for both chlorophyll content and Hydropsichidae biomass, which remained consistent across multiple model specifications. However, several factors temper complete confidence: the log-transformed model still showed minor deviations from normality (Shapiro-Wilk p = 0.015), suggesting that p-values should be interpreted with some caution. The sample size provides adequate power for detecting medium to large effects but may be underpowered for detecting smaller ecological relationships. The observational nature of the data introduces potential confounding, as evidenced by the shifting significance of current speed depending on which other variables were included in the model. There is no indication of missing data issues and the model explains a biologically meaningful proportion of variance (42.3%). While the conclusions regarding food quality and the positive association with Hydropsichidae appear robust, the non-significance of physical habitat variables should be interpreted conservatively.
+My confidence in the statistical conclusions is high. The primary strength of the analysis lies in the robust and highly significant effects observed for both log-transformed chlorophyll content (p = 0.000185) and log-transformed Hydropsichidae biomass (p = 0.002102), with the model explaining 54.3% of the variation in black fly abundance. The fully log-transformed model satisfies all key regression assumptions, with no evidence of non-normality (Shapiro-Wilk p = 0.718) or heteroscedasticity (Breusch-Pagan p = 0.339). The sample size provides adequate power for detecting the strong effects observed, and the model's high explanatory power suggests biological relevance. While the observational nature of the data introduces potential confounding, the consistency of results across model specifications and the proper meeting of statistical assumptions provide strong support for the conclusions. While the conclusions regarding food quality and the positive association with Hydropsichidae appear robust, the non-significance of physical habitat variables should be interpreted in caution.
 
 ## i. The biological conclusion (an estimate of effect size, its precision, and whether an effect of this magnitude is likely to matter), include a conclusion in the regard to the starting hypothesis _(2 points)_. 
-The biological conclusions reveal both expected and unexpected patterns in black fly ecology. Chlorophyll content demonstrates a strong positive effect on log-transformed black fly biomass (β = 6.17 ± 2.58, p = 0.023), confirming the starting hypothesis that food quality drives abundance. Back-transformed, this means that for each unit increase in chlorophyll content, black fly biomass increases by approximately exp(6.17) ≈ 480% under the log-linear approximation, representing a substantial biological effect.
 
-Contrary to the competition hypothesis, Hydropsichidae biomass shows a significant positive relationship with black flies (β = 0.0079 ± 0.0038, p = 0.046), suggesting facilitation or shared optimal habitat rather than competition. This effect is more modest - a 100 mg/m² increase in Hydropsichidae translates to only a 0.79% increase in black fly biomass.
+```{r}
+crPlots(model_effect_log)
+```
 
-The final model explains 49% of variance in log-transformed black fly distribution (adjusted R² = 0.493), indicating that while food and biotic interactions are important, other unmeasured factors also contribute substantially. The starting hypotheses were partially supported: food quality matters as predicted, but the competitive relationship appears to be facilitative, and physical habitat variables proved less important than biological factors.
+The biological conclusions reveal that both food availability and interspecific relationships drive black fly abundance, but with important nuances. Chlorophyll content shows a strong positive effect (β = 1.025 ± 0.242, p = 0.000185), where each 1% increase in chlorophyll is associated with approximately 1.025% increase in black fly biomass. This confirms the starting hypothesis that food quality is a major driver of abundance, representing a substantial biological effect.
+
+Contrary to the competition hypothesis, Hydropsichidae biomass shows a significant positive relationship (β = 0.968 ± 0.289, p = 0.002102), where each 1% increase in Hydropsichidae biomass is associated with a 0.968% increase in black fly biomass. This suggests facilitation or shared optimal habitat conditions rather than competition, with the effect being nearly as strong as that of food availability.
+
+The final model explains 54.3% of variance in black fly distribution, indicating strong predictive power. The starting hypotheses were partially supported: food quality matters strongly as predicted, but the presumed competitive relationship with Hydropsichidae appears to be facilitative, while physical habitat variables proved less important than these biological factors. However, the physical habitat variables could have an effect as well given that they showed significance in a model that doesn't have cs or bydae. In other words, the habitat variables could affect as well, it needs to be tested separately.
 
 ### References
-- 
+- [Used ChatGPT for Part d] Prompted by on what basis are you going to choose models? Are we choosing each variable randomly one by one or how? - The GPT gave me an idea to partition as habitat and distance separately.
+- ![Used for Part i] https://biostats-uottawa.github.io/Rway/35-reg_mult.html#visualizing-effect-size
+- [Used ChatGPT for Part g] Prompted by "how can we reject the habitat variables given that they are not in the model"? - Answered as mentioning habitat variables were excluded in the model.
 
 
 
